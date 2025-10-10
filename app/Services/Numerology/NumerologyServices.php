@@ -6,6 +6,100 @@ use Carbon\Carbon;
 
 class NumerologyServices
 {
+  public function calculateLifePath(string $birthDate): int
+  {
+    $digits = str_split(Carbon::parse($birthDate)->format('Ymd'));
+    return $this->reduceToOneDigit(array_sum($digits));
+  }
+
+  public function calculateExpression(string $firstName, string $lastName): int
+  {
+    $mapping = $this->getLetterMapping();
+    $text = mb_strtoupper($firstName . $lastName);
+    $sum = 0;
+    foreach (mb_str_split($text) as $char) {
+      if (isset($mapping[$char])) $sum += $mapping[$char];
+    }
+    return $this->reduceToOneDigit($sum);
+  }
+
+  public function calculateSoulUrge(string $firstName, string $lastName): int
+  {
+    $mapping = $this->getLetterMapping();
+    $vowels  = ['A', 'E', 'I', 'O', 'U', 'Y'];
+    $text    = mb_strtoupper($firstName . $lastName);
+    $sum     = 0;
+    foreach (mb_str_split($text) as $char) {
+      if (in_array($char, $vowels) && isset($mapping[$char])) {
+        $sum += $mapping[$char];
+      }
+    }
+    return $this->reduceToOneDigit($sum);
+  }
+
+  public function calculatePersonality(string $firstName, string $lastName): int
+  {
+    $mapping = $this->getLetterMapping();
+    $consonants = array_diff(
+      mb_str_split(mb_strtoupper($firstName . $lastName)),
+      ['A', 'E', 'I', 'O', 'U', 'Y']
+    );
+    $sum = 0;
+    foreach ($consonants as $char) {
+      if (isset($mapping[$char])) $sum += $mapping[$char];
+    }
+    return $this->reduceToOneDigit($sum);
+  }
+
+  public function calculateMaturity(string $birthDate, string $firstName, string $lastName): int
+  {
+    $lifePath   = $this->calculateLifePath($birthDate);
+    $expression = $this->calculateExpression($firstName, $lastName);
+    return $this->reduceToOneDigit($lifePath + $expression);
+  }
+
+  public function calculatePinnaclesAndChallenges(string $birthDate): array
+  {
+    // Qui implementi la logica per i 4 Pinnacles e 3 Challenge basati sul Life Path
+    // Esempio stub:
+    $lifePath = $this->calculateLifePath($birthDate);
+    return [
+      'pinnacle_1' => $this->reduceToOneDigit($lifePath + 1),
+      'pinnacle_2' => $this->reduceToOneDigit($lifePath + 2),
+      // …
+      'challenge_1' => abs($lifePath - 1),
+      // …
+    ];
+  }
+
+  /**
+   * Restituisce TUTTA la matrice NAI.
+   */
+  public function calculateNAIMatrix(string $birthDate, string $firstName, string $lastName): array
+  {
+    return [
+      'life_path'    => $this->calculateLifePath($birthDate),
+      'expression'   => $this->calculateExpression($firstName, $lastName),
+      'soul_urge'    => $this->calculateSoulUrge($firstName, $lastName),
+      'personality'  => $this->calculatePersonality($firstName, $lastName),
+      'maturity'     => $this->calculateMaturity($birthDate, $firstName, $lastName),
+      'pinnacles'    => $this->calculatePinnaclesAndChallenges($birthDate)['pinnacles'] ?? [],
+      'challenges'   => $this->calculatePinnaclesAndChallenges($birthDate)['challenges'] ?? [],
+    ];
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
   /**
    * Calculate the NAI number from a birth date (YYYY-MM-DD).
    *
@@ -15,7 +109,7 @@ class NumerologyServices
   public function calculateNAIFromDate(string $birthDate): int
   {
     // Normalize date to YYYYMMDD
-    $dateString = Carbon::parse($birthDate)->format('Ymd');
+    $dateString = Carbon::parse($birthDate)->format('dmY');
     $sum = array_sum(str_split($dateString));
 
     return $this->reduceToOneDigit($sum);

@@ -61,26 +61,22 @@ class ForgotController extends Controller
 
             // Delete all old code that user send before.
             PasswordReset::where('email', $request->email)->delete();
-
             // Generate random code
             $data['token'] = $this->generateAlphanumericToken(16);
-
             $data['created_at'] = Carbon::now();
             // Create Link for Reset Password to FrontEnd
             $createLink = config('app.frontend');
             // Create a new code
             $token = PasswordReset::create($data);
-
             $tokenData = [
                 'token' => $token->token,
                 'reset' => $createLink . '/password/recovery?token=' . $token->token
             ];
-
             // Send email to user
             // Mail::to($request->email)->send(new ForgotPasswordMail($tokenData, $from));
 
             $response = [
-                'status' => 'Sent',
+                'status' => true,
                 'message' => trans('passwords.sent'),
                 'reset' => $tokenData['reset']
             ];

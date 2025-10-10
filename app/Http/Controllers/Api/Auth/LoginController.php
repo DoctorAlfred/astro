@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Api\Auth;
 use Carbon\Carbon;
 use App\Lib\Message;
 use App\Models\User;
+
 use Illuminate\Http\Request;
+use App\Models\Customer\Customer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Notifications\VerifyEmail;
 
@@ -19,11 +22,37 @@ class LoginController extends Controller
     /**
      * Check Token status
      *
+     * @param string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkToken(string $tokenValue): JsonResponse
+    {
+        try {
+            $token = PersonalAccessToken::findToken($tokenValue);
+
+            // Check if the token has expired or not found
+            if (!$token || ($token->expires_at && now()->gte($token->expires_at))) {
+                Log::error(Message::TOKEN_KO, [__METHOD__, 'success' => false]);
+                return $this->sendError(Message::TOKEN_KO, ['success' => false], 404);
+            }
+
+            // If token is valid
+            return $this->sendResponse(Message::TOKEN_OK, ['success' => true]);
+        } catch (\Exception $ex) {
+            Log::error('Authentication error', [__METHOD__, $ex]);
+            return response()->json(['success' => false, 'error' => $ex->getMessage()], 403);
+        }
+    }
+
+    /**
+     * Check Token status
+     *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function checkToken(Request $request): JsonResponse
+    public function checkTokenResetPassword(Request $request): JsonResponse
     {
         try {
             $tokenValue = $request->token;
@@ -106,8 +135,9 @@ class LoginController extends Controller
 
             $ip = $request->ip();
             $userAgent = $request->server('HTTP_USER_AGENT');
-            
+
             $user = User::where('email', $request->email)->with('roles')->first();
+            $customer = Customer::where('user_id', $user->id)->first();
 
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return $this->sendError(Message::PASSWORD_KO, ['status' => false]);
@@ -124,12 +154,17 @@ class LoginController extends Controller
 
             /** Send Mail to Logged user and Log the connection */
             // Mail::mailer('smtp')->to($request->email)->send(new LoginMail($user, $request->from));
-            Log::info(Message::LOGIN, ['userId' => $user->id, 'email' => $request->email, 'accessDate' => now(), 'ip' => $ip, 'userAgent' => $userAgent]);
+            // Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin_mail'))->send(new MailRegister($dataToSent));
+            Log::info(Message::LOGIN, ['userId' => $user->id, 'email' => $request->email, 'accessDate' => now(), 'ip' => $ip, 'userAgent' => $userAgent, 'token' => $token]);
 
             return $this->sendResponse(
                 Message::AUTH_OK,
                 [
-                    'user' => $user->email,
+                    'userName' => $user->name,
+                    'userSurname' => $user->surname,
+                    'userEmail' => $user->email,
+                    'userPhone' => $user->phone,
+                    'customer' => $customer->id,
                     'token' => $token
                 ]
             );
@@ -153,7 +188,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
 
         Log::info(Message::LOGOUT, ['userEmail' => $request->user()->email, 'logoutDate' => now()]);
-
         return $this->sendResponse(Message::LOGOUT, ['logout' => $request->user()->email]);
     }
 }

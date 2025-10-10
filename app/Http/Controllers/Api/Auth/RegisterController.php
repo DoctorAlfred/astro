@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -19,32 +20,31 @@ class RegisterController extends Controller
      * Registers a single user via API
      *
      * @param \Illuminate\Http\Request
-     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function register(Request $request): JsonResponse
     {
         try {
 
             $data = $request->all();
 
             $validator = Validator::make($data, [
-                'name'       => 'required|string|min:3',
-                'surname'    => 'required|string|min:2',
+                'name'      => 'required|string|min:3',
+                'surname'   => 'required|string|min:2',
                 'email' => [
                     'required',
                     'email:rfc,dns',
-                    //new VerifyEmail,
                 ],
-                'password'   => [
+                'phone'     => 'nullable|string|min:9',
+                'password'  => [
                     'required',
                     'min:8',
                     'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
                     'required_with:confirmed',
                     'same:confirmed'
                 ],
-                'confirmed'  => 'required',
-                'from'       => 'sometimes',
+                'confirmed' => 'required',
+                'from'      => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -52,24 +52,49 @@ class RegisterController extends Controller
                 return $this->sendError(Message::REGISTER_KO, $validator->errors()->toArray(), 400);
             }
 
-            $existUser = User::withTrashed()
+            $existUserToDb = User::withTrashed()
                 ->where('email', $request->email)
+                ->select(
+                    'id',
+                    'name',
+                    'surname',
+                    'email',
+                    'phone',
+                    'from',
+                    'ip',
+                    'user_agent',
+                    'deleted_at'
+                )
                 ->first();
 
-            if ($existUser) {
+            if ($existUserToDb) {
+
+                $existUser = [
+                    'id' => $existUserToDb->id,
+                    'name' => $existUserToDb->name,
+                    'surname' => $existUserToDb->surname,
+                    'email' => $existUserToDb->email,
+                    'phone' => $existUserToDb->phone,
+                    'from' => $existUserToDb->from,
+                    'ip' => $existUserToDb->ip,
+                    'user_agent' => $existUserToDb->user_agent,
+                    'deleted_at' => $existUserToDb->deleted_at,
+                ];
+
                 Log::warning('Existing user', ['user' => $existUser]);
-                if ($existUser->deleted_at) {
-                    $recover = User::withTrashed()->where('email', $request->email)->restore();
+                if ($existUser['deleted_at']) {
+                    // dd('reg', $existUser);
+                    $recover = $existUserToDb->restore();
                     Log::warning('Restore user', ['recover' => $recover]);
                     if ($recover) {
                         $role = Role::where('name', 'User')->first();
-                        $existUser->roles()->attach($role);
+                        $existUserToDb->roles()->attach($role);
 
                         $permission = Permission::where('name', 'User')->first();
-                        $existUser->permissions()->attach($permission);
+                        $existUserToDb->permissions()->attach($permission);
 
                         DB::table('permission_user')
-                            ->where('user_id', $existUser->id)
+                            ->where('user_id', $existUserToDb->id)
                             ->update([
                                 'is_active'     => 1,
                                 'is_banned'     => 0,
@@ -91,7 +116,7 @@ class RegisterController extends Controller
                 } else {
                     $error = [
                         'code' => 403,
-                        'user' => $existUser->email,
+                        'user' => $existUserToDb->email,
                         'message' => 'This email is already registered'
                     ];
                     Log::error(Message::REGISTER_KO, [__METHOD__, $error]);
@@ -105,19 +130,20 @@ class RegisterController extends Controller
             $logo_w = null;
 
             $createLink = config('app.frontend');
-
-            // $platform = Platform::where(['name' => $request->from, 'active' => 1])->first();
-            // if ($platform) {
-            //     $from   = (string) $platform->name;
-            //     $mailer = (string) $platform->mailer;
-            //     if (!empty($platform->logo_url)) {
-            //         $logo   = (string) asset($platform->logo_url);
-            //         $logo_w = (string) asset($platform->logo_url_w);
-            //     }
-            //     if (!empty($platform->link)) {
-            //         $createLink = (string) $platform->link;
-            //     }
-            // }
+            /*
+            $platform = Platform::where(['name' => $request->from, 'active' => 1])->first();
+            if ($platform) {
+                $from   = (string) $platform->name;
+                $mailer = (string) $platform->mailer;
+                if (!empty($platform->logo_url)) {
+                    $logo   = (string) asset($platform->logo_url);
+                    $logo_w = (string) asset($platform->logo_url_w);
+                }
+                if (!empty($platform->link)) {
+                    $createLink = (string) $platform->link;
+                }
+            }
+            */
 
             $request['ip'] = $request->ip();
             $request['userAgent'] = $request->server('HTTP_USER_AGENT') ?? $from;
@@ -131,6 +157,7 @@ class RegisterController extends Controller
                 'name'      => $request->name,
                 'surname'   => $request->surname,
                 'email'     => $request->email,
+                'phone'     => $request->phone,
                 'today'     => $formattedNow,
                 'confirm'   => $createLink . 'confirm/?id=' . $newUser['userId'],
                 'registerDate' => now()

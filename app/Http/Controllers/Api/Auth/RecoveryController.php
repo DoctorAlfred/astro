@@ -7,5 +7,5 @@ use Illuminate\Http\Request;
 
 class RecoveryController extends Controller
 {
-    //
+    // To-Do
 }

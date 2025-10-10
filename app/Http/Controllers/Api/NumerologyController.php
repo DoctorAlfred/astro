@@ -28,11 +28,11 @@ class NumerologyController extends Controller
     public function naiFromDate(Request $request)
     {
         $request->validate([
-            'birth_date' => 'required|date_format:Y-m-d',
+            'birthDate' => 'required|date_format:d-m-Y',
         ]);
 
         $nai = $this->numerologyServices->calculateNAIFromDate(
-            $request->input('birth_date')
+            $request->input('birthDate')
         );
 
         return response()->json([
@@ -60,6 +60,26 @@ class NumerologyController extends Controller
         return response()->json([
             'status' => 'success',
             'nai'    => $nai,
+        ]);
+    }
+
+    public function naiMatrix(Request $request)
+    {
+        $request->validate([
+            'birthDate' => 'required|date_format:Y-m-d',
+            'firstName' => 'required|string|max:100',
+            'lastName'  => 'required|string|max:100',
+        ]);
+
+        $matrix = $this->numerologyServices->calculateNAIMatrix(
+            $request->input('birthDate'),
+            $request->input('firstName'),
+            $request->input('lastName')
+        );
+
+        return response()->json([
+            'status' => 'success',
+            'matrix' => $matrix,
         ]);
     }
 }

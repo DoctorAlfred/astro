@@ -3,32 +3,15 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Test\Test;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\User\Auth;
 use Illuminate\Session\Middleware\StartSession;
 use App\Http\Controllers\Api\NumerologyController;
+use App\Http\Controllers\Api\User\AuthController;
 
 Route::get('/test', [Test::class, 'test']);
 
 Route::group([
     'as' => 'astro.'
 ], function () {
-
-    Route::prefix('numerology')->group(function () {
-        Route::post('nai-from-date', [NumerologyController::class, 'naiFromDate']);
-        Route::post('nai-from-name', [NumerologyController::class, 'naiFromName']);
-    });
-
-    Route::prefix('auth')->group(function () {
-        Route::post('register', [Auth::class, 'register']);
-        Route::post('login', [Auth::class, 'login']);
-        Route::post('forgot-password', [Auth::class, 'forgotPassword']);
-        Route::post('reset-password', [Auth::class, 'resetPassword']);
-
-        // Route::middleware('auth:api')->group(function () {
-        //     Route::post('logout', [Auth::class, 'logout']);
-        //     Route::delete('delete', [Auth::class, 'delete']);
-        // });
-    });
 
     // ---------- ---------- ---------- AUTH ---------- ---------- ---------- //
     Route::group([
@@ -37,12 +20,12 @@ Route::group([
         'name' => 'auth.',
     ], function () {
         // GET Method
-        // Route::get('/verify/token/{token}', [\App\Http\Controllers\Api\Auth\LoginController::class, 'checkToken']);
+        Route::get('/verify/token/{token}', [\App\Http\Controllers\Api\Auth\LoginController::class, 'checkToken']);
         // POST Method
         Route::post('/login', [\App\Http\Controllers\Api\Auth\LoginController::class, 'login'])->middleware(StartSession::class);
-        // Route::post('/check/token', [\App\Http\Controllers\Api\Auth\LoginController::class, 'checkTokenResetPassword']);            // If you need to reset your password from user
-        // Route::post('/password/forgot', [\App\Http\Controllers\Api\Auth\ForgotController::class, 'forgot']);
-        // Route::post('/password/recovery', [\App\Http\Controllers\Api\Auth\ResetPasswordController::class, 'resetPassword']);
+        Route::post('/check/token', [\App\Http\Controllers\Api\Auth\LoginController::class, 'checkTokenResetPassword']);           // If you need to reset your password from user
+        Route::post('/password/forgot', [\App\Http\Controllers\Api\Auth\ForgotController::class, 'forgot']);
+        Route::post('/password/recovery', [\App\Http\Controllers\Api\Auth\ResetPasswordController::class, 'resetPassword']);
 
         Route::group([
             'prefix' => 'logged',
@@ -51,11 +34,19 @@ Route::group([
             'middleware' => ['auth:sanctum', 'authenticated', 'admin']
         ], function () {
             // GET Method
-            // Route::get('/activate/{userId}/{from?}', [\App\Http\Controllers\Api\Auth\VerificationController::class, 'activate']);
+            Route::get('/activate/{userId}/{from?}', [\App\Http\Controllers\Api\Auth\VerificationController::class, 'activate']);
             // POST Method
-            // Route::post('/logout', [\App\Http\Controllers\Api\Auth\LoginController::class, 'logout']);
-            // Route::post('/register', [\App\Http\Controllers\Api\Auth\RegisterController::class, 'register']);
+            Route::post('/logout', [\App\Http\Controllers\Api\Auth\LoginController::class, 'logout']);
+            Route::post('/register', [\App\Http\Controllers\Api\Auth\RegisterController::class, 'register']);
         });
+    });
+
+    // ---------- ---------- ---------- Numerology ---------- ---------- ---------- //
+    Route::prefix('numerology')->group(function () {
+        Route::post('/nai-from-date', [NumerologyController::class, 'naiFromDate']);
+        Route::post('/nai-from-name', [NumerologyController::class, 'naiFromName']);
+
+        Route::post('/nai-matrix', [NumerologyController::class, 'naiMatrix']);
     });
 
     // ---------- ---------- ---------- AUTH ---------- ---------- ---------- //
