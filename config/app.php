@@ -28,6 +28,8 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'admin' => env('APP_SUPER_ADMIN', 'alfredo.matricciani@google.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -65,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Rome',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +80,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => env('APP_LOCALE', 'it'),
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 

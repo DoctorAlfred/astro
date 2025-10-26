@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         $payloadAdmin = [
             'name'                => 'Alfredo',
             'surname'             => 'Matricciani',
-            'email'               => 'alfredomatricciani@hotmail.it',
+            'email'               => 'alfredo.matricciani@google.it',
             'phone'               => '',
             'password'            => 'BubuSettete1!',
             'email_verified_at'   => Carbon::now(),
@@ -75,5 +75,11 @@ class DatabaseSeeder extends Seeder
                 'token: ' . json_encode($user['token'], true) . PHP_EOL .
                 'userId: ' . json_encode($user['userId'], true) . PHP_EOL
         );
+
+        $this->callWith([
+            NaiMeaningsSeeder::class
+            // ChatGptSeeder::class,
+            // ['userId' => $user->userId] 
+        ]);
     }
 }

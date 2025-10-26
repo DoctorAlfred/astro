@@ -3,15 +3,49 @@
 namespace App\Services\Numerology;
 
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
+use App\Models\Numbers\NaiMeanings;
 
 class NumerologyServices
 {
+  /**
+   * Ceaning function
+   *
+   * @param string $lang
+   * @param string $code
+   * @param int    $number
+   * @return array|null
+   */
+  private function meaning(string $lang, string $code, int $number): ?array
+  {
+    $m = NaiMeanings::where('lang', $lang)->where('code', $code)->first();
+    return $m ? [
+      'title'       => $m->title,
+      'number'      => $number,
+      'description' => $m->description,
+      'meta'        => $m->meta,
+    ] : null;
+  }
+
+  /**
+   * Calculate Life Path function
+   *
+   * @param string $birthDate
+   * @return integer
+   */
   public function calculateLifePath(string $birthDate): int
   {
     $digits = str_split(Carbon::parse($birthDate)->format('Ymd'));
     return $this->reduceToOneDigit(array_sum($digits));
   }
 
+  /**
+   * Calculate Expression function
+   *
+   * @param string $firstName
+   * @param string $lastName
+   * @return integer
+   */
   public function calculateExpression(string $firstName, string $lastName): int
   {
     $mapping = $this->getLetterMapping();
@@ -23,6 +57,13 @@ class NumerologyServices
     return $this->reduceToOneDigit($sum);
   }
 
+  /**
+   * Calculate Soul Urge function
+   *
+   * @param string $firstName
+   * @param string $lastName
+   * @return integer
+   */
   public function calculateSoulUrge(string $firstName, string $lastName): int
   {
     $mapping = $this->getLetterMapping();
@@ -37,6 +78,13 @@ class NumerologyServices
     return $this->reduceToOneDigit($sum);
   }
 
+  /**
+   * Calculate Personality function
+   *
+   * @param string $firstName
+   * @param string $lastName
+   * @return integer
+   */
   public function calculatePersonality(string $firstName, string $lastName): int
   {
     $mapping = $this->getLetterMapping();
@@ -51,6 +99,14 @@ class NumerologyServices
     return $this->reduceToOneDigit($sum);
   }
 
+  /**
+   * Calculate Maturity function
+   *
+   * @param string $birthDate
+   * @param string $firstName
+   * @param string $lastName
+   * @return integer
+   */
   public function calculateMaturity(string $birthDate, string $firstName, string $lastName): int
   {
     $lifePath   = $this->calculateLifePath($birthDate);
@@ -58,47 +114,75 @@ class NumerologyServices
     return $this->reduceToOneDigit($lifePath + $expression);
   }
 
+  /**
+   * Calculate Pinnacles And Challenges function
+   *
+   * @param string $birthDate
+   * @return array
+   */
   public function calculatePinnaclesAndChallenges(string $birthDate): array
   {
-    // Qui implementi la logica per i 4 Pinnacles e 3 Challenge basati sul Life Path
-    // Esempio stub:
     $lifePath = $this->calculateLifePath($birthDate);
+
+    $pinnacles = [
+      'numberOne' => $this->reduceToOneDigit($lifePath + 1),
+      'numberTwo' => $this->reduceToOneDigit($lifePath + 2),
+      'numberThree' => $this->reduceToOneDigit($lifePath + 3),
+      'numberFour' => $this->reduceToOneDigit($lifePath + 4),
+    ];
+
+    $challenges = [
+      $this->reduceToOneDigit(abs($lifePath - 1)),
+      $this->reduceToOneDigit(abs($lifePath - 2)),
+      $this->reduceToOneDigit(abs(($lifePath - 1) - ($lifePath - 2))),
+      $this->reduceToOneDigit(abs($lifePath - 3)),
+    ];
+
     return [
-      'pinnacle_1' => $this->reduceToOneDigit($lifePath + 1),
-      'pinnacle_2' => $this->reduceToOneDigit($lifePath + 2),
-      // …
-      'challenge_1' => abs($lifePath - 1),
-      // …
+      'pinnacles'  => $pinnacles,
+      'challenges' => $challenges,
     ];
   }
 
   /**
-   * Restituisce TUTTA la matrice NAI.
+   * Calculate NAI Matrix function
+   *
+   * @param string $birthDate
+   * @param string $firstName
+   * @param string $lastName
+   * @param string|null $language
+   * @return array
    */
-  public function calculateNAIMatrix(string $birthDate, string $firstName, string $lastName): array
+  public function calculateNAIMatrix(string $birthDate, string $firstName, string $lastName, ?string $language = null): array
   {
+    $lang = $language ? strtolower($language) : 'it';
+
+    $lifePath    = $this->calculateLifePath($birthDate);
+    $expression  = $this->calculateExpression($firstName, $lastName);
+    $soulUrge    = $this->calculateSoulUrge($firstName, $lastName);
+    $personality = $this->calculatePersonality($firstName, $lastName);
+    $maturity    = $this->calculateMaturity($birthDate, $firstName, $lastName);
+    $pc          = $this->calculatePinnaclesAndChallenges($birthDate);
+
+    $numObj = function (int $n) use ($lang) {
+      return $this->meaning($lang, 'number_' . $n, $n)
+        ?? ['title' => ($lang === 'it' ? 'Numero ' : 'Number ') . $n, 'number' => $n, 'description' => null, 'meta' => null];
+    };
+
+    $pinnValues = array_values($pc['pinnacles'] ?? []);
+    $pinnacles  = array_map(fn($n) => $numObj((int)$n), $pinnValues);
+    $challenges = array_map(fn($n) => $numObj((int)$n), $pc['challenges'] ?? []);
+
     return [
-      'life_path'    => $this->calculateLifePath($birthDate),
-      'expression'   => $this->calculateExpression($firstName, $lastName),
-      'soul_urge'    => $this->calculateSoulUrge($firstName, $lastName),
-      'personality'  => $this->calculatePersonality($firstName, $lastName),
-      'maturity'     => $this->calculateMaturity($birthDate, $firstName, $lastName),
-      'pinnacles'    => $this->calculatePinnaclesAndChallenges($birthDate)['pinnacles'] ?? [],
-      'challenges'   => $this->calculatePinnaclesAndChallenges($birthDate)['challenges'] ?? [],
+      'lifePath'    => $this->meaning($lang, 'lifePath',    $lifePath),
+      'expression'  => $this->meaning($lang, 'expression',  $expression),
+      'soulUrge'    => $this->meaning($lang, 'soulUrge',    $soulUrge),
+      'personality' => $this->meaning($lang, 'personality', $personality),
+      'maturity'    => $this->meaning($lang, 'maturity',    $maturity),
+      'pinnacles'   => $pinnacles,
+      'challenges'  => $challenges,
     ];
   }
-
-  
-
-
-
-
-
-
-
-
-
-
 
   /**
    * Calculate the NAI number from a birth date (YYYY-MM-DD).
@@ -145,6 +229,20 @@ class NumerologyServices
    */
   private function reduceToOneDigit(int $number): int
   {
+    $number = abs($number);
+
+    if ($number === 0) {
+      return 0;
+    }
+
+    while ($number > 9) {
+      $number = array_sum(str_split((string) $number));
+    }
+
+    return $number;
+
+    /*
+
     if ($number >= 1 && $number <= 9) {
       return $number;
     }
@@ -153,6 +251,7 @@ class NumerologyServices
     $sum = array_sum($digits);
 
     return $this->reduceToOneDigit($sum);
+    */
   }
 
   /**

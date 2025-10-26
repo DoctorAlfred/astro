@@ -60,14 +60,14 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/laravel_single_' . date('d_m_Y') . '.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/laravel_dayly_' . date('d_m_Y') . '.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => env('LOG_DAILY_DAYS', 14),
             'replace_placeholders' => true,
@@ -107,6 +107,7 @@ return [
 
         'syslog' => [
             'driver' => 'syslog',
+            'path' => storage_path('logs/debug_log_' . date('d_m_Y') . '.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'facility' => env('LOG_SYSLOG_FACILITY', LOG_USER),
             'replace_placeholders' => true,
@@ -114,6 +115,7 @@ return [
 
         'errorlog' => [
             'driver' => 'errorlog',
+            'path' => storage_path('logs/error_log_' . date('d_m_Y') . '.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
@@ -124,7 +126,7 @@ return [
         ],
 
         'emergency' => [
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/laravel_emergency_' . date('d_m_Y') . '.log'),
         ],
 
     ],

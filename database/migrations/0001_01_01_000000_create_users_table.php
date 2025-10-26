@@ -25,8 +25,7 @@ return new class extends Migration
             $table->string('from')->nullable();
             $table->string('ip')->nullable();
             $table->string('user_agent')->nullable();
-
-            $table->string('password');
+            
             $table->rememberToken();
 
             $table->timestamps();

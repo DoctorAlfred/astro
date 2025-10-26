@@ -47,6 +47,8 @@ Route::group([
         Route::post('/nai-from-name', [NumerologyController::class, 'naiFromName']);
 
         Route::post('/nai-matrix', [NumerologyController::class, 'naiMatrix']);
+
+        
     });
 
     // ---------- ---------- ---------- AUTH ---------- ---------- ---------- //

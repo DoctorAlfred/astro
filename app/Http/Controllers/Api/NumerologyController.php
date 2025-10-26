@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
+use Throwable;
+use App\Lib\Message;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Services\Numerology\NumerologyServices;
 
 class NumerologyController extends Controller
 {
-    /** @var \App\Services\Numberlogy\NumerologyServices $numerologyService */
+    /** @var \App\Services\Numerology\NumerologyServices $numerologyService */
     private NumerologyServices $numerologyServices;
 
     /**
@@ -22,64 +25,97 @@ class NumerologyController extends Controller
     }
 
     /**
-     * POST /api/numerology/nai-from-date
-     * Body: { "birth_date": "1990-10-27" }
+     * NAI From Date function
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function naiFromDate(Request $request)
+    public function naiFromDate(Request $request): JsonResponse
     {
-        $request->validate([
-            'birthDate' => 'required|date_format:d-m-Y',
-        ]);
+        try {
+            $request->validate([
+                'birthDate' => 'required|date_format:d-m-Y',
+            ]);
 
-        $nai = $this->numerologyServices->calculateNAIFromDate(
-            $request->input('birthDate')
-        );
+            $nai = $this->numerologyServices->calculateNAIFromDate(
+                $request->input('birthDate')
+            );
 
-        return response()->json([
-            'status' => 'success',
-            'nai'    => $nai,
-        ]);
+            return $this->sendResponse(Message::SHOW_OK, [
+                'status' => 'success',
+                'matrix' => $nai,
+            ], 200);
+        } catch (Throwable $e) {
+            return $this->sendError(Message::SHOW_KO, [
+                'status' => false,
+                'message' => $e->getMessage()
+            ], 404);
+        }
     }
 
     /**
-     * POST /api/numerology/nai-from-name
-     * Body: { "first_name": "Mario", "last_name": "Rossi" }
+     * NAI From Name function
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function naiFromName(Request $request)
+    public function naiFromName(Request $request): JsonResponse
     {
-        $request->validate([
-            'firstName' => 'required|string|max:100',
-            'lastName'  => 'required|string|max:100',
-        ]);
+        try {
+            $request->validate([
+                'firstName' => 'required|string|max:100',
+                'lastName'  => 'required|string|max:100',
+            ]);
 
-        $nai = $this->numerologyServices->calculateNAIFromName(
-            $request->input('firstName'),
-            $request->input('lastName')
-        );
+            $nai = $this->numerologyServices->calculateNAIFromName(
+                $request->input('firstName'),
+                $request->input('lastName')
+            );
 
-        return response()->json([
-            'status' => 'success',
-            'nai'    => $nai,
-        ]);
+            return $this->sendResponse(Message::SHOW_OK, [
+                'status' => 'success',
+                'matrix' => $nai,
+            ], 200);
+        } catch (Throwable $e) {
+            return $this->sendError(Message::SHOW_KO, [
+                'status' => false,
+                'message' => $e->getMessage()
+            ], 404);
+        }
     }
 
-    public function naiMatrix(Request $request)
+    /**
+     * NAI Matrix function
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function naiMatrix(Request $request): JsonResponse
     {
-        $request->validate([
-            'birthDate' => 'required|date_format:Y-m-d',
-            'firstName' => 'required|string|max:100',
-            'lastName'  => 'required|string|max:100',
-        ]);
+        try {
+            $request->validate([
+                'birthDate' => 'required|date_format:Y-m-d',
+                'firstName' => 'required|string|max:100',
+                'lastName'  => 'required|string|max:100',
+                'language'  => 'sometimes|nullable|string|max:2',
+            ]);
 
-        $matrix = $this->numerologyServices->calculateNAIMatrix(
-            $request->input('birthDate'),
-            $request->input('firstName'),
-            $request->input('lastName')
-        );
+            $matrix = $this->numerologyServices->calculateNAIMatrix(
+                $request->input('birthDate'),
+                $request->input('firstName'),
+                $request->input('lastName'),
+                $request->input('language')
+            );
 
-        return response()->json([
-            'status' => 'success',
-            'matrix' => $matrix,
-        ]);
+            return $this->sendResponse(Message::SHOW_OK, [
+                'status' => 'success',
+                'matrix' => $matrix,
+            ], 200);
+        } catch (Throwable $e) {
+            return $this->sendError(Message::SHOW_KO, [
+                'status' => false,
+                'message' => $e->getMessage()
+            ], 404);
+        }
     }
 }
