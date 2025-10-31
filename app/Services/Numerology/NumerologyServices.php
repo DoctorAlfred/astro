@@ -48,7 +48,7 @@ class NumerologyServices
    */
   public function calculateExpression(string $firstName, string $lastName): int
   {
-    $mapping = $this->getLetterMapping();
+    $mapping = $this->getLetterMappingCaldeo();
     $text = mb_strtoupper($firstName . $lastName);
     $sum = 0;
     foreach (mb_str_split($text) as $char) {
@@ -66,7 +66,7 @@ class NumerologyServices
    */
   public function calculateSoulUrge(string $firstName, string $lastName): int
   {
-    $mapping = $this->getLetterMapping();
+    $mapping = $this->getLetterMappingCaldeo();
     $vowels  = ['A', 'E', 'I', 'O', 'U', 'Y'];
     $text    = mb_strtoupper($firstName . $lastName);
     $sum     = 0;
@@ -87,7 +87,7 @@ class NumerologyServices
    */
   public function calculatePersonality(string $firstName, string $lastName): int
   {
-    $mapping = $this->getLetterMapping();
+    $mapping = $this->getLetterMappingCaldeo();
     $consonants = array_diff(
       mb_str_split(mb_strtoupper($firstName . $lastName)),
       ['A', 'E', 'I', 'O', 'U', 'Y']
@@ -208,7 +208,7 @@ class NumerologyServices
    */
   public function calculateNAIFromName(string $firstName, string $lastName): int
   {
-    $mapping = $this->getLetterMapping();
+    $mapping = $this->getLetterMappingCaldeo();
     $text = mb_strtoupper($firstName . $lastName);
     $sum = 0;
 
@@ -240,18 +240,6 @@ class NumerologyServices
     }
 
     return $number;
-
-    /*
-
-    if ($number >= 1 && $number <= 9) {
-      return $number;
-    }
-
-    $digits = str_split((string) $number);
-    $sum = array_sum($digits);
-
-    return $this->reduceToOneDigit($sum);
-    */
   }
 
   /**
@@ -259,35 +247,37 @@ class NumerologyServices
    *
    * @return array<string,int>
    */
-  private function getLetterMapping(): array
+  private function getLetterMappingCaldeo(): array
   {
     return [
-      'A' => 1,
-      'B' => 2,
-      'C' => 3,
-      'D' => 4,
-      'E' => 5,
-      'F' => 8,
-      'G' => 3,
-      'H' => 5,
-      'I' => 1,
-      'J' => 1,
-      'K' => 2,
-      'L' => 3,
-      'M' => 4,
-      'N' => 5,
-      'O' => 7,
-      'P' => 8,
-      'Q' => 1,
-      'R' => 2,
-      'S' => 3,
-      'T' => 4,
-      'U' => 6,
-      'V' => 6,
-      'W' => 6,
-      'X' => 5,
-      'Y' => 1,
-      'Z' => 7,
+      'A' => 1, 'I' => 1, 'J' => 1, 'Q' => 1, 'Y' => 1,
+      'B' => 2, 'K' => 2, 'R' => 2,
+      'C' => 3, 'G' => 3, 'L' => 3, 'S' => 3,
+      'D' => 4, 'M' => 4, 'T' => 4,
+      'E' => 5, 'H' => 5, 'N' => 5, 'X' => 5,
+      'U' => 6, 'V' => 6, 'W' => 6,
+      'O' => 7, 'Z' => 7,
+      'F' => 8, 'P' => 8,
+    ];
+  }
+
+  /**
+   * Return the letter→number mapping (Pitagora style).
+   *
+   * @return array<string,int>
+   */
+  private function getLetterMappingPitagora(): array
+  {
+    return [
+      'A' => 1, 'J' => 1, 'S' => 1,
+      'B' => 2, 'K' => 2, 'T' => 2,
+      'C' => 3, 'L' => 3, 'U' => 3,
+      'D' => 4, 'M' => 4, 'V' => 4,
+      'E' => 5, 'N' => 5, 'W' => 5,
+      'F' => 6, 'O' => 6, 'X' => 6,
+      'G' => 7, 'P' => 7, 'Y' => 7,
+      'H' => 8, 'Q' => 8, 'Z' => 8,
+      'I' => 9, 'R' => 9,
     ];
   }
 }
