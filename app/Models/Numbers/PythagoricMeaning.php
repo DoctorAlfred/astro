@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class NaiMeanings extends Model
+class PythagoricMeaning extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, HasUuids, Notifiable, SoftDeletes;
@@ -18,7 +18,7 @@ class NaiMeanings extends Model
     /** @var string $keyType */
     protected $keyType = 'string';
 
-    protected $table = 'nai_meanings';
+    protected $table = 'pythagoric_meanings';
 
     /**
      * The attributes that are mass assignable.
@@ -26,13 +26,13 @@ class NaiMeanings extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'number',
-        'lang',
-        'code',
+        'number_type',
+        'number_value',
+        'locale',
         'title',
-        'description',
-        'meta',
+        'short_description',
+        'long_description',
+        'metadata',
     ];
 
     /**
@@ -41,8 +41,7 @@ class NaiMeanings extends Model
      * @return array<string, string> The Eloquent casts applied to attributes
      */
     protected $casts = [
-        'number'     => 'integer',
-        'meta'       => 'array',
+        'meta' => 'array',
         'created_at' => "datetime:d-m-Y H:i",
         'updated_at' => "datetime:d-m-Y H:i",
         'deleted_at' => "datetime:d-m-Y H:i",

@@ -77,7 +77,8 @@ class DatabaseSeeder extends Seeder
         );
 
         $this->callWith([
-            NaiMeaningsSeeder::class
+            NaiMeaningsSeeder::class,
+            PythagoricMeaningsSeeder::class,
             // ChatGptSeeder::class,
             // ['userId' => $user->userId] 
         ]);

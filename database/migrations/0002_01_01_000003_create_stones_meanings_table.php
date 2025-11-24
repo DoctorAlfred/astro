@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nai_meanings', function (Blueprint $table) {
+        Schema::create('stones_meanings', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->string('name', 255);
-            $table->integer('number');
-            $table->string('lang', 2);
-            $table->string('code', 64);
-            $table->string('title', 255);
-            $table->text('description')->nullable();
-            $table->json('meta')->nullable(); 
+            // Numero numerologico associato (1..9, 11, 22, 33)
+            $table->integer('number')->nullable();
+            // Dati non linguistici
+            $table->float('hardness')->nullable(); // Scala Mohs
 
             $table->timestamps();
             $table->softDeletes();
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nai_meanings');
+        Schema::dropIfExists('stones_meanings');
     }
 };

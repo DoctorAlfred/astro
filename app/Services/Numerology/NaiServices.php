@@ -3,10 +3,9 @@
 namespace App\Services\Numerology;
 
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
 use App\Models\Numbers\NaiMeanings;
 
-class NumerologyServices
+class NaiServices
 {
   /**
    * Ceaning function
@@ -18,13 +17,21 @@ class NumerologyServices
    */
   private function meaning(string $lang, string $code, int $number): ?array
   {
-    $m = NaiMeanings::where('lang', $lang)->where('code', $code)->first();
-    return $m ? [
-      'title'       => $m->title,
+    // $m = NaiMeanings::where('lang', $lang)->where('code', $code)->first();
+    // return $m ? [
+    //   'title'       => $m->title,
+    //   'number'      => $number,
+    //   'description' => $m->description,
+    //   'meta'        => $m->meta,
+    // ] : null;
+
+    $m = NaiMeanings::where('lang', $lang)->where('code', $code)->where('number', $number)->first();
+    return [
+      'title'       => $m->title       ?? ($code . ' ' . $number),
       'number'      => $number,
-      'description' => $m->description,
-      'meta'        => $m->meta,
-    ] : null;
+      'description' => $m->description ?? null,
+      'meta'        => $m->meta        ?? null,
+    ];
   }
 
   /**
@@ -139,8 +146,8 @@ class NumerologyServices
     ];
 
     return [
-      'pinnacles'  => $pinnacles,
-      'challenges' => $challenges,
+      'pinnacles'  => $pinnacles,   // Codice evolutivo personale
+      'challenges' => $challenges,  // Ostacoli o Compiti ricorrenti
     ];
   }
 
@@ -157,23 +164,47 @@ class NumerologyServices
   {
     $lang = $language ? strtolower($language) : 'it';
 
+    // $lifePath    = $this->calculateLifePath($birthDate);
+    // $expression  = $this->calculateExpression($firstName, $lastName);
+    // $soulUrge    = $this->calculateSoulUrge($firstName, $lastName);
+    // $personality = $this->calculatePersonality($firstName, $lastName);
+    // $maturity    = $this->calculateMaturity($birthDate, $firstName, $lastName);
+    // $pc          = $this->calculatePinnaclesAndChallenges($birthDate);
+
+    // $numObj = function (int $n) use ($lang) {
+    //   return $this->meaning($lang, 'number_' . $n, $n)
+    //     ?? ['title' => ($lang === 'it' ? 'Numero ' : 'Number ') . $n, 'number' => $n, 'description' => null, 'meta' => null];
+    // };
+
+    // $pinnValues = array_values($pc['pinnacles'] ?? []);
+    // $pinnacles  = array_map(fn($n) => $numObj((int)$n), $pinnValues);
+    // $challenges = array_map(fn($n) => $numObj((int)$n), $pc['challenges'] ?? []);
+
+    // return [
+    //   'lifePath'    => $this->meaning($lang, 'lifePath',    $lifePath),
+    //   'expression'  => $this->meaning($lang, 'expression',  $expression),
+    //   'soulUrge'    => $this->meaning($lang, 'soulUrge',    $soulUrge),
+    //   'personality' => $this->meaning($lang, 'personality', $personality),
+    //   'maturity'    => $this->meaning($lang, 'maturity',    $maturity),
+    //   'pinnacles'   => $pinnacles,
+    //   'challenges'  => $challenges,
+    // ];
+
+    $pc         = $this->calculatePinnaclesAndChallenges($birthDate);
+    $pinnNums   = array_values($pc['pinnacles']);   // es. [4,5,6,7]
+    $challNums  = array_values($pc['challenges']);  // es. [2,1,1,0]
+
+    $pinnacles  = array_map(fn($n) => $this->meaning($lang, 'pinnacles',  (int)$n), $pinnNums);
+    $challenges = array_map(fn($n) => $this->meaning($lang, 'challenges', (int)$n), $challNums);
+
+    // campi principali
     $lifePath    = $this->calculateLifePath($birthDate);
     $expression  = $this->calculateExpression($firstName, $lastName);
     $soulUrge    = $this->calculateSoulUrge($firstName, $lastName);
     $personality = $this->calculatePersonality($firstName, $lastName);
     $maturity    = $this->calculateMaturity($birthDate, $firstName, $lastName);
-    $pc          = $this->calculatePinnaclesAndChallenges($birthDate);
 
-    $numObj = function (int $n) use ($lang) {
-      return $this->meaning($lang, 'number_' . $n, $n)
-        ?? ['title' => ($lang === 'it' ? 'Numero ' : 'Number ') . $n, 'number' => $n, 'description' => null, 'meta' => null];
-    };
-
-    $pinnValues = array_values($pc['pinnacles'] ?? []);
-    $pinnacles  = array_map(fn($n) => $numObj((int)$n), $pinnValues);
-    $challenges = array_map(fn($n) => $numObj((int)$n), $pc['challenges'] ?? []);
-
-    return [
+    $payload = [
       'lifePath'    => $this->meaning($lang, 'lifePath',    $lifePath),
       'expression'  => $this->meaning($lang, 'expression',  $expression),
       'soulUrge'    => $this->meaning($lang, 'soulUrge',    $soulUrge),
@@ -182,6 +213,8 @@ class NumerologyServices
       'pinnacles'   => $pinnacles,
       'challenges'  => $challenges,
     ];
+
+    return $payload;
   }
 
   /**
@@ -250,14 +283,32 @@ class NumerologyServices
   private function getLetterMappingCaldeo(): array
   {
     return [
-      'A' => 1, 'I' => 1, 'J' => 1, 'Q' => 1, 'Y' => 1,
-      'B' => 2, 'K' => 2, 'R' => 2,
-      'C' => 3, 'G' => 3, 'L' => 3, 'S' => 3,
-      'D' => 4, 'M' => 4, 'T' => 4,
-      'E' => 5, 'H' => 5, 'N' => 5, 'X' => 5,
-      'U' => 6, 'V' => 6, 'W' => 6,
-      'O' => 7, 'Z' => 7,
-      'F' => 8, 'P' => 8,
+      'A' => 1,
+      'I' => 1,
+      'J' => 1,
+      'Q' => 1,
+      'Y' => 1,
+      'B' => 2,
+      'K' => 2,
+      'R' => 2,
+      'C' => 3,
+      'G' => 3,
+      'L' => 3,
+      'S' => 3,
+      'D' => 4,
+      'M' => 4,
+      'T' => 4,
+      'E' => 5,
+      'H' => 5,
+      'N' => 5,
+      'X' => 5,
+      'U' => 6,
+      'V' => 6,
+      'W' => 6,
+      'O' => 7,
+      'Z' => 7,
+      'F' => 8,
+      'P' => 8,
     ];
   }
 
@@ -269,15 +320,32 @@ class NumerologyServices
   private function getLetterMappingPitagora(): array
   {
     return [
-      'A' => 1, 'J' => 1, 'S' => 1,
-      'B' => 2, 'K' => 2, 'T' => 2,
-      'C' => 3, 'L' => 3, 'U' => 3,
-      'D' => 4, 'M' => 4, 'V' => 4,
-      'E' => 5, 'N' => 5, 'W' => 5,
-      'F' => 6, 'O' => 6, 'X' => 6,
-      'G' => 7, 'P' => 7, 'Y' => 7,
-      'H' => 8, 'Q' => 8, 'Z' => 8,
-      'I' => 9, 'R' => 9,
+      'A' => 1,
+      'J' => 1,
+      'S' => 1,
+      'B' => 2,
+      'K' => 2,
+      'T' => 2,
+      'C' => 3,
+      'L' => 3,
+      'U' => 3,
+      'D' => 4,
+      'M' => 4,
+      'V' => 4,
+      'E' => 5,
+      'N' => 5,
+      'W' => 5,
+      'F' => 6,
+      'O' => 6,
+      'X' => 6,
+      'G' => 7,
+      'P' => 7,
+      'Y' => 7,
+      'H' => 8,
+      'Q' => 8,
+      'Z' => 8,
+      'I' => 9,
+      'R' => 9,
     ];
   }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Session\Middleware\StartSession;
 use App\Http\Controllers\Api\NumerologyController;
 use App\Http\Controllers\Api\User\AuthController;
+use App\Http\Controllers\Stones\StonesController;
 
 Route::get('/test', [Test::class, 'test']);
 
@@ -42,13 +43,31 @@ Route::group([
     });
 
     // ---------- ---------- ---------- Numerology ---------- ---------- ---------- //
-    Route::prefix('numerology')->group(function () {
-        Route::post('/nai-from-date', [NumerologyController::class, 'naiFromDate']);
-        Route::post('/nai-from-name', [NumerologyController::class, 'naiFromName']);
-
-        Route::post('/nai-matrix', [NumerologyController::class, 'naiMatrix']);
-
-        
+    Route::group([
+        'prefix' => 'numerology',
+        'as' => 'numerology.',
+        'name' => 'numerology.',
+        // 'middleware' => ['auth:sanctum', 'authenticated', 'admin']
+    ], function () {
+        // NAI
+        Route::post('/nai-from-date', [App\Http\Controllers\Numerology\NaiController::class, 'naiFromDate']);
+        Route::post('/nai-from-name', [App\Http\Controllers\Numerology\NaiController::class, 'naiFromName']);
+        Route::post('/nai-matrix', [App\Http\Controllers\Numerology\NaiController::class, 'naiMatrix']);
+        // Pythagoric
+        Route::post('/pythagoric', [App\Http\Controllers\Numerology\PythagoricController::class, 'pythagoric']);
+        Route::post('/pythagoric-test', function () {
+            return response()->json(['ok' => true]);
+        });
+    });
+    
+    // ---------- ---------- ---------- Stones ---------- ---------- ---------- //
+    Route::group([
+        'prefix' => 'stones',
+        'as' => 'stones.',
+        'name' => 'stones.',
+        // 'middleware' => ['auth:sanctum', 'authenticated', 'admin']
+    ], function () {
+        Route::post('/daily', [StonesController::class, 'daily']);
     });
 
     // ---------- ---------- ---------- AUTH ---------- ---------- ---------- //

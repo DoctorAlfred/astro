@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Numerology;
 
 use Throwable;
 use App\Lib\Message;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use App\Services\Numerology\NumerologyServices;
+use App\Services\Numerology\NaiServices;
 
-class NumerologyController extends Controller
+class NaiController extends Controller
 {
     /** @var \App\Services\Numerology\NumerologyServices $numerologyService */
-    private NumerologyServices $numerologyServices;
+    private NaiServices $naiServices;
 
     /**
      * Construct function
      *
      * @param NumerologyServices $numerologyServices
      */
-    public function __construct(NumerologyServices $numerologyServices)
+    public function __construct(NaiServices $naiServices)
     {
-        $this->numerologyServices = $numerologyServices;
+        $this->naiServices = $naiServices;
     }
 
     /**
@@ -37,7 +37,7 @@ class NumerologyController extends Controller
                 'birthDate' => 'required|date_format:d-m-Y',
             ]);
 
-            $nai = $this->numerologyServices->calculateNAIFromDate(
+            $nai = $this->naiServices->calculateNAIFromDate(
                 $request->input('birthDate')
             );
 
@@ -67,7 +67,7 @@ class NumerologyController extends Controller
                 'lastName'  => 'required|string|max:100',
             ]);
 
-            $nai = $this->numerologyServices->calculateNAIFromName(
+            $nai = $this->naiServices->calculateNAIFromName(
                 $request->input('firstName'),
                 $request->input('lastName')
             );
@@ -100,7 +100,7 @@ class NumerologyController extends Controller
                 'language'  => 'sometimes|nullable|string|max:2',
             ]);
 
-            $matrix = $this->numerologyServices->calculateNAIMatrix(
+            $matrix = $this->naiServices->calculateNAIMatrix(
                 $request->input('birthDate'),
                 $request->input('firstName'),
                 $request->input('lastName'),

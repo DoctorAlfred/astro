@@ -16,13 +16,13 @@ abstract class Controller
     protected $model;
 
     /** @var int */
-    protected $perPage = 24;
+    protected $perPage = 12;
 
     /**
      * Method to send response
      *
-     * @param array $data
      * @param string $message
+     * @param array $data
      * @param int $statusCode
      *
      * @return \Illuminate\Http\JsonResponse
@@ -32,13 +32,15 @@ abstract class Controller
         array $data,
         int $statusCode = JsonResponse::HTTP_OK
     ): JsonResponse {
-        $response = [
-            'success' => true,
-            'message' => $message,
-            'data' => $data
-        ];
-
-        return response()->json($response, $statusCode, array('Content-Type'=>'application/json; charset=utf-8'));
+        return response()->json(
+            [
+                'success' => true,
+                'message' => $message,
+                'data' => $data
+            ],
+            $statusCode,
+            ['Content-Type' => 'application/json; charset=utf-8']
+        );
     }
 
     /**
@@ -59,26 +61,25 @@ abstract class Controller
     /**
      * Method to send response error
      *
-     * @param string $error
-     * @param array $errorMessages
+     * @param string $message
+     * @param array $errorData
      * @param int $statusCode
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public static function sendError(
-        string $error = Message::GENERIC_KO,
-        array $errorMessages = [],
+        string $message = Message::GENERIC_KO,
+        array $errorData = [],
         int $statusCode = JsonResponse::HTTP_INTERNAL_SERVER_ERROR
     ): JsonResponse {
-        $response = [
-            'success' => false,
-            'message' => $error
-        ];
-
-        if (!empty($errorMessages)) {
-            $response['errors'] = $errorMessages;
-        }
-
-        return response()->json($response, $statusCode, array('Content-Type' => 'application/json; charset=utf-8'));
+        return response()->json(
+            [
+                'success' => false,
+                'errors' => $message,
+                'data' => $errorData
+            ],
+            $statusCode,
+            ['Content-Type' => 'application/json; charset=utf-8']
+        );
     }
 }
