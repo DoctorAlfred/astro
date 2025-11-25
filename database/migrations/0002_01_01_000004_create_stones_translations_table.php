@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('stones_translations', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->unsignedBigInteger('stones_meaning_id');
+            // $table->unsignedBigInteger('stones_meaning_id');
+            $table->uuid('stones_meaning_id');
 
             $table->string('language', 5);              // 'it', 'en', ecc.
             $table->string('name');                     // Ametista / Amethyst
@@ -32,10 +33,6 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('stones_meaning_id')
-                ->references('id')
-                ->on('stones_meanings')
-                ->onDelete('cascade');
         });
     }
 

@@ -72,6 +72,8 @@ class StonesServices
     $intensityNumber = $this->reduceNumber($lifePathNumber * $dayNumber);
     $guidanceNumber  = $this->calculateGuidanceNumber($lifePathNumber, $dayNumber);
 
+    $dayStones   = $this->getStonesForNumber($dayNumber, $lang);
+
     return [
       'meta' => [
         'birth_date'     => $birth->toDateString(),
@@ -90,6 +92,7 @@ class StonesServices
         'day_raw'    => $dayRaw,
         'day_number' => $dayNumber,
         'stones'     => $this->getStonesForNumber($dayNumber, $lang),
+        'recommended'      => $this->getRecommendedStone($dayStones),
         'runes'      => $this->getRunesForNumber($dayNumber),
       ],
 
@@ -218,7 +221,7 @@ class StonesServices
       $q->where('language', $lang);
     }])
       ->where('number', $number)
-      ->first();
+      ->get();
 
     if ($stones->isEmpty()) {
       return [];
@@ -244,7 +247,7 @@ class StonesServices
         'powers'       => $t->powers,
       ];
     })
-      ->filter()        // toglie eventuali null (se mancano traduzioni)
+      ->filter()
       ->values()
       ->toArray();
   }
@@ -281,5 +284,20 @@ class StonesServices
       'en', 'en-us' => 'en',
       default       => 'it',
     };
+  }
+
+  /**
+   * Get Recommended Stone function
+   *
+   * @param array $stones
+   * @return array|null
+   */
+  protected function getRecommendedStone(array $stones): ?array
+  {
+    if (empty($stones)) {
+      return null;
+    }
+
+    return $stones[0];
   }
 }
