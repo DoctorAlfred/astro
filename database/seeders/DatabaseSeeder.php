@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         $payloadAdmin = [
             'name'                => 'Alfredo',
             'surname'             => 'Matricciani',
-            'email'               => 'alfredo.matricciani@google.it',
+            'email'               => 'alfredo.matricciani@gmail.com',
             'phone'               => '',
             'password'            => 'BubuSettete1!',
             'email_verified_at'   => Carbon::now(),

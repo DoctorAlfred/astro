@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Lib\Message;
 use App\Models\User;
 
+use App\Mail\Auth\LoginMail;
 use Illuminate\Http\Request;
 use App\Models\Customer\Customer;
 use Illuminate\Http\JsonResponse;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -102,14 +104,13 @@ class LoginController extends Controller
                 'email' => [
                     'required',
                     'email:rfc,dns',
-                    new VerifyEmail,
+                    // new VerifyEmail,
                 ],
                 'password'   => [
                     'required',
                     'min:8',
                     'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
                 ],
-                'from'     => 'sometimes|string'
             ]);
 
             if ($validator->fails()) {
@@ -117,21 +118,6 @@ class LoginController extends Controller
                 return $this->sendError(Message::LOGIN_KO, $validator->errors()->toArray(), 400);
             }
 
-            /** @var $from - IMPORTANT FOR SET ALL PLATFORM */
-            $mailer = 'smtp';
-            $from = strtolower($request->from) ?? 'rixalto';
-            $logo = null;
-            $logo_w = null;
-
-            // $platform = Platform::where(['name' => $request->from, 'active' => 1])->first();
-            // if ($platform) {
-            //     $from   = (string) $platform->name;
-            //     $mailer = (string) $platform->mailer;
-            //     if (!empty($platform->logo_url)) {
-            //         $logo   = (string) asset($platform->logo_url);
-            //         $logo_w = (string) asset($platform->logo_url_w);
-            //     }
-            // }
 
             $ip = $request->ip();
             $userAgent = $request->server('HTTP_USER_AGENT');
@@ -147,25 +133,28 @@ class LoginController extends Controller
             $user->tokens()->delete();
 
             // Store the token in your custom session storage
+            $role = $user->roles->first()->code;
             $permise = $user->roles->first()->code === 'adminx' || $user->roles->first()->code === 'admin' ? 'full' : 'onlyRead';
-            $token = $user->createToken('api', ['api', $user->roles->first()->code, $permise, $from])->plainTextToken;
+            $token = $user->createToken('api', ['api', $user->roles->first()->code, $permise, 'astro'])->plainTextToken;
 
             $request->session()->regenerate();
 
             /** Send Mail to Logged user and Log the connection */
-            // Mail::mailer('smtp')->to($request->email)->send(new LoginMail($user, $request->from));
+            Mail::mailer('smtp')->to($request->email)->send(new LoginMail($user, $data['email']));
             // Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin_mail'))->send(new MailRegister($dataToSent));
             Log::info(Message::LOGIN, ['userId' => $user->id, 'email' => $request->email, 'accessDate' => now(), 'ip' => $ip, 'userAgent' => $userAgent, 'token' => $token]);
 
             return $this->sendResponse(
                 Message::AUTH_OK,
                 [
-                    'userName' => $user->name,
+                    'userName'    => $user->name,
                     'userSurname' => $user->surname,
-                    'userEmail' => $user->email,
-                    'userPhone' => $user->phone,
-                    'customer' => $customer->id,
-                    'token' => $token
+                    'userEmail'   => $user->email,
+                    'userPhone'   => $user->phone,
+                    'customer'    => $customer->id,
+                    'role'        => $role,
+                    'permise'     => $permise,
+                    'token'       => $token
                 ]
             );
         } catch (\Exception $ex) {
@@ -183,11 +172,20 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-        $request->session()->flush();
-        $request->session()->invalidate();
+        $user = $request->user();
+        $email = $user->email;
 
-        Log::info(Message::LOGOUT, ['userEmail' => $request->user()->email, 'logoutDate' => now()]);
+        // $request->user()->currentAccessToken()->delete();
+        $user->currentAccessToken()->delete();
+
+        Log::info(Message::LOGOUT, [
+            'userEmail' => $email,
+            'logoutDate' => now()
+        ]);
+
+        // $request->session()->flush();
+        // $request->session()->invalidate();
+
         return $this->sendResponse(Message::LOGOUT, ['logout' => $request->user()->email]);
     }
 }

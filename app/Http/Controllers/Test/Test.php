@@ -9,8 +9,8 @@ class Test extends Controller
 {
     public function test()
     {
-        return response()->json([
-            'message' => 'Ciao dal test!',
+        return $this->sendResponse('Connected', [
+            'message' => 'Benvenuti su Astro',
         ]);
     }
 }

@@ -6,8 +6,10 @@ use Throwable;
 use App\Lib\Message;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Services\Numerology\NaiServices;
+use Illuminate\Support\Facades\Validator;
 
 class NaiController extends Controller
 {
@@ -93,13 +95,21 @@ class NaiController extends Controller
     public function naiMatrix(Request $request): JsonResponse
     {
         try {
-            $request->validate([
+
+            $data = $request->all();
+
+            $validator = Validator::make($data, [
                 'birthDate' => 'required|date_format:Y-m-d',
                 'firstName' => 'required|string|max:100',
                 'lastName'  => 'required|string|max:100',
                 'language'  => 'sometimes|nullable|string|max:2',
             ]);
 
+            if ($validator->fails()) {
+                Log::error(Message::CREATE_KO, [__METHOD__, json_encode($validator->errors()->toArray())]);
+                return $this->sendError(Message::CREATE_KO, $validator->errors()->toArray(), 400);
+            }
+            
             $matrix = $this->naiServices->calculateNAIMatrix(
                 $request->input('birthDate'),
                 $request->input('firstName'),

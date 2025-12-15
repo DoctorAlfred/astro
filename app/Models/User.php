@@ -94,7 +94,7 @@ class User extends Authenticatable
         'permission',
     ];
 
-     /**
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles(): BelongsToMany
@@ -118,7 +118,7 @@ class User extends Authenticatable
         return $this->roles()->first()?->code;
     }
 
-     /**
+    /**
      * @return string|null getPermissionCodeAttribute
      */
     public function getPermissionAttribute(): ?string
@@ -236,7 +236,7 @@ class User extends Authenticatable
         return $me;
     }
 
-      /**
+    /**
      * Custom Create Token for Sanctum
      *
      * @param string $from
@@ -256,7 +256,7 @@ class User extends Authenticatable
         return new NewAccessToken($token, $token->id . '|' . $plainTextToken);
     }
 
-     /**
+    /**
      * Create User First Season
      * @param mixed $payload
      * @return array $token
@@ -280,6 +280,18 @@ class User extends Authenticatable
             'user_agent'        => $payload['userAgent'] ?? null,
         ]);
 
+        Customer::firstOrCreate([
+            'user_id'         => $user->id,
+            'type'            => 'astro',
+            'email'           => null,
+            'phone'           => null,
+            'address'         => null,
+            'city_id'         => null,
+            'country'         => null,
+            'vat'             => null,
+            'identity_number' => null,
+        ]);
+
         if ($email === config('app.admin')) {
             $scopes = ['api', 'admin', 'full', $from];
             $roleName = 'Admin';
@@ -291,7 +303,6 @@ class User extends Authenticatable
                 'first_in' => false,
                 'first_login' => false,
             ];
-            // TO_DO provvisorio
         } else {
             $scopes = ['api', 'user', 'readOnly', $from];
             $roleName = 'User';

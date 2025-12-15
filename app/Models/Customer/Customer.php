@@ -28,12 +28,9 @@ class Customer extends Model
     protected $fillable = [
         'user_id',
         'type',         // staff - commercial - internal - private - retailer
-        'company_name',
-        'company_email',
-        'company_from',
-        'company_ip',
-        'company_user_agent',
-        'company_address',
+        'company',
+        'email',
+        'address',
         'city_id',
         'country',
         'vat',
@@ -65,6 +62,14 @@ class Customer extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(\App\Models\User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function addressBooks()
+    {
+        return $this->belongsToMany(AddressBook::class, 'address_book_customer')->withTimestamps();
     }
 
     /**
