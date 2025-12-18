@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Session\Middleware\StartSession;
-use App\Http\Controllers\Stones\StonesController;
 
 Route::get('/test', function () {
     return response()->json([
@@ -25,7 +24,7 @@ Route::group([
         'name' => 'auth.',
     ], function () {
         // GET Method
-        Route::get('/verify/token/{token}', [\App\Http\Controllers\Api\Auth\LoginController::class, 'checkToken']);
+        Route::get('/verify/token/{token}', [\App\Http\Controllers\Api\Auth\VerificationController::class, 'checkToken']);
         // POST Method
         Route::post('/login', [\App\Http\Controllers\Api\Auth\LoginController::class, 'login'])->middleware(StartSession::class);
         Route::post('/check/token', [\App\Http\Controllers\Api\Auth\LoginController::class, 'checkTokenResetPassword']);           // If you need to reset your password from user
@@ -40,11 +39,20 @@ Route::group([
         ], function () {
             // GET Method
             Route::get('/activate/{userId}/{from?}', [\App\Http\Controllers\Api\Auth\VerificationController::class, 'activate']);
-            Route::get('/verify/token/{token}', [\App\Http\Controllers\Api\Auth\VerificationController::class, 'checkToken']);
             // POST Method
             Route::post('/logout', [\App\Http\Controllers\Api\Auth\LoginController::class, 'logout']);
             Route::post('/register', [\App\Http\Controllers\Api\Auth\RegisterController::class, 'register']);
         });
+    });
+
+    // ---------- ---------- ---------- STONES ---------- ---------- ---------- //
+    Route::group([
+        'prefix' => 'angels',
+        'as' => 'angels.',
+        'name' => 'angels.',
+        'middleware' => ['auth:sanctum', 'authenticated']
+    ], function () {
+        Route::get('/all/{number?}', [\App\Http\Controllers\Angel\AngelController::class, 'getAngels']);
     });
 
     // ---------- ---------- ---------- Numerology ---------- ---------- ---------- //
@@ -52,7 +60,7 @@ Route::group([
         'prefix' => 'numerology',
         'as' => 'numerology.',
         'name' => 'numerology.',
-        // 'middleware' => ['auth:sanctum', 'authenticated', 'admin']
+        'middleware' => ['auth:sanctum', 'authenticated']
     ], function () {
         // NAI
         Route::post('/nai-from-date', [App\Http\Controllers\Numerology\NaiController::class, 'naiFromDate']);
@@ -67,9 +75,9 @@ Route::group([
         'prefix' => 'stones',
         'as' => 'stones.',
         'name' => 'stones.',
-        // 'middleware' => ['auth:sanctum', 'authenticated', 'admin']
+        'middleware' => ['auth:sanctum', 'authenticated']
     ], function () {
-        Route::post('/daily', [StonesController::class, 'daily']);
+        Route::post('/daily', [\App\Http\Controllers\Stones\StonesController::class, 'daily']);
     });
 
     // ---------- ---------- ---------- USER ---------- ---------- ---------- //

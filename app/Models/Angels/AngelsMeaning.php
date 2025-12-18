@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Models\Customer;
+namespace App\Models\Angels;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class AddressBook extends Model
+class AngelsMeaning extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, HasUuids, Notifiable, SoftDeletes;
@@ -27,13 +25,15 @@ class AddressBook extends Model
      * w as working
      */
     protected $fillable = [
-        'firstname',
-        'lastname',
-        'email',
-        'phone',
-        'city_birth',
-        'date_birth',
-        'hour_birth',
+        'number',
+        'name',
+        'hebrew_letters',
+        'choir',
+        'archangel',
+        'element',
+        'zodiac_sign',
+        'regency_days',
+        'gender',
     ];
 
     /**
@@ -51,20 +51,5 @@ class AddressBook extends Model
             'updated_at' => "datetime:d-m-Y H:i",
             'deleted_at' => "datetime:d-m-Y H:i",
         ];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function customers(): BelongsToMany
-    {
-        return $this->belongsToMany(\App\Models\Customer\Customer::class, 'address_book_customer')->withTimestamps();
-    }
-
-    protected function dateBirth(): Attribute
-    {
-        return Attribute::make(
-            set: fn($value) => $value ? \Carbon\Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d') : null,
-        );
     }
 }

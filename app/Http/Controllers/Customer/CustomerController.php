@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use Throwable;
+use Carbon\Carbon;
 use App\Lib\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -60,13 +61,13 @@ class CustomerController extends Controller
             $data = $request->all();
 
             $validator = Validator::make($data, [
-                'firstName' => 'required|string|max:100',
-                'lastName'  => 'required|string|max:100',
-                'birthDate' => 'required|date_format:d-m-Y',
-                'cityBirth' => 'required|string|min:2',
-                'hourBirth' => 'sometimes|nullable|string|date_format:H:i',
-                'email'     => 'sometimes|nullable|string|min:5',
-                'phone'     => 'sometimes|nullable|string|min:5',
+                'firstName'  => 'required|string|max:100',
+                'lastName'   => 'required|string|max:100',
+                'date_birth' => 'required|date_format:d-m-Y',
+                'city_birth' => 'required|string|min:2',
+                'hour_birth' => 'sometimes|nullable|string|date_format:H:i',
+                'email'      => 'required|nullable|string|min:5',
+                'phone'      => 'sometimes|nullable|string|min:5',
             ]);
 
             if ($validator->fails()) {
@@ -75,36 +76,25 @@ class CustomerController extends Controller
             }
 
             $customer = Customer::where('user_id', Auth::user()->id)->first();
-
             $contact = AddressBook::updateOrCreate(
                 [
-                    'firstname'  => $data['firstName'],
-                    'lastname'   => $data['lastName'],
-                    'date_birth' => $data['birthDate'],
+                    'email' => $data['email'] ?? null,
                 ],
                 [
                     'firstname'  => $data['firstName'],
                     'lastname'   => $data['lastName'],
-                    'email'      => $data['email'] ?? null,
                     'phone'      => $data['phone'] ?? null,
-                    'city_birth' => $data['cityBirth'],
-                    'date_birth' => $data['birthDate'],
-                    'hour_birth' => $data['hourBirth'] ?? null,
+                    'city_birth' => $data['city_birth'],
+                    'date_birth' => $data['date_birth'],
+                    'hour_birth' => $data['hour_birth'] ?? null,
                 ]
             );
 
-            if (!$customer->addressBooks()->where('address_book_id', $contact->id)->exists()) {
-                $customer->addressBooks()->syncWithoutDetaching($contact->id);
-                return $this->sendResponse(Message::CREATE_OK, [
-                    'status' => 'success',
-                    'contact' => $contact,
-                ], 201);
-            }
-
-            return $this->sendError(Message::CREATE_KO, [
-                'status' => false,
-                'message' => Message::BAD_REQUEST
-            ], 404);
+            $customer->addressBooks()->syncWithoutDetaching([$contact->id]);
+            return $this->sendResponse(Message::CREATE_OK, [
+                'status' => 'success',
+                'contact' => $contact,
+            ], 201);
         } catch (Throwable $e) {
             return $this->sendError(Message::SHOW_KO, [
                 'status' => false,

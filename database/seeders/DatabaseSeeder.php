@@ -80,6 +80,7 @@ class DatabaseSeeder extends Seeder
             NaiMeaningsSeeder::class,
             PythagoricMeaningsSeeder::class,
             StonesMeaningsSeeder::class,
+            AngelMeaningsSeeder::class,
             // ChatGptSeeder::class,
             // ['userId' => $user->userId] 
         ]);
