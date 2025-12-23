@@ -43,8 +43,8 @@ class PythagoricController extends Controller
                 ->format('Y-m-d');
 
             $result = $this->services->calculateWithMeanings([
-                'first_name' => $data['first_name'],
-                'last_name'  => $data['last_name'],
+                'first_name' => $data['firstname'],
+                'last_name'  => $data['lastname'],
                 'birth_date' => $data['birth_date'],
             ], 'it-IT');
 

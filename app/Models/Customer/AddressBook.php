@@ -47,6 +47,8 @@ class AddressBook extends Model
             'type'       => 'string',
             'metadata'   => 'array',
             'completed'  => 'boolean',
+            'date_birth' => "datetime:d-m-Y",
+
             'created_at' => "datetime:d-m-Y H:i",
             'updated_at' => "datetime:d-m-Y H:i",
             'deleted_at' => "datetime:d-m-Y H:i",
@@ -64,7 +66,7 @@ class AddressBook extends Model
     protected function dateBirth(): Attribute
     {
         return Attribute::make(
-            set: fn($value) => $value ? \Carbon\Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d') : null,
+            set: fn($value) => $value ? \Carbon\Carbon::createFromFormat('d-m-Y', $value)->format('d-m-Y') : null,
         );
     }
 }

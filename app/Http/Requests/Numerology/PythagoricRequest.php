@@ -24,8 +24,8 @@ class PythagoricRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name'    => ['required', 'string', 'max:255'],
-            'last_name'     => ['required', 'string', 'max:255'],
+            'firstname'    => ['required', 'string', 'max:255'],
+            'lastname'     => ['required', 'string', 'max:255'],
             'birth_date'    => ['required', 'date_format:d-m-Y'],
             'birth_time'    => ['nullable', 'date_format:H:i'],
             'birth_country' => ['nullable', 'string', 'max:255'],
