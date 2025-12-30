@@ -99,9 +99,9 @@ class NaiController extends Controller
             $data = $request->all();
 
             $validator = Validator::make($data, [
-                'birthDate' => 'required|date_format:Y-m-d',
-                'firstName' => 'required|string|max:100',
-                'lastName'  => 'required|string|max:100',
+                'birth_date' => 'required|date_format:d-m-Y',
+                'firstname' => 'required|string|max:100',
+                'lastname'  => 'required|string|max:100',
                 'language'  => 'sometimes|nullable|string|max:2',
             ]);
 
@@ -111,9 +111,9 @@ class NaiController extends Controller
             }
             
             $matrix = $this->naiServices->calculateNAIMatrix(
-                $request->input('birthDate'),
-                $request->input('firstName'),
-                $request->input('lastName'),
+                $request->input('birth_date'),
+                $request->input('firstname'),
+                $request->input('lastname'),
                 $request->input('language')
             );
 

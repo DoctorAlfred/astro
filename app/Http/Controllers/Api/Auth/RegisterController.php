@@ -29,8 +29,8 @@ class RegisterController extends Controller
             $data = $request->all();
 
             $validator = Validator::make($data, [
-                'name'      => 'required|string|min:3',
-                'surname'   => 'required|string|min:2',
+                'firstname' => 'required|string|min:3',
+                'lastname'  => 'required|string|min:2',
                 'email' => [
                     'required',
                     'email:rfc,dns',
@@ -43,8 +43,7 @@ class RegisterController extends Controller
                     'required_with:confirmed',
                     'same:confirmed'
                 ],
-                'confirmed' => 'required',
-                'from'      => 'required',
+                'confirmed' => 'required'
             ]);
 
             if ($validator->fails()) {
@@ -125,7 +124,7 @@ class RegisterController extends Controller
             }
 
             $mailer = 'smtp';
-            $from = strtolower($request->from) ?? 'rixalto';
+            $from = strtolower($request->from) ?? 'astro';
             $logo = null;
             $logo_w = null;
 

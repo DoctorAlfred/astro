@@ -25,7 +25,6 @@ class CustomerController extends Controller
             $role = $user->roles()->first()->code;
 
             $contacts = [];
-            // dd('User', $role, $user);
             if ($role === 'admin') {
                 $contacts = AddressBook::orderBy('lastname')
                     ->orderBy('firstname')
@@ -61,8 +60,8 @@ class CustomerController extends Controller
             $data = $request->all();
 
             $validator = Validator::make($data, [
-                'firstName'  => 'required|string|max:100',
-                'lastName'   => 'required|string|max:100',
+                'firstname'  => 'required|string|max:100',
+                'lastname'   => 'required|string|max:100',
                 'date_birth' => 'required|date_format:d-m-Y',
                 'city_birth' => 'required|string|min:2',
                 'hour_birth' => 'sometimes|nullable|string|date_format:H:i',
@@ -81,8 +80,8 @@ class CustomerController extends Controller
                     'email' => $data['email'] ?? null,
                 ],
                 [
-                    'firstname'  => $data['firstName'],
-                    'lastname'   => $data['lastName'],
+                    'firstname'  => $data['firstname'],
+                    'lastname'   => $data['lastname'],
                     'phone'      => $data['phone'] ?? null,
                     'city_birth' => $data['city_birth'],
                     'date_birth' => $data['date_birth'],

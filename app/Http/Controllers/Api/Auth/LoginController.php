@@ -100,7 +100,7 @@ class LoginController extends Controller
             $customer = Customer::where('user_id', $user->id)->first();
 
             if (!$user || !Hash::check($request->password, $user->password)) {
-                return $this->sendError(Message::PASSWORD_KO, ['status' => false]);
+                return $this->sendError(Message::PASSWORD_KO, ['status' => false], 404);
             }
 
             /** Delete Personal Access Token */
@@ -133,7 +133,7 @@ class LoginController extends Controller
             );
         } catch (\Exception $ex) {
             Log::error(Message::BAD_REQUEST, [__METHOD__, $ex]);
-            return $this->sendError(Message::BAD_REQUEST, [$ex->getMessage()], 400);
+            return $this->sendError(Message::BAD_REQUEST, [$ex->getMessage()], 404);
         }
     }
 

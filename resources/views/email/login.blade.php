@@ -16,7 +16,7 @@
           <tr>
               <td align="center" style="padding:20px 0 10px 0;">
                   <a href="{{ config('app.frontend') }}" style="display:inline-block;text-decoration:none;">
-                      <img src="{{ asset('img/logo.png') }}" alt="Astro"
+                      <img src="https://www.melahel.it/astro/public/img/logo.png" alt="Astro"
                           style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:200px;height:auto;margin:0 auto;">
                   </a>
               </td>
@@ -70,7 +70,7 @@
             <tr>
                 <td align="center" style="padding:12px 10px 12px 10px;">
                     <p style="margin:0;font-size:11px;line-height:1.4;color:#a1a1a1;text-align:center;">
-                        Copyright © 2021 - {{ now()->format('Y') }} Astro di Melahel è un marchio registrato
+                        Copyright © 2021 - {{ now()->format('Y') }} Astro di Melahel è un marchio registrato da Alfredo Matricciani
                     </p>
                 </td>
             </tr>

@@ -17,13 +17,6 @@ class NaiServices
    */
   private function meaning(string $lang, string $code, int $number): ?array
   {
-    // $m = NaiMeanings::where('lang', $lang)->where('code', $code)->first();
-    // return $m ? [
-    //   'title'       => $m->title,
-    //   'number'      => $number,
-    //   'description' => $m->description,
-    //   'meta'        => $m->meta,
-    // ] : null;
 
     $m = NaiMeanings::where('lang', $lang)->where('code', $code)->where('number', $number)->first();
     return [
@@ -163,32 +156,7 @@ class NaiServices
   public function calculateNAIMatrix(string $birthDate, string $firstName, string $lastName, ?string $language = null): array
   {
     $lang = $language ? strtolower($language) : 'it';
-
-    // $lifePath    = $this->calculateLifePath($birthDate);
-    // $expression  = $this->calculateExpression($firstName, $lastName);
-    // $soulUrge    = $this->calculateSoulUrge($firstName, $lastName);
-    // $personality = $this->calculatePersonality($firstName, $lastName);
-    // $maturity    = $this->calculateMaturity($birthDate, $firstName, $lastName);
-    // $pc          = $this->calculatePinnaclesAndChallenges($birthDate);
-
-    // $numObj = function (int $n) use ($lang) {
-    //   return $this->meaning($lang, 'number_' . $n, $n)
-    //     ?? ['title' => ($lang === 'it' ? 'Numero ' : 'Number ') . $n, 'number' => $n, 'description' => null, 'meta' => null];
-    // };
-
-    // $pinnValues = array_values($pc['pinnacles'] ?? []);
-    // $pinnacles  = array_map(fn($n) => $numObj((int)$n), $pinnValues);
-    // $challenges = array_map(fn($n) => $numObj((int)$n), $pc['challenges'] ?? []);
-
-    // return [
-    //   'lifePath'    => $this->meaning($lang, 'lifePath',    $lifePath),
-    //   'expression'  => $this->meaning($lang, 'expression',  $expression),
-    //   'soulUrge'    => $this->meaning($lang, 'soulUrge',    $soulUrge),
-    //   'personality' => $this->meaning($lang, 'personality', $personality),
-    //   'maturity'    => $this->meaning($lang, 'maturity',    $maturity),
-    //   'pinnacles'   => $pinnacles,
-    //   'challenges'  => $challenges,
-    // ];
+    $birthDate = Carbon::createFromFormat('d-m-Y', $birthDate)->format('Y-m-d');
 
     $pc         = $this->calculatePinnaclesAndChallenges($birthDate);
     $pinnNums   = array_values($pc['pinnacles']);   // es. [4,5,6,7]

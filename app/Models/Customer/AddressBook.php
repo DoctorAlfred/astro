@@ -48,6 +48,7 @@ class AddressBook extends Model
             'metadata'   => 'array',
             'completed'  => 'boolean',
             'date_birth' => "datetime:d-m-Y",
+            'hour_birth' => "datetime:H:i",
 
             'created_at' => "datetime:d-m-Y H:i",
             'updated_at' => "datetime:d-m-Y H:i",
@@ -63,10 +64,21 @@ class AddressBook extends Model
         return $this->belongsToMany(\App\Models\Customer\Customer::class, 'address_book_customer')->withTimestamps();
     }
 
+    /** Date Birth Attribute */
     protected function dateBirth(): Attribute
     {
         return Attribute::make(
-            set: fn($value) => $value ? \Carbon\Carbon::createFromFormat('d-m-Y', $value)->format('d-m-Y') : null,
+            get: fn($value) => $value ? \Carbon\Carbon::parse($value)->format('d-m-Y') : null,
+            set: fn($value) => $value ? \Carbon\Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d') : null,
+        );
+    }
+
+    /** Hour Birth Attribute */
+    protected function hourBirth(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $value ? \Carbon\Carbon::parse($value)->format('H:i') : null,
+            set: fn($value) => $value ? \Carbon\Carbon::createFromFormat('H:i', $value)->format('H:i:s') : null,
         );
     }
 }

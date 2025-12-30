@@ -30,6 +30,7 @@ Route::group([
         Route::post('/check/token', [\App\Http\Controllers\Api\Auth\LoginController::class, 'checkTokenResetPassword']);           // If you need to reset your password from user
         Route::post('/password/forgot', [\App\Http\Controllers\Api\Auth\ForgotController::class, 'forgot']);
         Route::post('/password/recovery', [\App\Http\Controllers\Api\Auth\ResetPasswordController::class, 'resetPassword']);
+        Route::post('/register', [\App\Http\Controllers\Api\Auth\RegisterController::class, 'register']);
 
         Route::group([
             'prefix' => 'logged',
@@ -41,7 +42,7 @@ Route::group([
             Route::get('/activate/{userId}/{from?}', [\App\Http\Controllers\Api\Auth\VerificationController::class, 'activate']);
             // POST Method
             Route::post('/logout', [\App\Http\Controllers\Api\Auth\LoginController::class, 'logout']);
-            Route::post('/register', [\App\Http\Controllers\Api\Auth\RegisterController::class, 'register']);
+            
         });
     });
 

@@ -266,7 +266,7 @@ class User extends Authenticatable
         $password = Hash::make($payload['password']);
         // Filter
         $email = strtolower($payload['email']);
-        $from = $payload['from'] ? strtolower($payload['from']) : 'rixalto';
+        $from = $payload['from'] ? strtolower($payload['from']) : 'astro';
 
         $user = self::firstOrCreate([
             'name'              => ucwords(strtolower($payload['name'])),
