@@ -6,9 +6,12 @@ use Throwable;
 use Carbon\Carbon;
 use App\Lib\Message;
 use App\Models\User;
+use App\Models\Shop\Plan;
 use Illuminate\Http\Request;
 use App\Models\Customer\Customer;
+use App\Models\Shop\Subscription;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\AddressBook;
@@ -75,6 +78,30 @@ class CustomerController extends Controller
             }
 
             $customer = Customer::where('user_id', Auth::user()->id)->first();
+
+            $currentPlan = null;
+            $activeSub = Subscription::where('user_id', Auth::id())
+                ->where('is_active', true)
+                ->where('expires_at', '>', now())
+                ->latest()
+                ->first();
+
+            if ($activeSub) {
+                $currentPlan = $activeSub->plan;
+            } else {
+                $currentPlan = Plan::where('slug', 'free')->first();
+            }
+
+            $currentPlan = $activeSub ? $activeSub->plan : Plan::where('slug', 'free')->first();
+
+            $contactCount = DB::table('address_book_customer')
+                ->where('customer_id', $customer->id)
+                ->count();
+
+            if ($contactCount >= $currentPlan->max_contacts) {
+                return $this->sendError("Hai già aggiunto {$contactCount} contatti su un massimo di {$currentPlan->max_contacts} a te consentito.", [], 400);
+            }
+
             $contact = AddressBook::updateOrCreate(
                 [
                     'email' => $data['email'] ?? null,

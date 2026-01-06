@@ -15,8 +15,8 @@ return new class extends Migration
             // $table->id();
             $table->uuid('id')->primary();
 
-            $table->string('name');
-            $table->string('surname');
+            $table->string('lastname');
+            $table->string('firstname');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();

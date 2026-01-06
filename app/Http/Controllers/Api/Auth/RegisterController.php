@@ -6,12 +6,16 @@ use Carbon\Carbon;
 use App\Lib\Message;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Shop\Plan;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use App\Mail\Auth\RegisterMail;
+use App\Models\Shop\Subscription;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -55,8 +59,8 @@ class RegisterController extends Controller
                 ->where('email', $request->email)
                 ->select(
                     'id',
-                    'name',
-                    'surname',
+                    'firstname',
+                    'lastname',
                     'email',
                     'phone',
                     'from',
@@ -67,11 +71,10 @@ class RegisterController extends Controller
                 ->first();
 
             if ($existUserToDb) {
-
                 $existUser = [
                     'id' => $existUserToDb->id,
-                    'name' => $existUserToDb->name,
-                    'surname' => $existUserToDb->surname,
+                    'firstname' => $existUserToDb->firstname,
+                    'lastname' => $existUserToDb->lastname,
                     'email' => $existUserToDb->email,
                     'phone' => $existUserToDb->phone,
                     'from' => $existUserToDb->from,
@@ -110,7 +113,7 @@ class RegisterController extends Controller
                         return $this->sendResponse(Message::USER_RESTORED_OK, $response, 201);
                     }
 
-                    Log::info(Message::REGISTER_OK, ['Name' => $request->name, 'Surname' => $request->surname, 'email' => $request->email, 'registerDate' => now()]);
+                    Log::info(Message::REGISTER_OK, ['Firstname' => $request->firstname, 'Lastname' => $request->lastname, 'email' => $request->email, 'registerDate' => now()]);
                     return $this->sendResponse(Message::REGISTER_OK, ['token' => $existUser], 201);
                 } else {
                     $error = [
@@ -123,26 +126,9 @@ class RegisterController extends Controller
                 }
             }
 
-            $mailer = 'smtp';
             $from = strtolower($request->from) ?? 'astro';
-            $logo = null;
-            $logo_w = null;
 
             $createLink = config('app.frontend');
-            /*
-            $platform = Platform::where(['name' => $request->from, 'active' => 1])->first();
-            if ($platform) {
-                $from   = (string) $platform->name;
-                $mailer = (string) $platform->mailer;
-                if (!empty($platform->logo_url)) {
-                    $logo   = (string) asset($platform->logo_url);
-                    $logo_w = (string) asset($platform->logo_url_w);
-                }
-                if (!empty($platform->link)) {
-                    $createLink = (string) $platform->link;
-                }
-            }
-            */
 
             $request['ip'] = $request->ip();
             $request['userAgent'] = $request->server('HTTP_USER_AGENT') ?? $from;
@@ -153,8 +139,8 @@ class RegisterController extends Controller
             $formattedNow = $now->format('d-m-Y H:i:s');
 
             $dataToSent = [
-                'name'      => $request->name,
-                'surname'   => $request->surname,
+                'firstname' => $request->firstname,
+                'lastname'  => $request->lastname,
                 'email'     => $request->email,
                 'phone'     => $request->phone,
                 'today'     => $formattedNow,
@@ -162,7 +148,24 @@ class RegisterController extends Controller
                 'registerDate' => now()
             ];
 
-            // Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin'))->send(new RegisterMail($dataToSent, $from));
+            try {
+                $plan = Plan::where('slug', 'free')->first();
+                if ($plan) {
+                    Subscription::create([
+                        'user_id'       => $newUser['id'],
+                        'plan_id'       => $plan->id,
+                        'price_paid'    => 0.00,
+                        'billing_cycle' => 'annual',
+                        'starts_at'     => now(),
+                        'expires_at'    => now()->addYears(1), // Free 1 anno
+                        'is_active'     => true,
+                    ]);
+                }
+            } catch (\Exception $e) {
+                Log::error("Errore assegnazione piano iniziale: " . $e->getMessage());
+            }
+
+            Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin'))->send(new RegisterMail($dataToSent, $from));
             Log::info(Message::REGISTER_OK, $dataToSent);
 
             return $this->sendResponse(Message::REGISTER_OK, ['token' => $newUser], 201);

@@ -55,12 +55,7 @@ class StonesController extends Controller
             );
 
             return static::sendResponse(
-                Message::SHOW_OK,
-                [
-                    'success' => true,
-                    'result'  => $result,
-                ],
-                JsonResponse::HTTP_OK
+                Message::SHOW_OK, $result, JsonResponse::HTTP_OK
             );
         } catch (\Throwable $e) {
             Log::error('Daily stones numerology error', [

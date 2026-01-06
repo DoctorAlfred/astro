@@ -29,10 +29,7 @@ class AngelController extends Controller
 
             $angels = $query->get()->toArray();
 
-            return $this->sendResponse(Message::CREATE_OK, [
-                'status' => 'success',
-                'angels' => $angels,
-            ], 201);
+            return $this->sendResponse(Message::CREATE_OK, $angels, 200);
         } catch (Throwable $e) {
             return $this->sendError(Message::SHOW_KO, [
                 'status' => false,

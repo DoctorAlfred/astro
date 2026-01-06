@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Support\Str;
 use App\Models\Customer\Customer;
+use App\Models\Shop\Subscription;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\NewAccessToken;
@@ -32,8 +33,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'surname',
+        'firstname',
+        'lastname',
         'email',
         'phone',
         'password',
@@ -159,8 +160,6 @@ class User extends Authenticatable
                     'level' => 1,
                     'is_active' => true,
                     'is_banned' => 'false',
-                    'have_all_data' => 1,
-                    'ads' => $permission->name === 'Admin' ? 1000 : 1,
                     'first_in' => 0,
                     'first_login' => 0
                 ]);
@@ -269,8 +268,8 @@ class User extends Authenticatable
         $from = $payload['from'] ? strtolower($payload['from']) : 'astro';
 
         $user = self::firstOrCreate([
-            'name'              => ucwords(strtolower($payload['name'])),
-            'surname'           => ucwords(strtolower($payload['surname'])),
+            'firstname'         => ucwords(strtolower($payload['firstname'])),
+            'lastname'          => ucwords(strtolower($payload['lastname'])),
             'email'             => $email,
             'email_verified_at' => $payload['email_verified_at'] ?? null,
             'phone'             => $payload['phone'],
@@ -348,8 +347,8 @@ class User extends Authenticatable
         $userData = self::where('id', $auth->id)
             ->select(
                 'id',
-                'name',
-                'surname',
+                'firstname',
+                'lastname',
                 'email',
                 'phone',
                 'from',
@@ -360,8 +359,8 @@ class User extends Authenticatable
 
         $user = [
             'id'         => $userData->id,
-            'name'       => $userData->name,
-            'surname'    => $userData->surname,
+            'firstname'  => $userData->name,
+            'lastname'   => $userData->surname,
             'email'      => $userData->email,
             'phone'      => $userData->phone,
             'from'       => $userData->from,
@@ -394,5 +393,40 @@ class User extends Authenticatable
     {
         $user = self::where('id', $user['id'])->first();
         return $user->permissions()->first()->code ?? null;
+    }
+
+    /**
+     * Has Active Subscription function
+     *
+     * @return boolean
+     */
+    public function hasActiveSubscription()
+    {
+        return Subscription::where('is_active', true)
+            ->where('expires_at', '>', now())
+            ->exists();
+    }
+
+    /**
+     * Can Write Diary function
+     *
+     * @return boolean
+     */
+    public function canWriteDiary()
+    {
+        if ($this->role === 'admin') return true;
+
+        $sub = Subscription::where('is_active', true)->first();
+        return $sub ? $sub->plan->can_write_diary : false;
+    }
+
+    /**
+     * Subscriptions function
+     *
+     * @return void
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
     }
 }

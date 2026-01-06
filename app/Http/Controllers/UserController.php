@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Site\External\SiteController;
 
 class UserController extends AuthController
 {
@@ -105,8 +104,8 @@ class UserController extends AuthController
             $data = $request->all();
 
             $validator = Validator::make($data, [
-                'name'       => 'required|string|min:3',
-                'surname'    => 'required|string|min:2',
+                'firstname'  => 'required|string|min:3',
+                'lastname'   => 'required|string|min:2',
                 'email'      => 'required|email:rfc,dns',
                 'phone'      => 'nullable|string|min:8',
                 'password'   => [
@@ -121,44 +120,44 @@ class UserController extends AuthController
                 return $this->sendError(Message::REGISTER_KO, $validator->errors()->toArray(), 400);
             }
 
+            $user = User::where('email', $request->email)->first();
+            if ($user) {
+                Log::error(Message::CREATE_KO, [__METHOD__, 'error' => Message::CREATE_KO, 'user' => 'exist']);
+                return $this->sendError(Message::CREATE_KO, ['user' => 'exist']);
+            }
+
+            $ip = $request->ip();
+            $userAgent = $request->server('HTTP_USER_AGENT') ?? '';
+
+            $payload = [
+                'firstname'  => $request->firstname,
+                'lastname'   => $request->lastname,
+                'phone'      => $request->phone ?? null,
+                'email'      => $request->email,
+                'password'   => $request->password,
+                'from'       => 'astro',
+                'priority'   => 0,
+                'ip'         => $ip,
+                'user_agent' => $userAgent,
+            ];
+
+            $newUser = User::create($payload);
+
+            Customer::firstOrCreate([
+                'user_id'         => $newUser['userId'],
+                'type'            => 'private',
+                'company'         => null,
+                'email'           => null,
+                'address'         => null,
+                'city_id'         => null,
+                'country'         => null,
+                'vat'             => null,
+                'identity_number' => null,
+                'completed'       => false,
+                'metadata'        => null
+            ]);
+
             if ($this->user['role'] === 'admin') {
-                $user = User::where('email', $request->email)->first();
-                if ($user) {
-                    Log::error(Message::CREATE_KO, [__METHOD__, 'error' => Message::CREATE_KO, 'user' => 'exist']);
-                    return $this->sendError(Message::CREATE_KO, ['user' => 'exist']);
-                }
-
-                $ip = $request->ip();
-                $userAgent = $request->server('HTTP_USER_AGENT') ?? ''; // $from;
-
-                $payload = [
-                    'name'       => $request->name,
-                    'surname'    => $request->surname,
-                    'phone'      => $request->phone ?? null,
-                    'email'      => $request->email,
-                    'password'   => $request->password,
-                    'from'       => 'astro',
-                    'priority'   => 0,
-                    'ip'         => $ip,
-                    'user_agent' => $userAgent,
-                ];
-
-                $newUser = User::create($payload);
-
-                Customer::firstOrCreate([
-                    'user_id'         => $newUser['userId'],
-                    'type'            => 'private',
-                    'company'         => null,
-                    'email'           => null,
-                    'address'         => null,
-                    'city_id'         => null,
-                    'country'         => null,
-                    'vat'             => null,
-                    'identity_number' => null,
-                    'completed'       => false,
-                    'metadata'        => null
-                ]);
-
                 $scopes = ['api', 'user', 'full', 'astro'];
                 $roleName = 'User';
                 $permissionName = 'User';
@@ -303,10 +302,23 @@ class UserController extends AuthController
      * @param string $userId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function changeUserRole(string $role, string $userId): JsonResponse
+    public function changeUserRole(Request $request): JsonResponse
     {
         try {
-            $changeRole = User::changeRole($userId, $role);
+
+            $data = $request->all();
+
+            $validator = Validator::make($data, [
+                'role'   => 'required|string|min:3',
+                'userId' => 'required|string|min:2',
+            ]);
+
+            if ($validator->fails()) {
+                Log::error(Message::AUTH_KO, [__METHOD__, json_encode($validator->errors()->toArray())]);
+                return $this->sendError(Message::REGISTER_KO, $validator->errors()->toArray(), 400);
+            }
+
+            $changeRole = User::changeRole($data['userId'], $data['role']);
             if ($changeRole) {
                 return $this->sendResponse(Message::UPDATE_OK, ['role' => 'changed'], 201);
             }

@@ -9,15 +9,14 @@ use App\Models\User;
 use App\Mail\Auth\LoginMail;
 use Illuminate\Http\Request;
 use App\Models\Customer\Customer;
+use App\Models\Shop\Subscription;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Auth\Notifications\VerifyEmail;
 
 class LoginController extends Controller
 {
@@ -118,17 +117,34 @@ class LoginController extends Controller
             // Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin_mail'))->send(new MailRegister($dataToSent));
             Log::info(Message::LOGIN, ['userId' => $user->id, 'email' => $request->email, 'accessDate' => now(), 'ip' => $ip, 'userAgent' => $userAgent, 'token' => $token]);
 
+            $subscription = Subscription::where('user_id', $user->id)
+                ->with(['plan' => function ($query) {
+                    $query->select(
+                        'id',
+                        'slug',
+                        'it',
+                        'en',
+                        'desc_it',
+                        'desc_en',
+                        'max_contacts',
+                        'can_write_diary'
+                    );
+                }])
+                ->latest()
+                ->first();
+
             return $this->sendResponse(
                 Message::AUTH_OK,
                 [
-                    'userName'    => $user->name,
-                    'userSurname' => $user->surname,
+                    'userName'    => $user->firstname,
+                    'userSurname' => $user->lastname,
                     'userEmail'   => $user->email,
                     'userPhone'   => $user->phone,
                     'customer'    => $customer->id,
                     'role'        => $role,
                     'permise'     => $permise,
-                    'token'       => $token
+                    'token'       => $token,
+                    'plan'        => $subscription->plan,
                 ]
             );
         } catch (\Exception $ex) {
@@ -148,17 +164,12 @@ class LoginController extends Controller
     {
         $user = $request->user();
         $email = $user->email;
-
-        // $request->user()->currentAccessToken()->delete();
         $user->currentAccessToken()->delete();
 
         Log::info(Message::LOGOUT, [
             'userEmail' => $email,
             'logoutDate' => now()
         ]);
-
-        // $request->session()->flush();
-        // $request->session()->invalidate();
 
         return $this->sendResponse(Message::LOGOUT, ['logout' => $request->user()->email]);
     }

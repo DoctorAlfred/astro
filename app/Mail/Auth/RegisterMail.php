@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LoginMail extends Mailable
+class RegisterMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -36,8 +36,8 @@ class LoginMail extends Mailable
             replyTo: [
                 new Address(config('app.admin'), 'Admin'),
             ],
-            subject: 'Login to Astro',
-            tags: ['forgot', 'password', 'user', 'astro'],
+            subject: 'Register to Astro',
+            tags: ['register', 'password', 'user', 'astro'],
         );
     }
 
@@ -47,7 +47,7 @@ class LoginMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.login',
+            view: 'email.register',
         );
     }
 

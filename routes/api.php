@@ -103,6 +103,7 @@ Route::group([
             Route::get('/all', [\App\Http\Controllers\UserController::class, 'getUsers']);
             // POST Method
             Route::post('/add', [\App\Http\Controllers\UserController::class, 'addNewUser']);
+            Route::post('/change-role', [\App\Http\Controllers\UserController::class, 'changeUserRole']);
         });
     });
 
