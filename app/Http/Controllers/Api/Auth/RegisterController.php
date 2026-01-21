@@ -40,6 +40,9 @@ class RegisterController extends Controller
                     'email:rfc,dns',
                 ],
                 'phone'     => 'nullable|string|min:9',
+                'city_birth' => 'nullable|string|min:2',
+                'date_birth' => 'nullable|string|min:8',
+                'hour_birth' => 'nullable|string|min:3',
                 'password'  => [
                     'required',
                     'min:8',
@@ -63,6 +66,9 @@ class RegisterController extends Controller
                     'lastname',
                     'email',
                     'phone',
+                    'city_birth',
+                    'date_birth',
+                    'hour_birth',
                     'from',
                     'ip',
                     'user_agent',
@@ -77,6 +83,9 @@ class RegisterController extends Controller
                     'lastname' => $existUserToDb->lastname,
                     'email' => $existUserToDb->email,
                     'phone' => $existUserToDb->phone,
+                    'city_birth' => $existUserToDb->city_birth,
+                    'date_birth' => $existUserToDb->date_birth,
+                    'hour_birth' => $existUserToDb->hour_birth,
                     'from' => $existUserToDb->from,
                     'ip' => $existUserToDb->ip,
                     'user_agent' => $existUserToDb->user_agent,
@@ -127,26 +136,28 @@ class RegisterController extends Controller
             }
 
             $from = strtolower($request->from) ?? 'astro';
-
             $createLink = config('app.frontend');
 
-            $request['ip'] = $request->ip();
-            $request['userAgent'] = $request->server('HTTP_USER_AGENT') ?? $from;
+            $hourBirth = str_replace('-', ':', $request->hour_birth);
 
-            $newUser = User::create($request);
-
-            $now = Carbon::now();
-            $formattedNow = $now->format('d-m-Y H:i:s');
-
-            $dataToSent = [
+            $userData = [
                 'firstname' => $request->firstname,
-                'lastname'  => $request->lastname,
-                'email'     => $request->email,
-                'phone'     => $request->phone,
-                'today'     => $formattedNow,
-                'confirm'   => $createLink . 'confirm/?id=' . $newUser['userId'],
-                'registerDate' => now()
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'phone' => $request->phone,
+                'city_birth' => $request->city_birth,
+                'date_birth' => $request->date_birth,
+                'hour_birth' => $hourBirth,
+                'from' => $from,
+                'ip' => $request->ip(),
+                'user_agent' => $request->server('HTTP_USER_AGENT') ?? $from,
             ];
+
+            $newUser = User::create($userData);
+
+            $now = Carbon::now(); 
+            $formattedNow = $now->format('d-m-Y H:i:s');
 
             try {
                 $plan = Plan::where('slug', 'free')->first();
@@ -165,8 +176,8 @@ class RegisterController extends Controller
                 Log::error("Errore assegnazione piano iniziale: " . $e->getMessage());
             }
 
-            Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin'))->send(new RegisterMail($dataToSent, $from));
-            Log::info(Message::REGISTER_OK, $dataToSent);
+            Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin'))->send(new RegisterMail($userData, $from));
+            Log::info(Message::REGISTER_OK, $userData);
 
             return $this->sendResponse(Message::REGISTER_OK, ['token' => $newUser], 201);
         } catch (\Throwable $ex) {

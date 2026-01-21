@@ -22,6 +22,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
+            $table->string('city_birth')->nullable();
+            $table->date('date_birth')->nullable();
+            $table->time('hour_birth')->nullable();
+
             $table->string('from')->nullable();
             $table->string('ip')->nullable();
             $table->string('user_agent')->nullable();

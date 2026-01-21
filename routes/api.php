@@ -53,7 +53,7 @@ Route::group([
         'name' => 'angels.',
         'middleware' => ['auth:sanctum', 'authenticated']
     ], function () {
-        Route::get('/all/{number?}', [\App\Http\Controllers\Angel\AngelController::class, 'getAngels']);
+        Route::get('/all', [\App\Http\Controllers\Angel\AngelController::class, 'getAngels']);
     });
 
     // ---------- ---------- ---------- Numerology ---------- ---------- ---------- //
@@ -100,7 +100,7 @@ Route::group([
             'middleware' => ['admin']
         ], function () {
             // GET Method
-            Route::get('/all', [\App\Http\Controllers\UserController::class, 'getUsers']);
+            Route::get('/all/{id?}', [\App\Http\Controllers\UserController::class, 'getUsers']);
             // POST Method
             Route::post('/add', [\App\Http\Controllers\UserController::class, 'addNewUser']);
             Route::post('/change-role', [\App\Http\Controllers\UserController::class, 'changeUserRole']);

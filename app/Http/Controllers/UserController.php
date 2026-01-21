@@ -57,27 +57,30 @@ class UserController extends AuthController
         try {
             $users = [];
 
-            if ($id) {
-                $users = User::where('id', $id)
-                    ->orWhere('email', $id)
-                    ->orWhere('surname', $id)
-                    ->first()
-                    ->toArray();
-            } else {
-                $users = User::select(
-                    'id',
-                    'name',
-                    'surname',
-                    'email',
-                    'from',
-                    'ip',
-                    'user_agent as userAgent',
-                    'created_at as create',
-                    'updated_at as update'
-                )
-                    ->get()
-                    ->toArray();
-            }
+            $users = User::select([
+                'id',
+                'firstname',
+                'lastname',
+                'email',
+                'city_birth',
+                'date_birth',
+                'hour_birth',
+                'from',
+                'ip',
+                'user_agent as userAgent',
+                'created_at as create',
+                'updated_at as update'
+            ])
+                ->when($id, function ($query) use ($id) {
+                    $query->where(function ($where) use ($id) {
+                        $where->where('id', $id)
+                            ->orWhere('email', $id)
+                            ->orWhere('lastname', $id);
+                    });
+                })
+                ->with('roles')
+                ->get()
+                ->toArray();
 
             if (empty($users)) {
                 return $this->sendError(Message::SHOW_KO, [
@@ -212,11 +215,11 @@ class UserController extends AuthController
             $data = $request->all();
 
             $validator = Validator::make($data, [
-                'email'      => 'required|string',
-                'name'       => 'nullable|string',
-                'surname'    => 'nullable|string',
-                'from'       => 'nullable|string',
-                'psw'        => 'nullable|string',
+                'email'     => 'required|string',
+                'firstname' => 'nullable|string',
+                'lastname'  => 'nullable|string',
+                'from'      => 'nullable|string',
+                'psw'       => 'nullable|string',
             ]);
 
             if ($validator->fails()) {

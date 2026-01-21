@@ -92,7 +92,7 @@ class StonesServices
         'day_raw'    => $dayRaw,
         'day_number' => $dayNumber,
         'stones'     => $this->getStonesForNumber($dayNumber, $lang),
-        'recommended'      => $this->getRecommendedStone($dayStones),
+        'recommended'=> $this->getRecommendedStone($dayStones),
         'runes'      => $this->getRunesForNumber($dayNumber),
       ],
 

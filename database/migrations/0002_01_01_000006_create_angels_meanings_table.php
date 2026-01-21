@@ -17,12 +17,48 @@ return new class extends Migration
             $table->unsignedTinyInteger('number')->unique(); // 1–72
             $table->string('name');
             $table->string('hebrew_letters', 10);
+            $table->string('hebrew_name')->nullable();
+
+            // Dettagli simbolici (JSON)
+            $table->json('letter_details')->nullable();
+
+            // Gerarchia angelica
             $table->string('choir');
             $table->string('archangel');
             $table->string('element');
             $table->string('zodiac_sign');
-            $table->string('regency_days');
-            $table->string('gender');
+            $table->string('planet')->nullable();
+
+            // Reggenza strutturata
+            $table->unsignedTinyInteger('regency_start_day');
+            $table->unsignedTinyInteger('regency_start_month');
+            $table->unsignedTinyInteger('regency_end_day');
+            $table->unsignedTinyInteger('regency_end_month');
+
+            // Gradi zodiacali
+            $table->unsignedTinyInteger('degree_start');
+            $table->unsignedTinyInteger('degree_end');
+            $table->string('orientation', 5)->default('EST');
+
+            // Salmi
+            $table->unsignedSmallInteger('psalm');
+            $table->unsignedSmallInteger('psalm_verse');
+            $table->unsignedSmallInteger('vulgata');
+            $table->unsignedSmallInteger('vulgata_verse');
+            $table->string('psalm_link')->nullable();
+
+            // Trigramma (numerologia)
+            $table->unsignedSmallInteger('trigram_sum');
+            $table->unsignedTinyInteger('trigram_reduction');
+
+            // Contenuti testuali
+            $table->text('quality');
+            $table->text('help');
+            $table->text('prevent')->nullable();
+            $table->text('keywords');
+
+            // Polarità energetica
+            $table->string('energy', 10); // Maschile / Femminile
 
             $table->timestamps();
             $table->softDeletes();

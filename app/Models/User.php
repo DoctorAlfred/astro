@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Support\Str;
@@ -38,6 +39,9 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
+        'city_birth',
+        'date_birth',
+        'hour_birth',
         'from',
         'ip',
         'user_agent',
@@ -51,6 +55,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'deleted_at'
     ];
 
     /**
@@ -63,6 +68,10 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+
+            'date_birth' => "date:d-m-Y",
+            'hour_birth' => "datetime:H:i",
+
             'created_at' => "datetime:d-m-Y H:i",
             'updated_at' => "datetime:d-m-Y H:i",
             'deleted_at' => "datetime:d-m-Y H:i",
@@ -125,6 +134,26 @@ class User extends Authenticatable
     public function getPermissionAttribute(): ?string
     {
         return $this->permissions()->first()?->code;
+    }
+
+    public function setDateBirthAttribute($value)
+    {
+        $this->attributes['date_birth'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+    }
+
+    public function setHourBirthAttribute($value)
+    {
+        $this->attributes['hour_birth'] = Carbon::createFromFormat('H:i', $value)->format('H:i:s');
+    }
+
+    public function getDateBirthAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
+
+    public function getHourBirthAttribute($value)
+    {
+        return substr($value, 0, 5); // HH:MM
     }
 
     /**
@@ -274,6 +303,9 @@ class User extends Authenticatable
             'email_verified_at' => $payload['email_verified_at'] ?? null,
             'phone'             => $payload['phone'],
             'password'          => $password,
+            'city_birth'        => $payload['city_birth'],
+            'date_birth'        => $payload['date_birth'],
+            'hour_birth'        => $payload['hour_birth'],
             'from'              => $from,
             'ip'                => $payload['ip'] ?? null,
             'user_agent'        => $payload['userAgent'] ?? null,
@@ -282,8 +314,8 @@ class User extends Authenticatable
         Customer::firstOrCreate([
             'user_id'         => $user->id,
             'type'            => 'astro',
-            'email'           => null,
-            'phone'           => null,
+            'email'           => $email,
+            'phone'           => $payload['phone'],
             'address'         => null,
             'city_id'         => null,
             'country'         => null,
@@ -351,6 +383,9 @@ class User extends Authenticatable
                 'lastname',
                 'email',
                 'phone',
+                'city_birth',
+                'date_birth',
+                'hour_birth',
                 'from',
                 'ip',
                 'user_agent'
@@ -363,6 +398,9 @@ class User extends Authenticatable
             'lastname'   => $userData->surname,
             'email'      => $userData->email,
             'phone'      => $userData->phone,
+            'city_birth' => $userData->city_birth,
+            'date_birth' => $userData->date_birth,
+            'hour_birth' => $userData->hour_birth,
             'from'       => $userData->from,
             'ip'         => $userData->ip,
             'user_agent' => $userData->user_agent,

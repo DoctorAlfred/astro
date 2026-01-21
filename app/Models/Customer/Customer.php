@@ -40,6 +40,17 @@ class Customer extends Model
     ];
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'type',
+        'created_at',
+        'deleted_at'
+    ];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

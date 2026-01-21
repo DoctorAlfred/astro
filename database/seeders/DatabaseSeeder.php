@@ -62,9 +62,12 @@ class DatabaseSeeder extends Seeder
             'lastname'          => 'Alfredo',
             'firstname'         => 'Matricciani',
             'email'             => 'alfredo.matricciani@gmail.com',
-            'phone'             => '',
+            'phone'             => '3280021100',
             'password'          => 'BubuSettete1!',
             'email_verified_at' => Carbon::now(),
+            'city_birth'        => 'Busto Arsizio',
+            'date_birth'        => '1978-03-20',
+            'hour_birth'        => '03:27:00',
             'from'              => 'astro',
             'ip'                => '127.0.0.1',
             'user_agent'        => 'Seeders'
@@ -76,9 +79,12 @@ class DatabaseSeeder extends Seeder
             'lastname'          => 'Angelo',
             'firstname'         => 'Melahel',
             'email'             => 'info@melahel.it',
-            'phone'             => '',
+            'phone'             => '3280021100',
             'password'          => 'BubuSettete1!',
             'email_verified_at' => Carbon::now(),
+            'city_birth'        => 'Busto Arsizio',
+            'date_birth'        => '1978-03-20',
+            'hour_birth'        => '03:27:00',
             'from'              => 'astro',
             'ip'                => '127.0.0.1',
             'user_agent'        => 'Seeders'
@@ -94,7 +100,7 @@ class DatabaseSeeder extends Seeder
             AngelMeaningsSeeder::class,
 
             PlansSeeder::class,
-            
+
             // ChatGptSeeder::class,
             // ['userId' => $user->userId] 
         ]);
@@ -102,7 +108,7 @@ class DatabaseSeeder extends Seeder
         $premiumPlan = Plan::where('slug', 'premium')->first();
         $basicPlan = Plan::where('slug', 'basic')->first();
         $freePlan = Plan::where('slug', 'free')->first();
-        
+
         if ($premiumPlan) {
             Subscription::create([
                 'user_id'       => $user['userId'],

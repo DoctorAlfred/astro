@@ -28,12 +28,48 @@ class AngelsMeaning extends Model
         'number',
         'name',
         'hebrew_letters',
+        'hebrew_name',
+        'letter_details',
+
         'choir',
         'archangel',
         'element',
         'zodiac_sign',
-        'regency_days',
-        'gender',
+        'planet',
+
+        'regency_start_day',
+        'regency_start_month',
+        'regency_end_day',
+        'regency_end_month',
+
+        'degree_start',
+        'degree_end',
+        'orientation',
+
+        'psalm',
+        'psalm_verse',
+        'vulgata',
+        'vulgata_verse',
+        'psalm_link',
+
+        'trigram_sum',
+        'trigram_reduction',
+
+        'quality',
+        'help',
+        'prevent',
+        'keywords',
+        'energy',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'created_at',
+        'deleted_at',
     ];
 
     /**
@@ -44,9 +80,24 @@ class AngelsMeaning extends Model
     protected function casts(): array
     {
         return [
-            'type'       => 'string',
-            'metadata'   => 'array',
-            'completed'  => 'boolean',
+            'letter_details' => 'array',
+
+            'regency_start_day'   => 'integer',
+            'regency_start_month' => 'integer',
+            'regency_end_day'     => 'integer',
+            'regency_end_month'   => 'integer',
+
+            'degree_start' => 'integer',
+            'degree_end'   => 'integer',
+
+            'psalm'          => 'integer',
+            'psalm_verse'    => 'integer',
+            'vulgata'        => 'integer',
+            'vulgata_verse'  => 'integer',
+
+            'trigram_sum'       => 'integer',
+            'trigram_reduction' => 'integer',
+
             'created_at' => "datetime:d-m-Y H:i",
             'updated_at' => "datetime:d-m-Y H:i",
             'deleted_at' => "datetime:d-m-Y H:i",
