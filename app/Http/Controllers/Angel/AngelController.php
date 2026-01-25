@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Angel;
 
 use Throwable;
+use Carbon\Carbon;
 use App\Lib\Message;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Angels\AngelsMeaning;
-use Illuminate\Http\JsonResponse;
 
 class AngelController extends Controller
 {
@@ -49,24 +50,23 @@ class AngelController extends Controller
                     $results->push($birthAngel);
                 }
             }
-            // Today
-            if ($request->filled('today') || (!$request->filled('birthdate') && !$request->filled('tomorrow'))) {
-                $today = now();
-                $todayAngel = $this->findAngelByDate($today->day, $today->month);
 
-                if ($todayAngel) {
-                    $results->push($todayAngel);
-                }
+            // Date (single param: date)
+            if ($request->filled('date')) {
+                $date = Carbon::createFromFormat(
+                    'd-m',
+                    $request->input('date')
+                )->year(now()->year);
+            } else {
+                $date = now();
             }
-            // Tomorrow
-            if ($request->filled('tomorrow')) {
-                $tomorrow = now()->addDay();
-                $tomorrowAngel = $this->findAngelByDate($tomorrow->day, $tomorrow->month);
 
-                if ($tomorrowAngel) {
-                    $results->push($tomorrowAngel);
-                }
+            $dateAngel = $this->findAngelByDate($date->day, $date->month);
+
+            if ($dateAngel) {
+                $results->push($dateAngel);
             }
+
 
             return $this->sendResponse(
                 Message::SHOW_OK,

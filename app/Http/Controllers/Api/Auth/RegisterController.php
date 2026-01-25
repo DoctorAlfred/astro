@@ -136,28 +136,38 @@ class RegisterController extends Controller
             }
 
             $from = strtolower($request->from) ?? 'astro';
-            $createLink = config('app.frontend');
 
-            $hourBirth = str_replace('-', ':', $request->hour_birth);
+            $dateBirth = null;
+            if ($request->filled('date_birth')) {
+                $dateBirth = Carbon::createFromFormat('d-m-Y', $request->date_birth)->format('Y-m-d');
+            }
+
+            $hourBirth = null;
+            if ($request->filled('hour_birth')) {
+                $hourBirth = Carbon::createFromFormat('H:i', $request->hour_birth)->format('H:i:s');
+            }
+
+            $firstname  = ucfirst(mb_strtolower($request->firstname, 'UTF-8'));
+            $lastname   = ucfirst(mb_strtolower($request->lastname, 'UTF-8'));
+            $cityBirth  = $request->filled('city_birth')
+                ? ucfirst(mb_strtolower($request->city_birth, 'UTF-8'))
+                : null;
 
             $userData = [
-                'firstname' => $request->firstname,
-                'lastname' => $request->lastname,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
+                'password' => $request->password,
                 'phone' => $request->phone,
-                'city_birth' => $request->city_birth,
-                'date_birth' => $request->date_birth,
+                'city_birth' => $cityBirth,
+                'date_birth' => $dateBirth, // $request->date_birth,
                 'hour_birth' => $hourBirth,
                 'from' => $from,
                 'ip' => $request->ip(),
                 'user_agent' => $request->server('HTTP_USER_AGENT') ?? $from,
             ];
 
-            $newUser = User::create($userData);
-
-            $now = Carbon::now(); 
-            $formattedNow = $now->format('d-m-Y H:i:s');
+            $newUser = User::createUser($userData);
 
             try {
                 $plan = Plan::where('slug', 'free')->first();

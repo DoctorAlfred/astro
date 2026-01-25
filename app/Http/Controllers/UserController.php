@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Lib\Message;
 use App\Models\Role;
 use App\Models\User;
@@ -111,6 +112,9 @@ class UserController extends AuthController
                 'lastname'   => 'required|string|min:2',
                 'email'      => 'required|email:rfc,dns',
                 'phone'      => 'nullable|string|min:8',
+                'city_birth'  => 'nullable|string|min:2',
+                'date_birth'  => 'nullable|string|min:8',
+                'hour_birth'  => 'nullable|string|min:3',
                 'password'   => [
                     'required',
                     'min:8',
@@ -132,36 +136,58 @@ class UserController extends AuthController
             $ip = $request->ip();
             $userAgent = $request->server('HTTP_USER_AGENT') ?? '';
 
+            $dateBirth = null;
+            if ($request->filled('date_birth')) {
+                $dateBirth = Carbon::createFromFormat('d-m-Y', $request->date_birth)->format('Y-m-d');
+            }
+
+            $hourBirth = null;
+            if ($request->filled('hour_birth')) {
+                $hourBirth = Carbon::createFromFormat('H:i', $request->hour_birth)->format('H:i:s');
+            }
+
+            $firstname  = ucfirst(mb_strtolower($request->firstname, 'UTF-8'));
+            $lastname   = ucfirst(mb_strtolower($request->lastname, 'UTF-8'));
+            $cityBirth  = $request->filled('city_birth')
+                ? ucfirst(mb_strtolower($request->city_birth, 'UTF-8'))
+                : null;
+
             $payload = [
-                'firstname'  => $request->firstname,
-                'lastname'   => $request->lastname,
+                'firstname'  => $firstname,
+                'lastname'   => $lastname,
                 'phone'      => $request->phone ?? null,
                 'email'      => $request->email,
                 'password'   => $request->password,
+                'city_birth' => $cityBirth ?? null,
+                'date_birth' => $dateBirth,
+                'hour_birth' => $hourBirth,
                 'from'       => 'astro',
                 'priority'   => 0,
                 'ip'         => $ip,
                 'user_agent' => $userAgent,
             ];
 
-            $newUser = User::create($payload);
+            $newUser = User::createUser($payload);
 
             Customer::firstOrCreate([
                 'user_id'         => $newUser['userId'],
                 'type'            => 'private',
                 'company'         => null,
-                'email'           => null,
+                'email'           => $request->password,
                 'address'         => null,
                 'city_id'         => null,
                 'country'         => null,
                 'vat'             => null,
                 'identity_number' => null,
                 'completed'       => false,
-                'metadata'        => null
+                'metadata'        => [
+                    'ip'         => $ip,
+                    'user_agent' => $userAgent,
+                ]
             ]);
 
             if ($this->user['role'] === 'admin') {
-                $scopes = ['api', 'user', 'full', 'astro'];
+                // $scopes = ['api', 'user', 'full', 'astro'];
                 $roleName = 'User';
                 $permissionName = 'User';
                 $permData = [
@@ -174,6 +200,7 @@ class UserController extends AuthController
 
                 $role = Role::where('name', $roleName)->first();
                 $permission = Permission::where('name', $permissionName)->first();
+
                 User::find($newUser['userId'])->roles()->syncWithoutDetaching([$role->id]);
                 User::find($newUser['userId'])->permissions()->syncWithoutDetaching([$permission->id]);
 

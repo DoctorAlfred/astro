@@ -59,8 +59,8 @@ class DatabaseSeeder extends Seeder
 
         /* Create Users Payload */
         $payloadAdmin = [
-            'lastname'          => 'Alfredo',
-            'firstname'         => 'Matricciani',
+            'firstname'         => 'Alfredo',
+            'lastname'          => 'Matricciani',
             'email'             => 'alfredo.matricciani@gmail.com',
             'phone'             => '3280021100',
             'password'          => 'BubuSettete1!',
@@ -73,11 +73,11 @@ class DatabaseSeeder extends Seeder
             'user_agent'        => 'Seeders'
         ];
 
-        $user = User::create($payloadAdmin);
+        $user = User::createUser($payloadAdmin);
 
         $payloadCustomer = [
-            'lastname'          => 'Angelo',
-            'firstname'         => 'Melahel',
+            'firstname'         => 'Angelo',
+            'lastname'          => 'Melahel',
             'email'             => 'info@melahel.it',
             'phone'             => '3280021100',
             'password'          => 'BubuSettete1!',
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
             'user_agent'        => 'Seeders'
         ];
 
-        $customer = User::create($payloadCustomer);
+        $customer = User::createUser($payloadCustomer);
 
         $this->callWith([
             CategoryMeaningsSeeder::class,
@@ -98,6 +98,7 @@ class DatabaseSeeder extends Seeder
             PythagoricMeaningsSeeder::class,
             StonesMeaningsSeeder::class,
             AngelMeaningsSeeder::class,
+            HerbsMeaningSeeder::class,
 
             PlansSeeder::class,
 
@@ -107,7 +108,7 @@ class DatabaseSeeder extends Seeder
 
         $premiumPlan = Plan::where('slug', 'premium')->first();
         $basicPlan = Plan::where('slug', 'basic')->first();
-        $freePlan = Plan::where('slug', 'free')->first();
+        // $freePlan = Plan::where('slug', 'free')->first();
 
         if ($premiumPlan) {
             Subscription::create([

@@ -136,15 +136,15 @@ class User extends Authenticatable
         return $this->permissions()->first()?->code;
     }
 
-    public function setDateBirthAttribute($value)
-    {
-        $this->attributes['date_birth'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
-    }
+    // public function setDateBirthAttribute($value)
+    // {
+    //     $this->attributes['date_birth'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+    // }
 
-    public function setHourBirthAttribute($value)
-    {
-        $this->attributes['hour_birth'] = Carbon::createFromFormat('H:i', $value)->format('H:i:s');
-    }
+    // public function setHourBirthAttribute($value)
+    // {
+    //     $this->attributes['hour_birth'] = Carbon::createFromFormat('H:i', $value)->format('H:i:s');
+    // }
 
     public function getDateBirthAttribute($value)
     {
@@ -251,8 +251,8 @@ class User extends Authenticatable
         $me = self::where('id', $id)
             ->select(
                 'id',
-                'name',
-                'surname',
+                'firstname',
+                'lastname',
                 'email',
                 'phone',
                 'from',
@@ -289,7 +289,7 @@ class User extends Authenticatable
      * @param mixed $payload
      * @return array $token
      */
-    public static function create(mixed $payload)
+    public static function createUser(mixed $payload)
     {
         $password = Hash::make($payload['password']);
         // Filter
@@ -394,8 +394,8 @@ class User extends Authenticatable
 
         $user = [
             'id'         => $userData->id,
-            'firstname'  => $userData->name,
-            'lastname'   => $userData->surname,
+            'firstname'  => $userData->firstname,
+            'lastname'   => $userData->lastname,
             'email'      => $userData->email,
             'phone'      => $userData->phone,
             'city_birth' => $userData->city_birth,
