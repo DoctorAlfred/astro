@@ -38,30 +38,30 @@ class HerbsServices
   protected function formatResponse(HerbsMeaning $herb, string $language): array
   {
     return [
-      'name'        => $herb->name,
-      'latin_name'  => $herb->latin_name,
-      'family'      => $herb->family,
+      'name'      => $herb->name,
+      'latinName' => $herb->latin_name,
+      'family'    => $herb->family,
 
-      'used_parts' => $herb->used_parts,
+      'usedParts' => $herb->used_parts,
 
-      'nutritional_values' => $herb->nutritional_values,
+      'nutritionalValues' => $herb->nutritional_values,
 
-      'scientific_properties' => $this->translateBlock(
+      'scientificProperties' => $this->translateBlock(
         $herb->scientific_properties,
         $language
       ),
 
-      'curative_uses' => $this->translateBlock(
+      'curativeUses' => $this->translateBlock(
         $herb->curative_uses,
         $language
       ),
 
-      'esoteric_properties' => $this->translateBlock(
+      'esotericProperties' => $this->translateBlock(
         $herb->esoteric_properties,
         $language
       ),
 
-      'occult_correspondences' => $herb->occult_correspondences,
+      'occultCorrespondences' => $herb->occult_correspondences,
 
       'warnings' => $this->translateText(
         $herb->warnings,

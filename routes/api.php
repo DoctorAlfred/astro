@@ -56,6 +56,16 @@ Route::group([
         Route::get('/all', [\App\Http\Controllers\Angel\AngelController::class, 'getAngels']);
     });
 
+    // ---------- ---------- ---------- HERBS ---------- ---------- ---------- //
+    Route::group([
+        'prefix' => 'herbs',
+        'as' => 'herbs.',
+        'name' => 'herbs.',
+        'middleware' => ['auth:sanctum', 'authenticated']
+    ], function () {
+        Route::get('/all', [\App\Http\Controllers\Herb\HerbController::class, 'getHerbs']);
+    });
+
     // ---------- ---------- ---------- Numerology ---------- ---------- ---------- //
     Route::group([
         'prefix' => 'numerology',
@@ -69,6 +79,16 @@ Route::group([
         Route::post('/nai-matrix', [App\Http\Controllers\Numerology\NaiController::class, 'naiMatrix']);
         // Pythagoric
         Route::post('/pythagoric', [App\Http\Controllers\Numerology\PythagoricController::class, 'pythagoric']);
+    });
+
+    // ---------- ---------- ---------- SALM ---------- ---------- ---------- //
+    Route::group([
+        'prefix' => 'salm',
+        'as' => 'salm.',
+        'name' => 'salm.',
+        'middleware' => ['auth:sanctum', 'authenticated']
+    ], function () {
+        Route::get('/all/{salmNumber?}', [\App\Http\Controllers\Religious\SalmMenaningController::class, 'getSalm']);
     });
     
     // ---------- ---------- ---------- STONES ---------- ---------- ---------- //

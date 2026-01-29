@@ -14,27 +14,26 @@ return new class extends Migration
         Schema::create('herbs_meanings', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->string('name');                     // es: "Edera"
-            $table->string('latin_name')->nullable();   // es: "Hedera helix"
-            $table->string('family')->nullable();       // es: "Araliaceae"
+            $table->string('name');                   // Nome comune
+            $table->string('latin_name')->nullable(); // Nome botanico
+            $table->string('family')->nullable();     // Famiglia botanica
+            $table->string('genus')->nullable();      // Genere
+            $table->string('species')->nullable();    // Specie
 
-            // Parti usate tradizionalmente: foglie, radici, bacche...
-            $table->json('used_parts')->nullable();
-            // Principi attivi / valori nutrizionali / componenti chimici
-            $table->json('nutritional_values')->nullable();
-            // Proprietà riconosciute/studiate (fitoterapia, farmacologia)
-            $table->json('scientific_properties')->nullable();
-            // Usi curativi tradizionali (sempre con prudenza)
-            $table->json('curative_uses')->nullable();
-            // Simbolismo, magia naturale, significati esoterici
-            $table->json('esoteric_properties')->nullable();
-            // Corrispondenze occulte (pianeti, elementi, chakra, ecc.)
-            $table->json('occult_correspondences')->nullable();
-            // Avvertenze, tossicità, note importanti
-            $table->text('warnings')->nullable();
+            // Flag funzionali
+            $table->boolean('edible')->default(false);
+            $table->boolean('toxic')->default(false);
+
+            // Slug per URL / API
+            $table->string('slug')->unique();
 
             $table->timestamps();
             $table->softDeletes();
+
+             // Indici utili
+             $table->index('name');
+             $table->index('latin_name');
+             $table->index('family');
         });
     }
 

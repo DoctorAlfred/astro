@@ -99,6 +99,7 @@ class DatabaseSeeder extends Seeder
             StonesMeaningsSeeder::class,
             AngelMeaningsSeeder::class,
             HerbsMeaningSeeder::class,
+            SalmMeaningSeeder::class,
 
             PlansSeeder::class,
 

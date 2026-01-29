@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HerbsMeaning extends Model
 {
@@ -24,16 +26,12 @@ class HerbsMeaning extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'latin_name',
+        'slug',
         'family',
-        'used_parts',
-        'nutritional_values',
-        'scientific_properties',
-        'curative_uses',
-        'esoteric_properties',
-        'occult_correspondences',
-        'warnings',
+        'genus',
+        'species',
+        'edible',
+        'toxic',
     ];
 
     /**
@@ -44,12 +42,8 @@ class HerbsMeaning extends Model
     protected function casts(): array
     {
         return [
-            'used_parts'              => 'array',
-            'nutritional_values'      => 'array',
-            'scientific_properties'   => 'array',
-            'curative_uses'           => 'array',
-            'esoteric_properties'     => 'array',
-            'occult_correspondences'  => 'array',
+            'edible' => 'boolean',
+            'toxic'  => 'boolean',
 
             'created_at' => "datetime:d-m-Y H:i",
             'updated_at' => "datetime:d-m-Y H:i",
@@ -58,17 +52,12 @@ class HerbsMeaning extends Model
     }
 
     /**
-     * Get Full Name Attribute function
-     * - Nome completo (volgare + latino)
+     * Herbs Contents function
      *
-     * @return string
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getFullNameAttribute(): string
+    public function herbscontents(): HasMany
     {
-        if ($this->latin_name) {
-            return "{$this->name} ({$this->latin_name})";
-        }
-
-        return $this->name;
+        return $this->hasMany(HerbContent::class);
     }
 }

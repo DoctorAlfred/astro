@@ -23,18 +23,11 @@ class HerbsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                'string',
-                'min:2',
-                'max:100',
-            ],
-
-            'language' => [
-                'sometimes',
-                'nullable',
-                Rule::in(['it', 'en']),
-            ],
+            'plantName' => ['sometimes', 'nullable', 'string'],
+            'language' => ['sometimes', 'nullable', Rule::in(['it', 'en'])],
+            'type' => ['sometimes', 'nullable', 'string'],
+            'evidenceLevel' => ['sometimes', 'nullable', Rule::in(['high', 'medium', 'low', 'none'])],
+            'sourceType' => ['sometimes', 'nullable', Rule::in(['scientific', 'traditional', 'religious', 'esoteric', 'folk', 'mixed'])],
         ];
     }
 
@@ -44,8 +37,12 @@ class HerbsRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Il nome della pianta è obbligatorio.',
-            'language.regex' => 'Il formato lingua deve essere it, en, ecc.',
+             // IT
+             'plantName.string' => 'Il nome della pianta deve essere una stringa valida',
+             'language.in' => 'La lingua deve essere it oppure en',
+             'type.string' => 'Il tipo di contenuto non è valido',
+             'evidenceLevel.in' => 'Il livello di evidenza deve essere high, medium, low oppure none',
+             'sourceType.in' => 'Il tipo di fonte non è valido',
         ];
     }
 }
