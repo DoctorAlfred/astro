@@ -34,9 +34,21 @@ class AngelController extends Controller
                     200
                 );
             }
+
             // Birth Date
             if ($request->filled('birthdate')) {
-                $date = \Carbon\Carbon::parse($request->input('birthdate'));
+                // OLD CODE:
+                $inputDate = $request->input('birthdate');
+                try {
+                    // Try parsing as d-m first
+                    $date = Carbon::createFromFormat('d-m', $inputDate);
+                    // Reset to current year if parsing strictly d-m, or let Carbon handle it
+                    $date->year(now()->year);
+                } catch (\Exception $e) {
+                    // Fallback to standard parsing
+                    $date = Carbon::parse($inputDate);
+                }
+
                 if ($date->month === 3 && $date->day >= 16 && $date->day <= 20) {
                     $birthAngel = AngelsMeaning::whereIn('number', [72, 1])
                         ->orderBy('number')
@@ -49,24 +61,27 @@ class AngelController extends Controller
                 if ($birthAngel) {
                     $results->push($birthAngel);
                 }
-            }
 
-            // Date (single param: date)
-            if ($request->filled('date')) {
+            } elseif ($request->filled('date')) {
+                // Date (single param: date)
                 $date = Carbon::createFromFormat(
                     'd-m',
                     $request->input('date')
                 )->year(now()->year);
+
+                $dateAngel = $this->findAngelByDate($date->day, $date->month);
+                if ($dateAngel) {
+                    $results->push($dateAngel);
+                }
+
             } else {
+                // Default: Today's Angel
                 $date = now();
+                $dateAngel = $this->findAngelByDate($date->day, $date->month);
+                if ($dateAngel) {
+                    $results->push($dateAngel);
+                }
             }
-
-            $dateAngel = $this->findAngelByDate($date->day, $date->month);
-
-            if ($dateAngel) {
-                $results->push($dateAngel);
-            }
-
 
             return $this->sendResponse(
                 Message::SHOW_OK,
@@ -95,10 +110,28 @@ class AngelController extends Controller
     private function findAngelByDate(int $day, int $month): ?AngelsMeaning
     {
         return AngelsMeaning::where(function ($q) use ($day, $month) {
-            $q->where('regency_start_month', $month)
-                ->where('regency_end_month', $month)
-                ->where('regency_start_day', '<=', $day)
-                ->where('regency_end_day', '>=', $day);
+            $q->where(function ($query) use ($day, $month) {
+                // Case 1: Start and End in same month
+                $query->whereColumn('regency_start_month', 'regency_end_month')
+                      ->where('regency_start_month', $month)
+                      ->where('regency_start_day', '<=', $day)
+                      ->where('regency_end_day', '>=', $day);
+            })->orWhere(function ($query) use ($day, $month) {
+                // Case 2: Range spans across months
+                // Must explicitly ensure it IS a cross-month range to avoid partial matches on single-month angels
+                $query->whereColumn('regency_start_month', '!=', 'regency_end_month')
+                      ->where(function ($subQ) use ($day, $month) {
+                          $subQ->where(function ($startQ) use ($day, $month) {
+                              // Subcase A: Current date is in the start month
+                              $startQ->where('regency_start_month', $month)
+                                     ->where('regency_start_day', '<=', $day);
+                          })->orWhere(function ($endQ) use ($day, $month) {
+                              // Subcase B: Current date is in the end month
+                              $endQ->where('regency_end_month', $month)
+                                   ->where('regency_end_day', '>=', $day);
+                          });
+                      });
+            });
         })->first();
     }
 }

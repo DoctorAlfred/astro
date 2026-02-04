@@ -25,7 +25,9 @@ class SalmMenaningController extends Controller
                 return static::sendResponse(Message::SHOW_OK, $result->toArray(), JsonResponse::HTTP_OK);
             }
 
-            $result = SalmMeaning::orderBy('salm_number')->get();
+            $result = SalmMeaning::orderBy('salm_number')
+                ->select('salm_name', 'salm_number')
+                ->get();
             if ($result->isEmpty()) return static::sendError(Message::GENERIC_KO, ['context' => []], JsonResponse::HTTP_NOT_FOUND);
             return static::sendResponse(Message::SHOW_OK, $result->toArray(), JsonResponse::HTTP_OK);
         } catch (\Throwable $e) {

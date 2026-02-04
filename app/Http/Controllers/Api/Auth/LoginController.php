@@ -96,9 +96,12 @@ class LoginController extends Controller
             $userAgent = $request->server('HTTP_USER_AGENT');
 
             $user = User::where('email', $request->email)->with('roles')->first();
+            if (!$user) {
+                return $this->sendError(Message::USER_NOT_FOUND, ['status' => false], 404);
+            }
             $customer = Customer::where('user_id', $user->id)->first();
 
-            if (!$user || !Hash::check($request->password, $user->password)) {
+            if (!Hash::check($request->password, $user->password)) {
                 return $this->sendError(Message::PASSWORD_KO, ['status' => false], 404);
             }
 
