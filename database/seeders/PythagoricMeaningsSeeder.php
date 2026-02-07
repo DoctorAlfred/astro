@@ -135,12 +135,71 @@ class PythagoricMeaningsSeeder extends Seeder
                 'updated_at'        => $now,
             ],
 
+            // ---------- PERCORSO DI VITA 11–22-33 life_path (numeri maestri) ---------- //
+            [
+                'number_type'       => 'life_path',
+                'number_value'      => 11,
+                'locale'            => 'it-IT',
+                'title'             => 'Percorso di vita 11 - Il Messaggero spirituale',
+                'short_description' => 'Intuizione elevata, ispirazione e chiamata interiore.',
+                'long_description'  => 'Il percorso di vita 11 è quello dell’anima ispirata. Fin dall’inizio della vita puoi percepire una sensibilità fuori dal comune, un’intuizione profonda e una tensione verso il senso ultimo delle cose. Sei chiamato a fare da ponte tra visibile e invisibile, tra conferma e mistero. La sfida è imparare a radicare la tua visione per non viverla come peso o instabilità.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'intuizione',
+                        'ispirazione',
+                        'canale spirituale',
+                        'visione elevata',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'life_path',
+                'number_value'      => 22,
+                'locale'            => 'it-IT',
+                'title'             => 'Percorso di vita 22 - Il Maestro costruttore',
+                'short_description' => 'Visione ampia e capacità di realizzare opere durature.',
+                'long_description'  => 'Il percorso di vita 22 unisce il sogno alla materia. Sei chiamato a costruire qualcosa che resti: progetti, strutture, sistemi o comunità. Hai la capacità di tradurre un’idea elevata in una forma concreta. La prova è non farti schiacciare dal peso delle responsabilità e ricordare che ogni costruzione autentica nasce da un senso profondo.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'realizzazione',
+                        'costruzione',
+                        'visione incarnata',
+                        'opera duratura',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'life_path',
+                'number_value'      => 33,
+                'locale'            => 'it-IT',
+                'title'             => 'Percorso di vita 33 - Il Maestro dell’amore',
+                'short_description' => 'Vocazione al servizio, alla compassione e alla guarigione.',
+                'long_description'  => 'Il percorso di vita 33 è il più raro e intenso. Porta una chiamata al servizio disinteressato, all’insegnamento e alla guarigione attraverso l’amore. Spesso comporta grandi prove emotive, perché l’anima impara ad amare senza condizioni. La sfida è non sacrificarsi fino all’annullamento, ma incarnare la compassione restando integri.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'amore universale',
+                        'servizio',
+                        'guarigione',
+                        'insegnamento spirituale',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+
             // ---------- EXPRESSION 1–9 (talenti e potenziale espresso) ---------- //
             [
                 'number_type'       => 'expression',
                 'number_value'      => 1,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 1 – Il Comandante',
+                'title'             => 'Espressione 1 - Il Comandante',
                 'short_description' => 'Talento nel dirigere, decidere e guidare.',
                 'long_description'  => 'Con un numero di espressione 1, la tua personalità manifesta coraggio, iniziativa e bisogno di guidare. Sei portato a prendere il comando, ad avviare progetti, a proporre soluzioni. Puoi risultare diretto o impaziente, ma la tua forza sta nella chiarezza di visione. Quando usi il tuo potere in modo costruttivo, ispiri gli altri ad alzarsi in piedi e seguire il proprio cammino.',
                 'metadata'          => json_encode(['keywords' => ['leadership', 'decisione', 'autonomia']]),
@@ -151,7 +210,7 @@ class PythagoricMeaningsSeeder extends Seeder
                 'number_type'       => 'expression',
                 'number_value'      => 2,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 2 – Il Collaboratore',
+                'title'             => 'Espressione 2 - Il Collaboratore',
                 'short_description' => 'Talento nella cooperazione, nell’ascolto e nella mediazione.',
                 'long_description'  => 'L’espressione 2 ti dona una presenza gentile, diplomatica, sensibile alle vibrazioni degli altri. Spicchi quando puoi cooperare, sostenere, facilitare accordi. Potresti avere difficoltà a esprimere apertamente i tuoi bisogni, temendo il conflitto. Quando ti permetti di parlare con sincerità, diventi un vero punto di riferimento per chi cerca equilibrio e armonia.',
                 'metadata'          => json_encode(['keywords' => ['collaborazione', 'diplomazia', 'sensibilità']]),
@@ -162,7 +221,7 @@ class PythagoricMeaningsSeeder extends Seeder
                 'number_type'       => 'expression',
                 'number_value'      => 3,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 3 – Il Narratore',
+                'title'             => 'Espressione 3 - Il Narratore',
                 'short_description' => 'Talento verbo-creativo, comunicazione brillante.',
                 'long_description'  => 'Con l’espressione 3, porti nel mondo leggerezza, humour e capacità di raccontare. Sai usare parole, immagini e gesti per trasmettere emozioni e idee. Puoi però fuggire dalle profondità emotive, mascherando la vulnerabilità con la battuta. Quando ti permetti di parlare anche del dolore, la tua arte diventa medicina per chi ti ascolta.',
                 'metadata'          => json_encode(['keywords' => ['narrazione', 'arte', 'comunicazione']]),
@@ -173,7 +232,7 @@ class PythagoricMeaningsSeeder extends Seeder
                 'number_type'       => 'expression',
                 'number_value'      => 4,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 4 – L’Organizzatore',
+                'title'             => 'Espressione 4 - L’Organizzatore',
                 'short_description' => 'Talento pratico, metodo e affidabilità.',
                 'long_description'  => 'L’espressione 4 ti rende concreto, sistematico e affidabile. Pensi in termini di processi, strutture e risultati tangibili. Gli altri possono contare su di te, ma talvolta ti percepiscono rigido o troppo razionale. Quando integri la flessibilità e lasci entrare un po’ di creatività nel tuo ordine, diventi un costruttore straordinario di progetti duraturi.',
                 'metadata'          => json_encode(['keywords' => ['organizzazione', 'pragmatismo', 'metodo']]),
@@ -184,7 +243,7 @@ class PythagoricMeaningsSeeder extends Seeder
                 'number_type'       => 'expression',
                 'number_value'      => 5,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 5 – L’Esploratore',
+                'title'             => 'Espressione 5 - L’Esploratore',
                 'short_description' => 'Talento per il cambiamento, la varietà e la comunicazione dinamica.',
                 'long_description'  => 'Con un numero di espressione 5, porti entusiasmo, curiosità e spirito avventuroso. Sei a tuo agio con il nuovo, ami sperimentare, cambiare, raccontare ciò che vivi. Il rischio è la dispersione o la tendenza ad annoiarti facilmente. Quando impari a canalizzare questa energia in progetti chiari, diventi un comunicatore magnetico e un ponte tra mondi diversi.',
                 'metadata'          => json_encode(['keywords' => ['avventura', 'varietà', 'movimento']]),
@@ -195,7 +254,7 @@ class PythagoricMeaningsSeeder extends Seeder
                 'number_type'       => 'expression',
                 'number_value'      => 6,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 6 – Il Protettore',
+                'title'             => 'Espressione 6 - Il Protettore',
                 'short_description' => 'Talento nel prendersi cura, educare e armonizzare.',
                 'long_description'  => 'L’espressione 6 ti rende naturalmente portato a proteggere, consigliare, sostenere. Hai senso estetico, amore per la casa, per la bellezza e per le relazioni affettive. Puoi però cadere nel controllo o nell’iper-responsabilità. Quando ti prendi cura senza sostituirti agli altri, diventi un punto fermo di stabilità e amore nel tuo ambiente.',
                 'metadata'          => json_encode(['keywords' => ['cura', 'armonia', 'famiglia']]),
@@ -206,7 +265,7 @@ class PythagoricMeaningsSeeder extends Seeder
                 'number_type'       => 'expression',
                 'number_value'      => 7,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 7 – Il Saggio',
+                'title'             => 'Espressione 7 - Il Saggio',
                 'short_description' => 'Talento analitico, intuitivo e contemplativo.',
                 'long_description'  => 'Con l’espressione 7, trasmetti profondità, riservatezza e uno sguardo indagatore. Ami capire, studiare, contemplare. A volte puoi sembrare distante o enigmatico. Quando condividi con semplicità ciò che scopri dentro di te e nel mondo, diventi una guida preziosa per chi cerca risposte autentiche.',
                 'metadata'          => json_encode(['keywords' => ['saggezza', 'analisi', 'intuizione']]),
@@ -217,7 +276,7 @@ class PythagoricMeaningsSeeder extends Seeder
                 'number_type'       => 'expression',
                 'number_value'      => 8,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 8 – Il Manager',
+                'title'             => 'Espressione 8 - Il Manager',
                 'short_description' => 'Talento nella gestione di risorse, persone e obiettivi.',
                 'long_description'  => 'L’espressione 8 dona presenza, ambizione e capacità di gestione. Sai organizzare strutture, guidare team, muoverti in contesti dove contano risultati e responsabilità. Puoi però diventare troppo severo, competitivo o orientato solo ai numeri. Quando unisci cuore e strategia, diventi un leader giusto e rispettato.',
                 'metadata'          => json_encode(['keywords' => ['gestione', 'autorità', 'strategia']]),
@@ -228,10 +287,69 @@ class PythagoricMeaningsSeeder extends Seeder
                 'number_type'       => 'expression',
                 'number_value'      => 9,
                 'locale'            => 'it-IT',
-                'title'             => 'Espressione 9 – Il Visionario',
+                'title'             => 'Espressione 9 - Il Visionario',
                 'short_description' => 'Talento umanitario, artistico e universale.',
                 'long_description'  => 'Con il numero di espressione 9, emani sensibilità, idealismo e profondità emotiva. Spesso sei attratto dall’arte, dalla cura, dal volontariato o da progetti di ampio respiro. Puoi soffrire molto per le ingiustizie e sentirti disilluso. Quando impari a trasformare il dolore in servizio creativo, diventi un faro per chi cerca speranza.',
                 'metadata'          => json_encode(['keywords' => ['visione', 'umanitarismo', 'arte']]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+
+            // ---------- EXPRESSION 11–22-33 (numeri maestri - talenti e potenziale espresso) ---------- //
+            [
+                'number_type'       => 'expression',
+                'number_value'      => 11,
+                'locale'            => 'it-IT',
+                'title'             => 'Espressione 11 - Il Canale ispirato',
+                'short_description' => 'Talento ispirativo, comunicazione intuitiva e visione elevata.',
+                'long_description'  => 'Con un’espressione 11, manifesti un carisma sottile e magnetico. Le tue parole, le tue idee e la tua presenza possono risvegliare, ispirare o guidare gli altri. Non sempre è facile “incassare” questa sensibilità: il rischio è l’ansia o la dispersione. Quando radichi l’intuizione nella pratica quotidiana, la tua espressione diventa faro.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'ispirazione',
+                        'intuizione',
+                        'comunicazione elevata',
+                        'carisma sottile',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'expression',
+                'number_value'      => 22,
+                'locale'            => 'it-IT',
+                'title'             => 'Espressione 22 - Il Realizzatore visionario',
+                'short_description' => 'Talento nel trasformare grandi idee in risultati concreti.',
+                'long_description'  => 'L’espressione 22 unisce mente visionaria e capacità organizzativa. Sai progettare, strutturare e guidare iniziative complesse. La tua comunicazione è autorevole e orientata allo scopo. La sfida è non diventare rigido o eccessivamente focalizzato sul risultato, dimenticando il senso più alto dell’opera.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'realizzazione',
+                        'visione pratica',
+                        'leadership strutturata',
+                        'costruzione',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'expression',
+                'number_value'      => 33,
+                'locale'            => 'it-IT',
+                'title'             => 'Espressione 33 - Il Comunicatore compassionevole',
+                'short_description' => 'Talento nell’insegnare, guarire e sostenere attraverso la parola.',
+                'long_description'  => 'Con un’espressione 33, ciò che manifesti nel mondo ha una forte impronta di amore e servizio. La tua voce, il tuo esempio o il tuo lavoro parlano di cura, empatia e responsabilità verso gli altri. Il rischio è sovra-donarti. La vera maestria è esprimere compassione restando centrato.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'insegnamento',
+                        'compassione',
+                        'guarigione',
+                        'servizio espresso',
+                    ],
+                ]),
                 'created_at'        => $now,
                 'updated_at'        => $now,
             ],
@@ -337,6 +455,65 @@ class PythagoricMeaningsSeeder extends Seeder
                 'updated_at'        => $now,
             ],
 
+            // ---------- SOUL URGE 11-22-33 (numeri maestri - desideri interiori) ---------- //
+            [
+                'number_type'       => 'soul_urge',
+                'number_value'      => 11,
+                'locale'            => 'it-IT',
+                'title'             => 'Anima 11 – Desiderio di luce e verità',
+                'short_description' => 'Bisogno profondo di senso, ispirazione e connessione spirituale.',
+                'long_description'  => 'Con un’anima 11, nel profondo senti il richiamo alla verità, alla bellezza nascosta e a una realtà più grande. Desideri comprendere il senso delle cose e vivere in coerenza con una visione interiore elevata. Puoi sentire inquietudine se vivi solo nella materia. Il cuore trova pace quando onori l’intuizione senza fuggire dal mondo.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'ricerca interiore',
+                        'verità',
+                        'intuizione profonda',
+                        'luce spirituale',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'soul_urge',
+                'number_value'      => 22,
+                'locale'            => 'it-IT',
+                'title'             => 'Anima 22 – Desiderio di costruire qualcosa che resti',
+                'short_description' => 'Bisogno profondo di rendere utile e concreta la propria visione.',
+                'long_description'  => 'L’anima 22 desidera lasciare un segno tangibile nel mondo. Dentro di te c’è il bisogno di creare, strutturare e realizzare qualcosa che abbia valore duraturo. Non ti basta sognare: vuoi incarnare. La frustrazione nasce quando non vedi risultati concreti. La pace arriva quando riconosci che ogni opera grande cresce passo dopo passo.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'costruzione interiore',
+                        'realizzazione',
+                        'visione concreta',
+                        'responsabilità profonda',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'soul_urge',
+                'number_value'      => 33,
+                'locale'            => 'it-IT',
+                'title'             => 'Anima 33 – Desiderio di amare e servire',
+                'short_description' => 'Bisogno profondo di donarsi, guarire e sostenere gli altri.',
+                'long_description'  => 'Con un’anima 33, nel profondo desideri amare senza condizioni. Il cuore è naturalmente orientato al servizio, alla cura e alla guarigione. Spesso senti il dolore altrui come fosse tuo. La lezione è imparare a servire senza annullarti, riconoscendo che anche tu meriti amore e sostegno.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'amore universale',
+                        'servizio',
+                        'guarigione',
+                        'compassione interiore',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+
             // ---------- PERSONALITY 1–9 (immagine esterna) ---------- //
             [
                 'number_type'       => 'personality',
@@ -434,6 +611,65 @@ class PythagoricMeaningsSeeder extends Seeder
                 'short_description' => 'Appari sensibile, profondo e disponibile all’ascolto.',
                 'long_description'  => 'Con una personalità 9, gli altri ti vedono come persona empatica, comprensiva e talvolta un po’ malinconica. Attiri confidenze e storie difficili, perché emani fiducia e compassione. La sfida è non assorbire il dolore altrui fino a dimenticare il tuo. Quando trovi equilibrio, diventi un consolatore naturale.',
                 'metadata'          => json_encode(['keywords' => ['empatia', 'profondità emotiva', 'ascolto']]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+
+            // ---------- PERSONALITY 11-22-33 (numeri maestri - immagine esterna) ---------- //
+            [
+                'number_type'       => 'personality',
+                'number_value'      => 11,
+                'locale'            => 'it-IT',
+                'title'             => 'Personalità 11 - Presenza ispirante',
+                'short_description' => 'Appari sensibile, intuitivo e portatore di visione.',
+                'long_description'  => 'Con una personalità 11, gli altri ti percepiscono come una persona fuori dal comune: ispirata, profonda, talvolta enigmatica. Trasmetti intuizione, idealismo e una certa tensione verso l’alto. Puoi sembrare fragile o nervoso, perché vivi su frequenze sottili. Quando impari a restare centrato, la tua presenza diventa una guida silenziosa per chi ti incontra.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'presenza ispirante',
+                        'sensibilità elevata',
+                        'intuizione visibile',
+                        'carisma sottile',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'personality',
+                'number_value'      => 22,
+                'locale'            => 'it-IT',
+                'title'             => 'Personalità 22 - Presenza autorevole e solida',
+                'short_description' => 'Appari affidabile, capace di guidare e costruire.',
+                'long_description'  => 'La personalità 22 ti rende visibile come persona competente, concreta e orientata ai risultati. Gli altri sentono che possono contare su di te per realizzare qualcosa di importante. Trasmetti forza, stabilità e visione pratica. Il rischio è apparire distante o troppo focalizzato sugli obiettivi. Quando mostri anche il cuore, la tua autorevolezza diventa ispirazione.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'autorevolezza',
+                        'solidità',
+                        'leadership concreta',
+                        'presenza strutturata',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'personality',
+                'number_value'      => 33,
+                'locale'            => 'it-IT',
+                'title'             => 'Personalità 33 - Presenza compassionevole',
+                'short_description' => 'Appari accogliente, amorevole e profondamente empatico.',
+                'long_description'  => 'Con una personalità 33, gli altri ti vedono come figura di conforto, guida affettiva o riferimento morale. Emani comprensione, disponibilità e desiderio di aiutare. Spesso attrai confidenze e bisogni profondi. La sfida è non caricarti di tutto. Quando impari a mantenere confini sani, la tua compassione diventa una forza luminosa.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'compassione',
+                        'empatia visibile',
+                        'cura',
+                        'presenza amorevole',
+                    ],
+                ]),
                 'created_at'        => $now,
                 'updated_at'        => $now,
             ],
@@ -538,7 +774,47 @@ class PythagoricMeaningsSeeder extends Seeder
                 'created_at'        => $now,
                 'updated_at'        => $now,
             ],
-    
+
+            // ---------- BIRTH DAY 11-22 (numeri maestri - giorno di nascita ridotto) ---------- //
+            [
+                'number_type'       => 'birth_day',
+                'number_value'      => 11,
+                'locale'            => 'it-IT',
+                'title'             => 'Giorno di nascita 11',
+                'short_description' => 'Indica sensibilità intuitiva e percezione fuori dal comune.',
+                'long_description'  => 'Nascere l’11 porta fin dall’infanzia una vibrazione intensa e sottile. Puoi aver mostrato grande sensibilità, intuizione o immaginazione, ma anche nervosismo o senso di diversità. Questo numero parla di una predisposizione naturale a percepire ciò che non è immediatamente visibile. Crescendo, impari a trasformare questa sensibilità in dono.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'sensibilità precoce',
+                        'intuizione',
+                        'percezione sottile',
+                        'nascita speciale',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'birth_day',
+                'number_value'      => 22,
+                'locale'            => 'it-IT',
+                'title'             => 'Giorno di nascita 22',
+                'short_description' => 'Indica maturità precoce e senso innato di responsabilità.',
+                'long_description'  => 'Nascere il giorno 22 suggerisce una predisposizione naturale a prendere sul serio la realtà fin da giovane. Puoi aver sentito presto il peso delle responsabilità o il bisogno di costruire qualcosa di stabile. Questo giorno porta una forza concreta, spesso accompagnata da grandi aspettative. La crescita consiste nel non irrigidirsi troppo presto, lasciando spazio anche al gioco.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'responsabilità precoce',
+                        'solidità',
+                        'forza concreta',
+                        'maturità anticipata',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+
             // ---------- MATURITY 1–9 (sintesi evolutiva) ---------- //
             [
                 'number_type'       => 'maturity',
@@ -639,7 +915,66 @@ class PythagoricMeaningsSeeder extends Seeder
                 'created_at'        => $now,
                 'updated_at'        => $now,
             ],
-    
+
+            // ---------- MATURITY 11–22-33 (numeri maestri) ---------- //
+            [
+                'number_type'       => 'maturity',
+                'number_value'      => 11,
+                'locale'            => 'it-IT',
+                'title'             => 'Maturità 11 – Il Faro spirituale',
+                'short_description' => 'La vita ti conduce a ispirare, illuminare e guidare con coscienza.',
+                'long_description'  => 'Con una maturità 11, la seconda parte della vita assume una forte dimensione spirituale e simbolica. Sei chiamato a diventare canale di ispirazione, verità e visione per gli altri. Non si tratta di potere personale, ma di responsabilità luminosa: ciò che vivi, comprendi e superi diventa luce per chi cammina accanto a te. La sfida è restare radicato, per non disperdere l’energia in idealismo o tensione nervosa.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'ispirazione',
+                        'guida spirituale',
+                        'coscienza elevata',
+                        'luce per gli altri',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'maturity',
+                'number_value'      => 22,
+                'locale'            => 'it-IT',
+                'title'             => 'Maturità 22 – Il Grande Costruttore',
+                'short_description' => 'La vita ti porta a realizzare opere durature al servizio del collettivo.',
+                'long_description'  => 'Con una maturità 22, la seconda parte della vita unisce visione spirituale e capacità concreta. Sei chiamato a costruire qualcosa che resti: strutture, progetti, opere, comunità. Non basta sognare, devi incarnare. La sfida è non schiacciare l’anima sotto il peso della responsabilità. Quando unisci spirito e materia, diventi architetto del bene comune.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'grande costruttore',
+                        'realizzazione collettiva',
+                        'visione incarnata',
+                        'responsabilità spirituale',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'maturity',
+                'number_value'      => 33,
+                'locale'            => 'it-IT',
+                'title'             => 'Maturità 33 – Il Maestro compassionevole',
+                'short_description' => 'La vita ti conduce a servire attraverso amore, guida e guarigione.',
+                'long_description'  => 'Con una maturità 33, la maturazione dell’anima ti porta verso il servizio totale. È il numero dell’amore universale incarnato: insegnare, guarire, sostenere, elevare. La sfida è non sacrificarti fino all’annullamento. La vera maestria è amare senza perdere te stesso, diventando presenza che cura semplicemente esistendo.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'maestro spirituale',
+                        'amore universale',
+                        'servizio compassionevole',
+                        'guarigione collettiva',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+
             // ---------- BALANCE 1–9 (reazioni sotto stress) ---------- //
             [
                 'number_type'       => 'balance',
@@ -740,7 +1075,66 @@ class PythagoricMeaningsSeeder extends Seeder
                 'created_at'        => $now,
                 'updated_at'        => $now,
             ],
-    
+
+            // ---------- BALANCE 11–22-33 (numeri maestri - reazioni sotto stress) ---------- //
+            [
+                'number_type'       => 'balance',
+                'number_value'      => 11,
+                'locale'            => 'it-IT',
+                'title'             => 'Equilibrio 11 - Reazione ipersensibile e intuitiva',
+                'short_description' => 'Sotto pressione reagisci amplificando percezioni ed emozioni.',
+                'long_description'  => 'Con un equilibrio 11, nei momenti di stress diventi estremamente ricettivo: percepisci tutto, anche ciò che gli altri non notano. Questo può portare ispirazione improvvisa, ma anche sovraccarico emotivo o nervoso. L’equilibrio si ritrova quando impari a radicarti, distinguendo ciò che è tuo da ciò che assorbi dall’ambiente.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'ipersensibilità',
+                        'intuizione sotto stress',
+                        'sovraccarico emotivo',
+                        'radicamento',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'balance',
+                'number_value'      => 22,
+                'locale'            => 'it-IT',
+                'title'             => 'Equilibrio 22 - Reazione di controllo e strutturazione',
+                'short_description' => 'Sotto pressione cerchi di reggere tutto e rimettere ordine.',
+                'long_description'  => 'Con equilibrio 22, nelle situazioni critiche senti il bisogno di assumerti responsabilità e tenere insieme la struttura. Reagisci costruendo, organizzando e controllando per evitare il collasso. È una grande forza, ma può trasformarsi in rigidità. L’equilibrio arriva quando condividi il peso e accetti che non tutto dipende da te.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'controllo',
+                        'responsabilità',
+                        'strutturazione',
+                        'tenuta sotto stress',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+            [
+                'number_type'       => 'balance',
+                'number_value'      => 33,
+                'locale'            => 'it-IT',
+                'title'             => 'Equilibrio 33 - Reazione di sacrificio e cura',
+                'short_description' => 'Sotto pressione tendi a prenderti cura di tutti, anche a tuo costo.',
+                'long_description'  => 'Con equilibrio 33, nelle difficoltà la tua prima risposta è aiutare, sostenere, farti carico del dolore altrui. È una reazione profondamente amorevole, ma rischiosa. L’equilibrio nasce quando impari che prenderti cura di te non è egoismo, ma condizione per continuare a servire con verità.',
+                'metadata'          => json_encode([
+                    'keywords' => [
+                        'numero maestro',
+                        'sacrificio',
+                        'cura',
+                        'servizio sotto stress',
+                        'confini sani',
+                    ],
+                ]),
+                'created_at'        => $now,
+                'updated_at'        => $now,
+            ],
+
             // ---------- KARMIC LESSON 1–9 ---------- //
             [
                 'number_type'       => 'karmic_lesson',
@@ -841,7 +1235,7 @@ class PythagoricMeaningsSeeder extends Seeder
                 'created_at'        => $now,
                 'updated_at'        => $now,
             ],
-    
+
             // ---------- HIDDEN PASSION 1–9 ---------- //
             [
                 'number_type'       => 'hidden_passion',

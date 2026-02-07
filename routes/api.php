@@ -46,6 +46,16 @@ Route::group([
         });
     });
 
+    // ---------- ---------- ---------- COLORS ---------- ---------- ---------- //
+    Route::group([
+        'prefix' => 'colors',
+        'as' => 'colors.',
+        'name' => 'colors.',
+        'middleware' => ['auth:sanctum', 'authenticated']
+    ], function () {
+        Route::get('/all', [\App\Http\Controllers\Colors\ColorController::class, 'getColors']);
+    });
+
     // ---------- ---------- ---------- STONES ---------- ---------- ---------- //
     Route::group([
         'prefix' => 'angels',
@@ -73,6 +83,8 @@ Route::group([
         'name' => 'numerology.',
         'middleware' => ['auth:sanctum', 'authenticated']
     ], function () {
+        // TANTRIC
+        Route::get('/tantric', [App\Http\Controllers\Numerology\TantricController::class, 'tantric']);
         // NAI
         Route::post('/nai-from-date', [App\Http\Controllers\Numerology\NaiController::class, 'naiFromDate']);
         Route::post('/nai-from-name', [App\Http\Controllers\Numerology\NaiController::class, 'naiFromName']);

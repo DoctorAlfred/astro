@@ -464,6 +464,20 @@ class PythagoreanServices
         ->where('locale', $locale)
         ->first();
 
+      if (
+        $key === 'maturity_number' &&
+        $value !== null &&
+        $meaning === null
+      ) {
+        $meanings[$key] = [
+          'number_type'  => $numberType,
+          'number_value' => $value,
+          'locale'       => $locale,
+          'missing_db'   => true,
+        ];
+        continue;
+      }
+
       $meanings[$key] = $meaning;
     }
 

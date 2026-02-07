@@ -16,7 +16,7 @@ class HerbController extends Controller
         try {
             $data = $request->validated();
 
-            $language      = $data['language']      ?? null;
+            $language      = $data['language']      ?? 'it';
             $plantName     = isset($data['plantName']) ? $data['plantName'] : null;
             $type          = $data['type']          ?? null;
             $evidenceLevel = $data['evidenceLevel'] ?? null;

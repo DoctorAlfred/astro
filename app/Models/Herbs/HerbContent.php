@@ -16,6 +16,11 @@ use App\Enums\Herbs\HerbEvidenceLevel;
 class HerbContent extends Model
 {
     use HasApiTokens, HasFactory, HasUuids, Notifiable, SoftDeletes;
+    /** Disabilita incremento automatico */
+    public $incrementing = false;
+    /** Chiave primaria sarà stringa (UUID) */
+    protected $keyType = 'string';
+    
     /** Fillable **/
     protected $fillable = [
         'herb_id',

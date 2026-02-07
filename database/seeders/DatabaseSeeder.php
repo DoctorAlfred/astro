@@ -93,15 +93,17 @@ class DatabaseSeeder extends Seeder
         $customer = User::createUser($payloadCustomer);
 
         $this->callWith([
+            AngelMeaningsSeeder::class,
             CategoryMeaningsSeeder::class,
+            ColorsMeaningSeeder::class,
+            HerbsMeaningSeeder::class,
             NaiMeaningsSeeder::class,
+            PlansSeeder::class,
             PythagoricMeaningsSeeder::class,
             StonesMeaningsSeeder::class,
-            AngelMeaningsSeeder::class,
-            HerbsMeaningSeeder::class,
             SalmMeaningSeeder::class,
-
-            PlansSeeder::class,
+            TantricMeaningSeeder::class,
+            TantricYearlyCycleSeeder::class,
 
             // ChatGptSeeder::class,
             // ['userId' => $user->userId] 
