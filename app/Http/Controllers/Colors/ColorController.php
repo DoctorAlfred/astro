@@ -100,7 +100,6 @@ class ColorController extends Controller
     protected function translateColors(ColorMeaning $color, string $lang): array
     {
         return [
-            'id'         => $color->id,
             'name'       => $color->name[$lang] ?? null,
             'hex'        => $color->hex,
             'psychology' => $color->psychology[$lang] ?? null,
@@ -110,8 +109,6 @@ class ColorController extends Controller
             'numerology' => $color->numerology,
             'organs'     => $color->organs[$lang] ?? null,
             'licnomancy' => $color->licnomancy[$lang] ?? null,
-            // 'created_at' => $color->created_at,
-            // 'updated_at' => $color->updated_at,
         ];
     }
 }
