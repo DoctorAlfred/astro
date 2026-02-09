@@ -27,6 +27,9 @@ return new class extends Migration
             $table->json('organs');
             $table->json('licnomancy');
 
+            $table->string('vibration_frequency')->nullable();
+            $table->json('compatibility')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });
