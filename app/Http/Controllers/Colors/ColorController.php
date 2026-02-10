@@ -18,7 +18,6 @@ class ColorController extends Controller
      */
     public function getColors(Request $request): JsonResponse
     {
-        /** ********** START MOD *********** **/
         $lang = $request->get('language', 'it');
 
         $hasFilters =
@@ -35,8 +34,9 @@ class ColorController extends Controller
                 ->map(fn(ColorMeaning $color) => [
                     'name' => $color->name[$lang] ?? null,
                 ])
+                ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)
                 ->values()
-                ->toArray(); // ✅ FIX
+                ->toArray();
 
             return static::sendResponse(
                 Message::SHOW_OK,
@@ -83,11 +83,11 @@ class ColorController extends Controller
             Message::SHOW_OK,
             $colors
                 ->map(fn(ColorMeaning $color) => $this->translateColors($color, $lang))
+                ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)
                 ->values()
                 ->toArray(),
             JsonResponse::HTTP_OK
         );
-        /** ********** ENDMOD *********** **/
     }
 
     /**
