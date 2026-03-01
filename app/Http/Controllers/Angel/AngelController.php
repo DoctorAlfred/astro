@@ -21,79 +21,75 @@ class AngelController extends Controller
     public function getAngels(Request $request): JsonResponse
     {
         try {
+            /*
+            3. Correzione Date (Zodiac Days)
+
+                Alfredo, qui torniamo alla tua decisione di informatico. Le date che hai inserito sono "statiche":
+
+                    56. Poiel: Hai messo 21-25 Dicembre.
+
+                    Ma attenzione: Il 21 Dicembre il Sole può essere ancora in Sagittario (Angelo 54).
+
+                Il mio consiglio per l'App Melahel:
+                Invece di un array statico di giorni, la tua funzione PHP dovrebbe calcolare l'angelo così:
+
+                $angel = floor(LongitudineSolare/5)+1
+            */
+            $locale = $request->get('language', 'it');
+            app()->setLocale($locale);
+
+            // NUMBER
+            if ($request->filled('number')) {
+                $angel = AngelsMeaning::where('number', $request->integer('number'))->first();
+                $data = $angel ? [$angel->attributesToArray()] : [];
+
+                return self::sendResponse(Message::SHOW_OK, $data[0], 200);
+            }
+
+            // DATE RESOLUTION
+            if ($request->filled('birthdate') || $request->filled('date')) {
+                $inputDate = $request->input('birthdate') ?? $request->input('date');
+
+                try {
+                    $date = Carbon::createFromFormat('d-m', $inputDate)
+                        ->year(now()->year);
+                } catch (\Exception $e) {
+                    $date = Carbon::parse($inputDate);
+                }
+            } else {
+                $date = now();
+            }
 
             $results = collect();
 
-            // Number
-            if ($request->filled('number')) {
-                $angel = AngelsMeaning::where('number', $request->integer('number'))->first();
-
-                return $this->sendResponse(
-                    Message::SHOW_OK,
-                    $angel ? [$angel->toArray()] : [],
-                    200
-                );
+            $angel = $this->findAngelByDate($date->day, $date->month);
+            if ($angel) {
+                $results->push($angel);
             }
 
-            // Birth Date
-            if ($request->filled('birthdate')) {
-                // OLD CODE:
-                $inputDate = $request->input('birthdate');
-                try {
-                    // Try parsing as d-m first
-                    $date = Carbon::createFromFormat('d-m', $inputDate);
-                    // Reset to current year if parsing strictly d-m, or let Carbon handle it
-                    $date->year(now()->year);
-                } catch (\Exception $e) {
-                    // Fallback to standard parsing
-                    $date = Carbon::parse($inputDate);
-                }
+            $data = $results
+                ->unique('number')
+                ->values()
+                ->map(function ($angel) use ($date, $locale) {
+                    $angel->setLocale($locale);
 
-                if ($date->month === 3 && $date->day >= 16 && $date->day <= 20) {
-                    $birthAngel = AngelsMeaning::whereIn('number', [72, 1])
-                        ->orderBy('number')
-                        ->get();
+                    $data = $angel->attributesToArray();
 
-                    $results->push($birthAngel);
-                }
+                    $sign = collect($angel->zodiac_days)
+                        ->first(function ($item) use ($date) {
+                            return $item['day'] == $date->day
+                                && $item['month'] == $date->month;
+                        });
 
-                $birthAngel = $this->findAngelByDate($date->day, $date->month);
-                if ($birthAngel) {
-                    $results->push($birthAngel);
-                }
+                    $data['zodiac_sign'] = $sign['sign'] ?? null;
 
-            } elseif ($request->filled('date')) {
-                // Date (single param: date)
-                $date = Carbon::createFromFormat(
-                    'd-m',
-                    $request->input('date')
-                )->year(now()->year);
+                    return $data;
+                });
 
-                $dateAngel = $this->findAngelByDate($date->day, $date->month);
-                if ($dateAngel) {
-                    $results->push($dateAngel);
-                }
-
-            } else {
-                // Default: Today's Angel
-                $date = now();
-                $dateAngel = $this->findAngelByDate($date->day, $date->month);
-                if ($dateAngel) {
-                    $results->push($dateAngel);
-                }
-            }
-
-            return $this->sendResponse(
-                Message::SHOW_OK,
-                $results
-                    ->unique('number')
-                    ->values()
-                    ->map(fn($angel) => $angel->toArray())
-                    ->toArray(),
-                200
-            );
+            // RESPONSE
+            return self::sendResponse(Message::SHOW_OK, $data[0], 200);
         } catch (Throwable $e) {
-            return $this->sendError(Message::SHOW_KO, [
+            return self::sendError(Message::SHOW_KO, [
                 'status' => false,
                 'message' => $e->getMessage()
             ], 404);
@@ -109,29 +105,9 @@ class AngelController extends Controller
      */
     private function findAngelByDate(int $day, int $month): ?AngelsMeaning
     {
-        return AngelsMeaning::where(function ($q) use ($day, $month) {
-            $q->where(function ($query) use ($day, $month) {
-                // Case 1: Start and End in same month
-                $query->whereColumn('regency_start_month', 'regency_end_month')
-                      ->where('regency_start_month', $month)
-                      ->where('regency_start_day', '<=', $day)
-                      ->where('regency_end_day', '>=', $day);
-            })->orWhere(function ($query) use ($day, $month) {
-                // Case 2: Range spans across months
-                // Must explicitly ensure it IS a cross-month range to avoid partial matches on single-month angels
-                $query->whereColumn('regency_start_month', '!=', 'regency_end_month')
-                      ->where(function ($subQ) use ($day, $month) {
-                          $subQ->where(function ($startQ) use ($day, $month) {
-                              // Subcase A: Current date is in the start month
-                              $startQ->where('regency_start_month', $month)
-                                     ->where('regency_start_day', '<=', $day);
-                          })->orWhere(function ($endQ) use ($day, $month) {
-                              // Subcase B: Current date is in the end month
-                              $endQ->where('regency_end_month', $month)
-                                   ->where('regency_end_day', '>=', $day);
-                          });
-                      });
-            });
-        })->first();
+        return AngelsMeaning::whereJsonContains('zodiac_days', [
+            'day' => $day,
+            'month' => $month,
+        ])->first();
     }
 }

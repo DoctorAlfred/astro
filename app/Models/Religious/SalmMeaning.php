@@ -34,6 +34,16 @@ class SalmMeaning extends Model
     ];
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'created_at',
+        'deleted_at'
+    ];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string> The Eloquent casts applied to attributes

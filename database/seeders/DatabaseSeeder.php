@@ -2,14 +2,13 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Shop\Plan;
 use App\Models\Permission;
-use Illuminate\Database\Seeder;
+use App\Models\Role;
+use App\Models\Shop\Plan;
 use App\Models\Shop\Subscription;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Log;
 
 class DatabaseSeeder extends Seeder
@@ -96,6 +95,7 @@ class DatabaseSeeder extends Seeder
             AngelMeaningsSeeder::class,
             CategoryMeaningsSeeder::class,
             ColorsMeaningSeeder::class,
+            HebraicMeaningSeeder::class,
             HerbsMeaningSeeder::class,
             NaiMeaningsSeeder::class,
             PlansSeeder::class,

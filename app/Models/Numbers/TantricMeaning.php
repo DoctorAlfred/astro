@@ -20,7 +20,7 @@ class TantricMeaning extends Model
 
     protected $table = 'tantric_meanings';
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -32,6 +32,17 @@ class TantricMeaning extends Model
         'meaning',
         'applications',
         'locale',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**

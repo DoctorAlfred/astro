@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->unsignedTinyInteger('number')->unique(); // 1–72
             $table->string('name');
+            $table->json('definition')->nullable();
             $table->string('hebrew_letters', 10);
             $table->string('hebrew_name')->nullable();
 
@@ -23,22 +24,13 @@ return new class extends Migration
             $table->json('letter_details')->nullable();
 
             // Gerarchia angelica
-            $table->string('choir');
-            $table->string('archangel');
-            $table->string('element');
-            $table->string('zodiac_sign');
-            $table->string('planet')->nullable();
+            $table->string('choir')->nullable();
+            $table->string('archangel')->nullable();
+            $table->string('element')->nullable();
 
-            // Reggenza strutturata
-            $table->unsignedTinyInteger('regency_start_day');
-            $table->unsignedTinyInteger('regency_start_month');
-            $table->unsignedTinyInteger('regency_end_day');
-            $table->unsignedTinyInteger('regency_end_month');
+            $table->json('zodiac_days')->nullable();
 
-            // Gradi zodiacali
-            $table->unsignedTinyInteger('degree_start');
-            $table->unsignedTinyInteger('degree_end');
-            $table->string('orientation', 5)->default('EST');
+            $table->string('orientation', 10)->default('EST');
 
             // Salmi
             $table->unsignedSmallInteger('psalm');
@@ -47,18 +39,9 @@ return new class extends Migration
             $table->unsignedSmallInteger('vulgata_verse');
             $table->string('psalm_link')->nullable();
 
-            // Trigramma (numerologia)
-            $table->unsignedSmallInteger('trigram_sum');
-            $table->unsignedTinyInteger('trigram_reduction');
-
-            // Contenuti testuali
-            $table->text('quality');
-            $table->text('help');
-            $table->text('prevent')->nullable();
-            $table->text('keywords');
-
-            // Polarità energetica
-            $table->string('energy', 10); // Maschile / Femminile
+            $table->json('quality')->nullable();
+            $table->json('help')->nullable();
+            $table->json('prevent')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

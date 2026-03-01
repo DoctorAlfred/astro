@@ -20,7 +20,7 @@ class HerbContent extends Model
     public $incrementing = false;
     /** Chiave primaria sarà stringa (UUID) */
     protected $keyType = 'string';
-    
+
     /** Fillable **/
     protected $fillable = [
         'herb_id',
@@ -31,6 +31,17 @@ class HerbContent extends Model
         'source_type',
         'evidence_level',
         'source_reference',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**
