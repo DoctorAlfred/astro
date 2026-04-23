@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use Carbon\Carbon;
-use App\Lib\Message;
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\PasswordReset;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Lib\Message;
+use App\Mail\Auth\ForgotPasswordMail;
+use App\Models\PasswordReset;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ForgotController extends Controller
 {
@@ -43,8 +45,8 @@ class ForgotController extends Controller
         try {
             $data = $request->validate([
                 'email' => 'required|email',
-                'lang'  => 'required|string',
-                'from'  => 'required|string'
+                'language'  => 'sometimes|nullable|string',
+                // 'from'  => 'required|string'
             ]);
 
             $user = User::where('email', $request->email)->first();
@@ -73,7 +75,7 @@ class ForgotController extends Controller
                 'reset' => $createLink . '/password/recovery?token=' . $token->token
             ];
             // Send email to user
-            // Mail::to($request->email)->send(new ForgotPasswordMail($tokenData, $from));
+            Mail::mailer('smtp')->to($request->email)->send(new ForgotPasswordMail($tokenData, $data['email']));
 
             $response = [
                 'status' => true,

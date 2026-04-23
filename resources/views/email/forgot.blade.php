@@ -4,7 +4,7 @@
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Astro - Melahel - Login</title>
+      <title>Astro - Melahel - Forgot Password</title>
 
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   </head>
@@ -33,19 +33,18 @@
                         <td style="padding:24px 20px 24px 20px;text-align:center;">
 
                             <h2 style="margin:0 0 16px 0;font-size:26px;line-height:1.3;font-weight:700;color:#000000;text-align:center;">
-                                Bentornato su Astro di Melahel!
+                                Richiesta su Astro di Melahel!
                             </h2>
 
                             <p style="margin:0 0 8px 0;font-size:16px;line-height:1.4;font-weight:400;color:#333333;text-align:center;">
-                                Hai appena eseguito la login
+                                Hai appena fatto richiesta per il recupero password
                             </p>
 
                             <p style="margin:0 0 8px 0;font-size:16px;line-height:1.4;font-weight:400;color:#333333;text-align:center;">
-                                con i seguenti dati:
+                                segui il seguente link per resettare la tua password:
                             </p>
 
                             <p style="margin:8px 0 4px 0;font-size:16px;line-height:1.4;font-weight:400;color:#555555;text-align:center;">
-                                <span style="color:#575757;font-weight:400;">la tua email:</span>
                                 <span style="font-weight:700;color:#2f2f2f;">{{ $data['email'] }}</span>
                             </p>
 

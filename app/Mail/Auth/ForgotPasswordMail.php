@@ -3,14 +3,14 @@
 namespace App\Mail\Auth;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 
-class LoginMail extends Mailable
+class ForgotPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -37,7 +37,7 @@ class LoginMail extends Mailable
                 new Address(config('app.admin'), 'Admin'),
             ],
             subject: 'Login to Astro',
-            tags: ['login', 'password', 'user', 'astro'],
+            tags: ['forgot', 'password', 'user', 'astro'],
         );
     }
 
@@ -47,7 +47,7 @@ class LoginMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.login',
+            view: 'email.forgot',
         );
     }
 

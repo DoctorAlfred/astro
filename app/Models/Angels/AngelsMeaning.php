@@ -35,7 +35,11 @@ class AngelsMeaning extends Model
     protected $fillable = [
         'number',
         'name',
+        'kabal_name',
+        'trigram',
+        'trigram_significate',
         'definition',
+        'new_definition',
         'hebrew_letters',
         'hebrew_name',
         'letter_details',
@@ -75,6 +79,8 @@ class AngelsMeaning extends Model
      */
     protected $hidden = [
         'id',
+        'trigram',
+        'trigram_significate',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -97,6 +103,7 @@ class AngelsMeaning extends Model
     {
         return [
             'definition' => 'array',
+            'new_definition' => 'array',
             'letter_details' => 'array',
 
             'zodiac_days' => 'array',
@@ -270,7 +277,7 @@ class AngelsMeaning extends Model
         ],
 
         'tzaphkiel' => [
-            'it' => 'Tzaphkiel',
+            'it' => 'Zafkiel', // "Conoscenza di Dio" o "Contemplazione di Dio"
             'en' => 'Tzaphkiel',
             'la' => 'Tzaphkiel',
             'he' => 'צפקיאל',
@@ -413,6 +420,18 @@ class AngelsMeaning extends Model
     {
         return Attribute::make(
             get: fn($value) => $this->getTranslated('definition')
+        );
+    }
+
+    /**
+     * New Definition translate and filter function
+     *
+     * @return Attribute
+     */
+    protected function newDefinition(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->getTranslated('new_definition')
         );
     }
 

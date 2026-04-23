@@ -159,7 +159,7 @@ class LoginController extends Controller
                     'role'        => $role,
                     'permise'     => $permise,
                     'token'       => $token,
-                    'plan'        => $subscription->plan,
+                    'plan'        => $subscription->slug ?? 'basic',
                 ]
             );
         } catch (\Exception $ex) {

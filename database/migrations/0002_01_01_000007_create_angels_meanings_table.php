@@ -16,7 +16,12 @@ return new class extends Migration
 
             $table->unsignedTinyInteger('number')->unique(); // 1–72
             $table->string('name');
+            $table->string('kabal_name');
+            $table->string('trigram');
+            $table->string('trigram_significate');
+
             $table->json('definition')->nullable();
+            $table->json('new_definition')->nullable();
             $table->string('hebrew_letters', 10);
             $table->string('hebrew_name')->nullable();
 
