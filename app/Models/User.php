@@ -42,6 +42,7 @@ class User extends Authenticatable
         'city_birth',
         'date_birth',
         'hour_birth',
+        'language',
         'from',
         'ip',
         'user_agent',

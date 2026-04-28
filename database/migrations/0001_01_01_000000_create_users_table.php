@@ -22,6 +22,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
+            $table->string('language')->default('it');
+
             $table->string('city_birth')->nullable();
             $table->date('date_birth')->nullable();
             $table->time('hour_birth')->nullable();

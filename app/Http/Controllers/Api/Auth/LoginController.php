@@ -77,7 +77,6 @@ class LoginController extends Controller
                 'email' => [
                     'required',
                     'email:rfc,dns',
-                    // new VerifyEmail,
                 ],
                 'password'   => [
                     'required',
@@ -101,7 +100,6 @@ class LoginController extends Controller
                 return $this->sendError(Message::LOGIN_KO, $validator->errors()->toArray(), 400);
             }
 
-
             $ip = $request->ip();
             $userAgent = $request->server('HTTP_USER_AGENT');
 
@@ -117,14 +115,12 @@ class LoginController extends Controller
 
             /** Delete Personal Access Token */
             $user->tokens()->delete();
-
             // Store the token in your custom session storage
             $role = $user->roles->first()->code;
             $permise = $user->roles->first()->code === 'adminx' || $user->roles->first()->code === 'admin' ? 'full' : 'onlyRead';
             $token = $user->createToken('api', ['api', $user->roles->first()->code, $permise, 'astro'])->plainTextToken;
 
             $request->session()->regenerate();
-
             /** Send Mail to Logged user and Log the connection */
             Mail::mailer('smtp')->to($request->email)->send(new LoginMail($user, $data['email']));
             // Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin_mail'))->send(new MailRegister($dataToSent));

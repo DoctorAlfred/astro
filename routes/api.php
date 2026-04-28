@@ -27,6 +27,7 @@ Route::group([
         Route::get('/verify/token/{token}', [\App\Http\Controllers\Api\Auth\VerificationController::class, 'checkToken']);
         // POST Method
         Route::post('/login', [\App\Http\Controllers\Api\Auth\LoginController::class, 'login'])->middleware(StartSession::class);
+        // Route::post('/login', [\App\Http\Controllers\Api\Auth\LoginController::class, 'login']);
         Route::post('/check/token', [\App\Http\Controllers\Api\Auth\LoginController::class, 'checkTokenResetPassword']);           // If you need to reset your password from user
         Route::post('/password/forgot', [\App\Http\Controllers\Api\Auth\ForgotController::class, 'forgot']);
         Route::post('/password/recovery', [\App\Http\Controllers\Api\Auth\ResetPasswordController::class, 'resetPassword']);
