@@ -210,6 +210,14 @@ class AngelsMeaning extends Model
             'la' => 'Pisces',
             'he' => 'דגים',
         ],
+
+        // Extra
+        'ether' => [
+            'it' => 'Etere',
+            'en' => 'Eter',
+            'la' => 'Pisces',
+            'he' => 'דגים',
+        ],
     ];
 
     protected const ELEMENT_TRANSLATIONS = [
@@ -237,20 +245,32 @@ class AngelsMeaning extends Model
             'la' => 'Terra',
             'he' => 'אדמה',
         ],
+        'ether' => [
+            'it' => 'Etere',
+            'en' => 'Ether',
+            'la' => 'Aether',
+            'he' => 'אֵיתֶר', // או 'שָׁמַיִם' (Shamayim - Cieli)
+        ],
     ];
 
     protected const CHOIR_TRANSLATIONS = [
-        'seraphim' => [
-            'it' => 'Serafini',
-            'en' => 'Seraphim',
-            'la' => 'Seraphim',
-            'he' => 'שרפים',
-        ],
         'cherubim' => [
             'it' => 'Cherubini',
             'en' => 'Cherubim',
             'la' => 'Cherubim',
             'he' => 'כרובים',
+        ],
+        'dominions' => [  // ✅ AGGIUNTO per Zadkiel #77
+            'it' => 'Dominazioni',
+            'en' => 'Dominions', 
+            'la' => 'Dominationes',
+            'he' => 'אלוהות' // Hashmallim o Dominazioni
+        ],
+        'seraphim' => [
+            'it' => 'Serafini',
+            'en' => 'Seraphim',
+            'la' => 'Seraphim',
+            'he' => 'שרפים',
         ],
         'thrones' => [
             'it' => 'Troni',
@@ -261,7 +281,6 @@ class AngelsMeaning extends Model
     ];
 
     protected const ARCHANGEL_TRANSLATIONS = [
-
         'metatron' => [
             'it' => 'Enoch/Metatron',
             'en' => 'Enoch/Metatron',
@@ -283,7 +302,7 @@ class AngelsMeaning extends Model
             'he' => 'צפקיאל',
         ],
 
-        'zadkiel' => [
+        'tzadkiel' => [
             'it' => 'Zadkiel',
             'en' => 'Zadkiel',
             'la' => 'Zadkiel',

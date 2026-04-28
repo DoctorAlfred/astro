@@ -45,7 +45,7 @@
                             </p>
 
                             <p style="margin:8px 0 4px 0;font-size:16px;line-height:1.4;font-weight:400;color:#555555;text-align:center;">
-                                <span style="font-weight:700;color:#2f2f2f;">{{ $data['email'] }}</span>
+                                <span style="font-weight:700;color:#2f2f2f;">{{ $data['from'] }}</span>
                             </p>
 
                             <p style="margin:4px 0 0 0;font-size:16px;line-height:1.4;font-weight:400;color:#555555;text-align:center;">

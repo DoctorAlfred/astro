@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use App\Lib\Message;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Shop\Plan;
-use App\Models\Permission;
-use Illuminate\Http\Request;
 use App\Mail\Auth\RegisterMail;
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\Shop\Plan;
 use App\Models\Shop\Subscription;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -43,20 +44,23 @@ class RegisterController extends Controller
                 'city_birth' => 'nullable|string|min:2',
                 'date_birth' => 'nullable|string|min:8',
                 'hour_birth' => 'nullable|string|min:3',
-                'password'  => [
+                'password'   => [
                     'required',
-                    'min:8',
-                    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
-                    'required_with:confirmed',
-                    'same:confirmed'
+                    'confirmed',
+                    Password::min(8)
+                        ->letters()
+                        ->numbers()
+                        ->symbols()
                 ],
-                'confirmed' => 'required'
+                'password_confirmation' => 'required'
             ]);
 
             if ($validator->fails()) {
                 Log::error(Message::REGISTER_KO, [__METHOD__, json_encode($validator->errors()->toArray())]);
                 return $this->sendError(Message::REGISTER_KO, $validator->errors()->toArray(), 400);
             }
+
+            $plan = Plan::where('slug', 'free')->first();
 
             $existUserToDb = User::withTrashed()
                 ->where('email', $request->email)
@@ -75,7 +79,7 @@ class RegisterController extends Controller
                     'deleted_at'
                 )
                 ->first();
-
+            
             if ($existUserToDb) {
                 $existUser = [
                     'id' => $existUserToDb->id,
@@ -114,6 +118,18 @@ class RegisterController extends Controller
                                 'created_at'    => now(),
                                 'updated_at'    => now()
                             ]);
+
+                        if ($plan) {
+                            Subscription::create([
+                                'user_id'       => $existUserToDb->id,
+                                'plan_id'       => $plan->id,
+                                'price_paid'    => 0.00,
+                                'billing_cycle' => 'annual',
+                                'starts_at'     => now(),
+                                'expires_at'    => now()->addYears(1), // Free 1 anno
+                                'is_active'     => true,
+                            ]);
+                        }
 
                         $response = [
                             'user' => $request->email,
@@ -169,21 +185,16 @@ class RegisterController extends Controller
 
             $newUser = User::createUser($userData);
 
-            try {
-                $plan = Plan::where('slug', 'free')->first();
-                if ($plan) {
-                    Subscription::create([
-                        'user_id'       => $newUser['id'],
-                        'plan_id'       => $plan->id,
-                        'price_paid'    => 0.00,
-                        'billing_cycle' => 'annual',
-                        'starts_at'     => now(),
-                        'expires_at'    => now()->addYears(1), // Free 1 anno
-                        'is_active'     => true,
-                    ]);
-                }
-            } catch (\Exception $e) {
-                Log::error("Errore assegnazione piano iniziale: " . $e->getMessage());
+            if ($plan) {
+                Subscription::create([
+                    'user_id'       => $newUser['userId'],
+                    'plan_id'       => $plan->id,
+                    'price_paid'    => 0,
+                    'billing_cycle' => 'annual',
+                    'starts_at'     => now(),
+                    'expires_at'    => now()->addYears(1), // Free 1 anno
+                    'is_active'     => true,
+                ]);
             }
 
             Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin'))->send(new RegisterMail($userData, $from));

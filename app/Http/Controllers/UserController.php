@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Lib\Message;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Permission;
-use Illuminate\Http\Request;
 use App\Models\Customer\Customer;
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\Shop\Plan;
+use App\Models\Shop\Subscription;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends AuthController
@@ -36,7 +38,8 @@ class UserController extends AuthController
             $user = $this->user;
             if ($user) {
                 $customer = $this->customer;
-                return $this->sendResponse(Message::SHOW_OK, ['user' => $user, 'customer' => $customer]);
+                $plan = Subscription::where('user_id', $user['id'])->first();
+                return $this->sendResponse(Message::SHOW_OK, ['user' => $user, 'customer' => $customer, 'plan' => $plan]);
             }
 
             Log::error(Message::USER_NOT_FOUND);
@@ -391,6 +394,59 @@ class UserController extends AuthController
             } else {
                 return $this->sendError(Message::PERMISSIONS_NOT_CHANGED, ['permission' => 'not-changed'], 412);
             }
+        } catch (\Exception $er) {
+            Log::error(Message::PERMISSIONS_NOT_CHANGED, [__METHOD__, $er]);
+            return $this->sendError(Message::PERMISSIONS_NOT_CHANGED, [$er->getMessage()], 401);
+        }
+    }
+
+    /**
+     * Change User Plan function
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changeUserPlan(Request $request): JsonResponse
+    {
+        try {
+
+            $data = $request->all();
+
+            $validator = Validator::make($data, [
+                'email' => 'required|string|min:3',
+                'plan'  => 'nullable|string',
+            ]);
+
+            if ($validator->fails()) {
+                Log::error(Message::BAD_REQUEST, [__METHOD__, json_encode($validator->errors()->toArray())]);
+                return $this->sendError(Message::BAD_REQUEST, $validator->errors()->toArray(), 400);
+            }
+
+            $user = User::where('email', $data['email'])->first();
+            if (!$user) {
+                Log::error(Message::USER_NOT_FOUND, [__METHOD__, 'user' => $user]);
+                return $this->sendError(Message::USER_NOT_FOUND, ['user' => $user], 401);
+            }
+
+            $plan = Plan::where('slug', $data['plan'])->first(); // slug -> free, basic, pro, premium
+            if (!$plan) {
+                Log::error(Message::PLAN_NOT_FOUND, [__METHOD__, 'plan' => $plan]);
+                return $this->sendError(Message::PLAN_NOT_FOUND, ['plan' => $plan], 401);
+            }
+
+            $startsAt = now();
+            $expiresAt = $startsAt->copy()->addYear();
+
+            Subscription::where('user_id', $user->id)->update([
+                'plan_id' => $plan->id,
+                'price_paid' => $plan->price,
+                'billing_cycle' => 'annual',
+                'starts_at' => $startsAt,
+                'expires_at' => $expiresAt,
+                'is_active' => true,
+            ]);
+
+            return $this->sendResponse(Message::UPDATE_OK, ['plan' => 'updated'], 201);
         } catch (\Exception $er) {
             Log::error(Message::PERMISSIONS_NOT_CHANGED, [__METHOD__, $er]);
             return $this->sendError(Message::PERMISSIONS_NOT_CHANGED, [$er->getMessage()], 401);

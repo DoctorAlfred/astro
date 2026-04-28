@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use App\Lib\Message;
-use App\Models\User;
-
 use App\Mail\Auth\LoginMail;
-use Illuminate\Http\Request;
 use App\Models\Customer\Customer;
 use App\Models\Shop\Subscription;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class LoginController extends Controller
 {
@@ -81,12 +81,22 @@ class LoginController extends Controller
                 ],
                 'password'   => [
                     'required',
-                    'min:8',
-                    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+                    Password::min(8)
+                        ->letters()
+                        ->numbers()
+                        ->symbols()
                 ],
             ]);
 
             if ($validator->fails()) {
+
+                /**
+                 * BubuSettete1!
+                 * CHECK PASSWORD
+                 * "The password field must be at least 8 characters.",
+                 * "The password field must contain at least one symbol.",
+                 * "The password field must contain at least one number."
+                 */ 
                 Log::error(Message::LOGIN_KO, [__METHOD__, 'email' => $request->email, json_encode($validator->errors()->toArray())]);
                 return $this->sendError(Message::LOGIN_KO, $validator->errors()->toArray(), 400);
             }

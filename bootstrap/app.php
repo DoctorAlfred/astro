@@ -18,12 +18,11 @@ return Application::configure(basePath: dirname(__DIR__))
         // health: '/up',
         using: function () {
             Route::middleware('api')
-                ->prefix('astro/api')
+                ->prefix('api')
                 ->group(base_path('routes/api.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
-
         $middleware->append(HandleCors::class);
         
         $middleware->alias([

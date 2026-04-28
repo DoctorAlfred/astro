@@ -7,11 +7,13 @@ use App\Lib\Message;
 use App\Mail\Auth\ForgotPasswordMail;
 use App\Models\PasswordReset;
 use App\Models\User;
+use App\Notifications\ForgotPasswordNotification;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class ForgotController extends Controller
 {
@@ -20,17 +22,9 @@ class ForgotController extends Controller
      * 
      * @return $randomString 
      */
-    public static function generateAlphanumericToken($length = 64)
+    public static function generateAlphanumericToken(int $length = 16)
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[random_int(0, $charactersLength - 1)];
-        }
-
-        return $randomString;
+        return substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 5)), 0, $length);
     }
 
     /**
@@ -43,14 +37,19 @@ class ForgotController extends Controller
     public function forgot(Request $request): JsonResponse
     {
         try {
-            $data = $request->validate([
+            $data = $request->all();
+
+            $validator = Validator::make($data, [
                 'email' => 'required|email',
                 'language'  => 'sometimes|nullable|string',
-                // 'from'  => 'required|string'
             ]);
 
-            $user = User::where('email', $request->email)->first();
+            if ($validator->fails()) {
+                Log::error(Message::REGISTER_KO, [__METHOD__, json_encode($validator->errors()->toArray())]);
+                return $this->sendError(Message::FORGOT_KO, $validator->errors()->toArray(), 400);
+            }
 
+            $user = User::where('email', $data['email'])->first();
             if (!$user) {
                 Log::error(Message::USER_NOT_FOUND, [__METHOD__, $user]);
                 $errors = [
@@ -63,24 +62,29 @@ class ForgotController extends Controller
 
             // Delete all old code that user send before.
             PasswordReset::where('email', $request->email)->delete();
-            // Generate random code
-            $data['token'] = $this->generateAlphanumericToken(16);
-            $data['created_at'] = Carbon::now();
             // Create Link for Reset Password to FrontEnd
             $createLink = config('app.frontend');
-            // Create a new code
-            $token = PasswordReset::create($data);
-            $tokenData = [
-                'token' => $token->token,
-                'reset' => $createLink . '/password/recovery?token=' . $token->token
-            ];
+            // Gen new code
+            $token = $this->generateAlphanumericToken(16);
+            $createdAt = Carbon::now();
+            // Update DB
+            PasswordReset::create([
+                'email' => $data['email'],
+                'token' => $token,
+                'created_at' => $createdAt
+            ]);
+
+            $language = $data['language'] ?? 'it';
+            // Send with new method Notification
+            $user->notify(new ForgotPasswordNotification($token, $language));
             // Send email to user
-            Mail::mailer('smtp')->to($request->email)->send(new ForgotPasswordMail($tokenData, $data['email']));
+            Mail::mailer('smtp')->to($data['email'])->send(new ForgotPasswordMail($token, $data['email']));
 
             $response = [
                 'status' => true,
                 'message' => trans('passwords.sent'),
-                'reset' => $tokenData['reset']
+                // 'reset' => $tokenData['reset']
+                'reset_link' => $createLink . '/password/recovery?token=' . $token
             ];
 
             return $this->sendResponse(Message::SHOW_OK, $response);

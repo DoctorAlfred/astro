@@ -146,6 +146,7 @@ Route::group([
             // POST Method
             Route::post('/add', [\App\Http\Controllers\UserController::class, 'addNewUser']);
             Route::post('/change-role', [\App\Http\Controllers\UserController::class, 'changeUserRole']);
+            Route::post('/change-plan', [\App\Http\Controllers\UserController::class, 'changeUserPlan']);
         });
     });
 

@@ -2693,7 +2693,7 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 'choir' => 'dominions',
-                'archangel' => 'zadkiel',
+                'archangel' => 'tzadkiel',
                 'element' => 'fire',
                 'zodiac_days' => [
                     ['day' => 19, 'month' => 7, 'sign' => 'cancer'],
@@ -2801,7 +2801,7 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 'choir' => 'dominions',
-                'archangel' => 'zadkiel',
+                'archangel' => 'tzadkiel',
                 'element' => 'fire',
                 'zodiac_days' => [
                     ['day' => 24, 'month' => 7, 'sign' => 'leo'],
@@ -2909,7 +2909,7 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 'choir' => 'dominions',
-                'archangel' => 'zadkiel',
+                'archangel' => 'tzadkiel',
                 'element' => 'fire',
                 'zodiac_days' => [
                     ['day' => 29, 'month' => 7, 'sign' => 'leo'],
@@ -3017,7 +3017,7 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 'choir' => 'dominions',
-                'archangel' => 'zadkiel',
+                'archangel' => 'tzadkiel',
                 'element' => 'fire',
                 'zodiac_days' => [
                     ['day' => 3, 'month' => 8, 'sign' => 'leo'],
@@ -3125,7 +3125,7 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 'choir' => 'dominions',
-                'archangel' => 'zadkiel',
+                'archangel' => 'tzadkiel',
                 'element' => 'fire',
                 'zodiac_days' => [
                     ['day' => 8, 'month' => 8, 'sign' => 'leo'],
@@ -3233,7 +3233,7 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 'choir' => 'dominions',
-                'archangel' => 'zadkiel',
+                'archangel' => 'tzadkiel',
                 'element' => 'fire',
                 'zodiac_days' => [
                     ['day' => 13, 'month' => 8, 'sign' => 'leo'],
@@ -3342,7 +3342,7 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 'choir' => 'dominions',
-                'archangel' => 'zadkiel',
+                'archangel' => 'tzadkiel',
                 'element' => 'earth',
                 'zodiac_days' => [
                     ['day' => 18, 'month' => 8, 'sign' => 'leo'],
@@ -3450,7 +3450,7 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 'choir' => 'dominions',
-                'archangel' => 'zadkiel',
+                'archangel' => 'tzadkiel',
                 'element' => 'earth',
                 'zodiac_days' => [
                     ['day' => 23, 'month' => 8, 'sign' => 'leo'],
@@ -6999,17 +6999,31 @@ class AngelMeaningsSeeder extends Seeder
                     'he' => 'מונע פיזור וחסימה יצירתית'
                 ],
             ],
-            /*
+
             // Angeli
             [
                 'number' => 65,
-                'name' => 'Damabiah',
+                'name' => 'Damabyah (Da-Me-B yah)',
+                'kabal_name' => 'Damabiah',
+
+                // Dalet = passaggio / apertura
+                // Mem = purificazione / flusso
+                // Bet = contenimento / protezione
+                'trigram' => "Dalet Mem Bet",
+                'trigram_significate' => "apertura purificazione protezione",
 
                 'definition' => [
-                    'it' => 'DMB - Dio che purifica e protegge',
-                    'en' => 'DMB - God who purifies and protects',
-                    'la' => 'DMB - Deus qui purificat et protegit',
-                    'he' => 'DMB - האל המטהר והמגן',
+                    'it' => 'DMB - Dio che apre, purifica e protegge',
+                    'en' => 'DMB - God who opens, purifies and protects',
+                    'la' => 'DMB - Deus qui aperit, purificat et protegit',
+                    'he' => 'DMB - האל הפותח, המטהר והמגן',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio è apertura che purifica e protegge',
+                    'en' => 'God is opening that purifies and protects',
+                    'la' => 'Deus est apertio quae purificat et protegit',
+                    'he' => 'האל הוא פתיחה המטהרת ומגנה',
                 ],
 
                 'hebrew_letters' => 'דמב',
@@ -7083,28 +7097,42 @@ class AngelMeaningsSeeder extends Seeder
                     'he' => 'הגנה וטיהור פנימי'
                 ],
                 'help' => [
-                    'it' => 'Aiuta a rinnovare e stabilizzare nei momenti difficili.',
-                    'en' => 'Helps renew and stabilize in difficult moments.',
-                    'la' => 'In difficultatibus renovat et stabilit.',
-                    'he' => 'מסייע בהתחדשות וביציבות'
+                    'it' => 'Aiuta ad aprire, purificare e stabilizzare nei momenti difficili.',
+                    'en' => 'Helps to open, purify and stabilize in difficult moments.',
+                    'la' => 'Aperire, purificare et stabilire in difficultatibus iuvat.',
+                    'he' => 'מסייע לפתוח, לטהר ולייצב במצבים קשים'
                 ],
                 'prevent' => [
-                    'it' => 'Previene instabilità e smarrimento.',
-                    'en' => 'Prevents instability and disorientation.',
-                    'la' => 'Instabilitatem impedit.',
-                    'he' => 'מונע חוסר יציבות ובלבול'
+                    'it' => 'Previene chiusura, impurità e perdita di protezione.',
+                    'en' => 'Prevents closure, impurity and loss of protection.',
+                    'la' => 'Clausuram, impuritatem et defectum protectionis impedit.',
+                    'he' => 'מונע סגירות, טומאה ואובדן הגנה'
                 ],
             ],
 
             [
                 'number' => 66,
-                'name' => 'Manakel',
+                'name' => 'Menuqoel (Me-Nu-Q el)',
+                'kabal_name' => 'Manakel',
+
+                // Mem = processo / profondità
+                // Nun = continuità
+                // Qof = rettificazione / riallineamento
+                'trigram' => "Mem Nun Qof",
+                'trigram_significate' => "processo continuità rettificazione",
 
                 'definition' => [
-                    'it' => 'MNQ - Dio che sostiene e ristabilisce ordine',
-                    'en' => 'MNQ - God who sustains and restores order',
-                    'la' => 'MNQ - Deus qui sustinet et ordinem restituit',
-                    'he' => 'MNQ - האל התומך ומשיב סדר',
+                    'it' => 'MNQ - Dio che conduce, sostiene e rettifica',
+                    'en' => 'MNQ - God who leads, sustains and rectifies',
+                    'la' => 'MNQ - Deus qui ducit, sustinet et rectificat',
+                    'he' => 'MNQ - האל המוביל, מקיים ומתקן',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio è processo che sostiene e rettifica',
+                    'en' => 'God is process that sustains and rectifies',
+                    'la' => 'Deus est processus qui sustinet et rectificat',
+                    'he' => 'האל הוא תהליך המקיים ומתקן',
                 ],
 
                 'hebrew_letters' => 'מנק',
@@ -7159,16 +7187,16 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 // Gradi
-                // 'degree_start' => 5,
-                // 'degree_end' => 10,
+                // 'degree_start' => 25,
+                // 'degree_end' => 30,
                 'orientation' => 'EST',
 
                 // Salmo
-                'psalm' => 38,
-                'psalm_verse' => 22,
-                'vulgata' => 37,
-                'vulgata_verse' => 22,
-                'psalm_link' => '/salmi/38',
+                'psalm' => 51,
+                'psalm_verse' => 12,
+                'vulgata' => 50,
+                'vulgata_verse' => 12,
+                'psalm_link' => '/salmi/51',
 
                 // Trigramma
                 // 'trigram_sum' => 190,
@@ -7196,13 +7224,27 @@ class AngelMeaningsSeeder extends Seeder
 
             [
                 'number' => 67,
-                'name' => 'Eyael',
+                'name' => 'Ayayel (A-Y-Ay el)',
+                'kabal_name' => 'Eyael',
+
+                // Aleph = principio / unità
+                // Yod = attivazione / impulso
+                // Ayin = visione / percezione
+                'trigram' => "Aleph Yod Ayin",
+                'trigram_significate' => "principio attivazione visione",
 
                 'definition' => [
-                    'it' => 'AYV - Dio che manifesta comprensione',
-                    'en' => 'AYV - God who manifests understanding',
-                    'la' => 'AYV - Deus qui intellectum manifestat',
-                    'he' => 'AYV - האל המגלה הבנה',
+                    'it' => 'AYA - Dio principio di attivazione e visione',
+                    'en' => 'AYA - God principle of activation and vision',
+                    'la' => 'AYA - Deus principium activationis et visionis',
+                    'he' => 'AYA - האל עיקרון של הפעלה וראייה',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio è principio che attiva e conduce alla visione',
+                    'en' => 'God is principle that activates and leads to vision',
+                    'la' => 'Deus est principium quod activat et ad visionem ducit',
+                    'he' => 'האל הוא עיקרון שמפעיל ומוביל לראייה',
                 ],
 
                 'hebrew_letters' => 'איע',
@@ -7257,8 +7299,8 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 // Gradi
-                // 'degree_start' => 10,
-                // 'degree_end' => 15,
+                // 'degree_start' => 0,
+                // 'degree_end' => 5,
                 'orientation' => 'EST',
 
                 // Salmo
@@ -7273,16 +7315,16 @@ class AngelMeaningsSeeder extends Seeder
                 // 'trigram_reduction' => 9,
                 // Contenuti
                 'quality' => [
-                    'it' => 'Profondità di comprensione e discernimento interiore.',
-                    'en' => 'Depth of understanding and inner discernment.',
-                    'la' => 'Profunditas intellectus et discretio interior.',
-                    'he' => 'עומק הבנה והבחנה פנימית'
+                    'it' => 'Attivazione della visione e comprensione profonda.',
+                    'en' => 'Activation of vision and deep understanding.',
+                    'la' => 'Activatio visionis et intellectus profundus.',
+                    'he' => 'הפעלת ראייה והבנה עמוקה'
                 ],
                 'help' => [
-                    'it' => 'Favorisce chiarezza mentale e visione lucida.',
-                    'en' => 'Fosters mental clarity and lucid vision.',
-                    'la' => 'Claritatem mentis et visionem lucidam promovet.',
-                    'he' => 'מסייע לבהירות מחשבתית וראייה צלולה'
+                    'it' => 'Aiuta ad attivare la visione interiore e la comprensione.',
+                    'en' => 'Helps activate inner vision and understanding.',
+                    'la' => 'Visionem interiorem et intellectum activare iuvat.',
+                    'he' => 'מסייע להפעיל ראייה פנימית והבנה'
                 ],
                 'prevent' => [
                     'it' => 'Previene confusione e superficialità.',
@@ -7294,13 +7336,27 @@ class AngelMeaningsSeeder extends Seeder
 
             [
                 'number' => 68,
-                'name' => 'Habuwyah', // Dio che dona con liberalità
+                'name' => 'Chabevyah (Cha-B-V yah)', // Dio che dona con liberalità
+                'kabal_name' => 'Habuwyah',
+
+                // Chet = vita / forza vitale
+                // Bet = contenimento / nutrimento
+                // Vav = continuità / sostegno
+                'trigram' => "Chet Bet Vav",
+                'trigram_significate' => "vita contenimento continuità",
 
                 'definition' => [
-                    'it' => 'HBV - Dio che custodisce la vita e la sostiene',
-                    'en' => 'HBV - God who guards life and sustains it',
-                    'la' => 'HBV - Deus qui vitam custodit et sustentat',
-                    'he' => 'HBV - האל השומר על החיים ותומך בהם',
+                    'it' => 'HBV - Dio vita, contenimento e continuità',
+                    'en' => 'HBV - God life, containment and continuity',
+                    'la' => 'HBV - Deus vita, continentia et continuatio',
+                    'he' => 'HBV - האל חיים, הכלה והמשכיות',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio sostiene la vita con continuità',
+                    'en' => 'God sustains life with continuity',
+                    'la' => 'Deus vitam cum continuatione sustinet',
+                    'he' => 'האל מקיים את החיים בהתמדה',
                 ],
 
                 'hebrew_letters' => 'חבו',
@@ -7355,12 +7411,12 @@ class AngelMeaningsSeeder extends Seeder
                 ],
 
                 // Gradi
-                // 'degree_start' => 15,
-                // 'degree_end' => 20,
+                // 'degree_start' => 5,
+                // 'degree_end' => 10,
                 'orientation' => 'EST',
 
                 // Salmo
-                'psalm' => 146, // 106:1? per Yeyayel
+                'psalm' => 146,
                 'psalm_verse' => 5,
                 'vulgata' => 145,
                 'vulgata_verse' => 5,
@@ -7371,16 +7427,16 @@ class AngelMeaningsSeeder extends Seeder
                 // 'trigram_reduction' => 7,
                 // Contenuti
                 'quality' => [
-                    'it' => 'Sostegno vitale e ristoro delle energie.',
-                    'en' => 'Vital support and restoration of strength.',
-                    'la' => 'Restitutio virium et sustentatio vitalis.',
-                    'he' => 'השבת כוחות ותמיכה חיונית'
+                    'it' => 'Continuità vitale e nutrimento stabile.',
+                    'en' => 'Vital continuity and stable nourishment.',
+                    'la' => 'Continuatio vitalis et nutritio stabilis.',
+                    'he' => 'המשכיות חיים והזנה יציבה'
                 ],
                 'help' => [
-                    'it' => 'Favorisce guarigione e recupero delle forze.',
-                    'en' => 'Fosters healing and recovery of strength.',
-                    'la' => 'Sanationem et recuperationem promovet.',
-                    'he' => 'מסייע לריפוי ולהתחזקות'
+                    'it' => 'Favorisce rigenerazione e mantenimento delle energie.',
+                    'en' => 'Fosters regeneration and maintenance of energy.',
+                    'la' => 'Regenerationem et conservationem virium promovet.',
+                    'he' => 'מסייע בהתחדשות ושימור הכוחות'
                 ],
                 'prevent' => [
                     'it' => 'Previene esaurimento e indebolimento.',
@@ -7392,13 +7448,27 @@ class AngelMeaningsSeeder extends Seeder
 
             [
                 'number' => 69,
-                'name' => 'Rochel',
+                'name' => 'Reshelel (Re-H-L el)',
+                'kabal_name' => 'Rochel',
+
+                // Resh = ritorno / riallineamento
+                // He = manifestazione
+                // Lamed = direzione / ordine
+                'trigram' => "Resh He Lamed",
+                'trigram_significate' => "ritorno manifestazione direzione",
 
                 'definition' => [
-                    'it' => 'RHL - Dio che rinnova e ristabilisce l’ordine',
-                    'en' => 'RHL - God who renews and restores order',
-                    'la' => 'RHL - Deus qui renovat et ordinem restituit',
-                    'he' => 'RHL - האל מחדש ומשיב סדר',
+                    'it' => 'RHL - Dio di ritorno, manifestazione e direzione',
+                    'en' => 'RHL - God of return, manifestation and direction',
+                    'la' => 'RHL - Deus reditus, manifestationis et directionis',
+                    'he' => 'RHL - האל של חזרה, התגלות וכיוון',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio che ristabilisce la direzione attraverso la manifestazione',
+                    'en' => 'God who restores direction through manifestation',
+                    'la' => 'Deus qui directionem per manifestationem restituit',
+                    'he' => 'האל המשיב כיוון דרך התגלות',
                 ],
 
                 'hebrew_letters' => 'רהל',
@@ -7409,19 +7479,34 @@ class AngelMeaningsSeeder extends Seeder
                         'letter' => 'ר',
                         'name' => 'Resh',
                         'value' => 200,
-                        'meaning' => 'Ritorno al principio, recupero della direzione originaria.'
+                        'meaning' => [
+                            'it' => 'Ritorno al principio e recupero della direzione originaria.',
+                            'en' => 'Return to the origin and recovery of the original direction.',
+                            'la' => 'Reditus ad originem et recuperatio directionis.',
+                            'he' => 'חזרה למקור והשבת הכיוון'
+                        ]
                     ],
                     [
                         'letter' => 'ה',
                         'name' => 'He',
                         'value' => 5,
-                        'meaning' => 'Rivelazione e manifestazione di ciò che era velato.'
+                        'meaning' => [
+                            'it' => 'Manifestazione e rivelazione di ciò che era nascosto.',
+                            'en' => 'Manifestation and revelation of what was hidden.',
+                            'la' => 'Manifestatio et revelatio absconditi.',
+                            'he' => 'התגלות וגילוי הנסתר'
+                        ]
                     ],
                     [
                         'letter' => 'ל',
                         'name' => 'Lamed',
                         'value' => 30,
-                        'meaning' => 'Direzione ordinatrice e ristabilimento dell’ordine.'
+                        'meaning' => [
+                            'it' => 'Direzione, guida e ristabilimento dell’ordine.',
+                            'en' => 'Direction, guidance and restoration of order.',
+                            'la' => 'Directio, ductus et restitutio ordinis.',
+                            'he' => 'כיוון, הדרכה והשבת סדר'
+                        ]
                     ],
                 ],
 
@@ -7454,28 +7539,50 @@ class AngelMeaningsSeeder extends Seeder
                 // 'trigram_reduction' => 10,
                 // Contenuti
                 'quality' => [
-                    'it' => 'Rinnovamento e ripristino dell’ordine interiore.',
-                    'en' => 'Renewal and restoration of inner order.',
-                    'la' => 'Renovatio et restitutio ordinis interioris.',
-                    'he' => 'חידוש והשבת סדר פנימי'
+                    'it' => 'Ritorno all’ordine e riallineamento interiore.',
+                    'en' => 'Return to order and inner realignment.',
+                    'la' => 'Reditus ad ordinem et realignatio interior.',
+                    'he' => 'חזרה לסדר ואיזון פנימי'
                 ],
                 'help' => [
-                    'it' => 'Favorisce recupero e riallineamento.',
-                    'en' => 'Fosters recovery and realignment.',
-                    'la' => 'Recuperationem et realignment promovet.',
-                    'he' => 'מסייע בהתחדשות ובאיזון'
+                    'it' => 'Aiuta a ritrovare direzione e stabilità dopo smarrimento.',
+                    'en' => 'Helps regain direction and stability after loss.',
+                    'la' => 'Directionem et stabilitatem recuperare iuvat.',
+                    'he' => 'מסייע למצוא כיוון ויציבות'
                 ],
                 'prevent' => [
-                    'it' => 'Previene disordine e dispersione.',
-                    'en' => 'Prevents disorder and dispersion.',
-                    'la' => 'Inordinationem impedit.',
-                    'he' => 'מונע חוסר סדר ופיזור'
+                    'it' => 'Previene dispersione, perdita di senso e disordine.',
+                    'en' => 'Prevents dispersion, loss of meaning and disorder.',
+                    'la' => 'Dispersionem et inordinationem impedit.',
+                    'he' => 'מונע פיזור ואובדן כיוון'
                 ],
             ],
 
             [
                 'number' => 70,
-                'name' => 'Jabamiah',
+                'name' => 'Yobemyah (Yo-Be-M el)',
+                'kabal_name' => 'Jabamiah',
+
+                // Yod = principio attivo / scintilla creativa
+                // Bet = struttura / contenimento / forma
+                // Mem = trasformazione / rigenerazione
+                'trigram' => "Yod Bet Mem",
+                'trigram_significate' => "principio struttura trasformazione",
+
+
+                'definition' => [
+                    'it' => 'JBM - Dio di creazione, struttura e rigenerazione',
+                    'en' => 'JBM - God of creation, structure and regeneration',
+                    'la' => 'JBM - Deus creationis, structurae et regenerationis',
+                    'he' => 'JBM - האל של יצירה, מבנה והתחדשות',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio che crea, struttura e rigenera la vita',
+                    'en' => 'God who creates, structures and regenerates life',
+                    'la' => 'Deus qui creat, format et regenerat vitam',
+                    'he' => 'האל היוצר, המבנה ומחדש את החיים',
+                ],
 
                 'hebrew_letters' => 'יבמ',
                 'hebrew_name' => 'יבמאל',
@@ -7485,19 +7592,34 @@ class AngelMeaningsSeeder extends Seeder
                         'letter' => 'י',
                         'name' => 'Yod',
                         'value' => 10,
-                        'meaning' => 'Scintilla originaria e principio attivo della creazione.'
+                        'meaning' => [
+                            'it' => 'Scintilla originaria e impulso creativo divino.',
+                            'en' => 'Originating spark and divine creative impulse.',
+                            'la' => 'Scintilla originaria et impulsus divinus.',
+                            'he' => 'ניצוץ ראשוני ודחף אלוהי'
+                        ]
                     ],
                     [
                         'letter' => 'ב',
                         'name' => 'Bet',
                         'value' => 2,
-                        'meaning' => 'Casa e struttura, fondamento della costruzione e del rinnovamento.'
+                        'meaning' => [
+                            'it' => 'Struttura, casa e forma che contiene la vita.',
+                            'en' => 'Structure, house and form that contains life.',
+                            'la' => 'Structura et forma quae vitam continet.',
+                            'he' => 'מבנה וצורה המכילים חיים'
+                        ]
                     ],
                     [
                         'letter' => 'מ',
                         'name' => 'Mem',
                         'value' => 40,
-                        'meaning' => 'Processo di trasformazione e rigenerazione profonda.'
+                        'meaning' => [
+                            'it' => 'Processo di trasformazione e rigenerazione profonda.',
+                            'en' => 'Process of transformation and deep regeneration.',
+                            'la' => 'Processus transformationis et regenerationis profundae.',
+                            'he' => 'תהליך שינוי והתחדשות עמוקה'
+                        ]
                     ],
                 ],
 
@@ -7519,15 +7641,16 @@ class AngelMeaningsSeeder extends Seeder
                 'orientation' => 'EST',
 
                 // Salmo
-                'psalm' => 130,
-                'psalm_verse' => 1,
-                'vulgata' => 129,
-                'vulgata_verse' => 1,
-                'psalm_link' => '/salmi/130',
+                'psalm' => 51,
+                'psalm_verse' => 12,
+                'vulgata' => 50,
+                'vulgata_verse' => 12,
+                'psalm_link' => '/salmi/51',
 
                 // Trigramma
                 // 'trigram_sum' => 52,
                 // 'trigram_reduction' => 7,
+
                 // Contenuti
                 'quality' => [
                     'it' => 'Rigenerazione e rinnovamento della vita interiore.',
@@ -7536,28 +7659,42 @@ class AngelMeaningsSeeder extends Seeder
                     'he' => 'התחדשות ושיקום פנימי'
                 ],
                 'help' => [
-                    'it' => 'Favorisce chiusura dei cicli e nuovo inizio.',
-                    'en' => 'Fosters closure of cycles and new beginnings.',
-                    'la' => 'Clausuram cyclorum et novum initium promovet.',
-                    'he' => 'מסייע בסיום מחזורים ובהתחלה חדשה'
+                    'it' => 'Aiuta a ricostruire e rinnovare ciò che ha perso la sua forma originaria.',
+                    'en' => 'Helps rebuild and renew what has lost its original form.',
+                    'la' => 'Ad aedificandum et renovandum quod formam suam originalem perdidit iuvat.',
+                    'he' => 'מסייע בבנייה מחודשת והתחדשות של מה שאיבד את צורתו המקורית'
                 ],
                 'prevent' => [
-                    'it' => 'Previene stagnazione e immobilità.',
-                    'en' => 'Prevents stagnation and immobility.',
-                    'la' => 'Stagnationem impedit.',
-                    'he' => 'מונע קיפאון וחוסר תנועה'
+                    'it' => 'Previene disordine, blocco e degenerazione.',
+                    'en' => 'Prevents disorder, blockage and degeneration.',
+                    'la' => 'Inordinationem, obstructionem et degenerationem impedit.',
+                    'he' => 'מונע חוסר סדר, חסימה והתדרדרות'
                 ],
             ],
 
             [
                 'number' => 71,
-                'name' => 'Hayayel',
+                'name' => 'Heyoyel (He-Yo-Y el)',
+                'kabal_name' => 'Hayayel',
+
+                // He = manifestazione / apertura
+                // Yod = forza attiva / concentrazione
+                // Yod = consolidamento / intensificazione
+                'trigram' => "He Yod Yod",
+                'trigram_significate' => "manifestazione forza consolidamento",
 
                 'definition' => [
-                    'it' => 'HYY - Dio che manifesta forza protettiva',
-                    'en' => 'HYY - God who manifests protective strength',
-                    'la' => 'HYY - Deus qui vim protectricem manifestat',
-                    'he' => 'HYY - האל המגלה כוח מגן',
+                    'it' => 'HYY - Dio che manifesta forza e consolidamento',
+                    'en' => 'HYY - God who manifests strength and consolidation',
+                    'la' => 'HYY - Deus qui vim manifestat et consolidat',
+                    'he' => 'HYY - האל המגלה כוח ומחזק',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio che manifesta la forza e la rende stabile',
+                    'en' => 'God who manifests strength and makes it stable',
+                    'la' => 'Deus qui vim manifestat et stabilit',
+                    'he' => 'האל המגלה כוח ומייצב אותו',
                 ],
 
                 'hebrew_letters' => 'היי',
@@ -7568,19 +7705,34 @@ class AngelMeaningsSeeder extends Seeder
                         'letter' => 'ה',
                         'name' => 'He',
                         'value' => 5,
-                        'meaning' => 'Apertura e manifestazione che espone alla luce ciò che deve essere protetto.'
+                        'meaning' => [
+                            'it' => 'Manifestazione della realtà nella luce della coscienza.',
+                            'en' => 'Manifestation of reality in the light of consciousness.',
+                            'la' => 'Manifestatio realitatis in lumine conscientiae.',
+                            'he' => 'התגלות המציאות באור התודעה'
+                        ]
                     ],
                     [
                         'letter' => 'י',
                         'name' => 'Yod',
                         'value' => 10,
-                        'meaning' => 'Impulso attivo e forza concentrata.'
+                        'meaning' => [
+                            'it' => 'Forza concentrata e impulso originario.',
+                            'en' => 'Concentrated force and originating impulse.',
+                            'la' => 'Vis concentrata et impulsus originarius.',
+                            'he' => 'כוח מרוכז ודחף ראשוני'
+                        ]
                     ],
                     [
                         'letter' => 'י',
                         'name' => 'Yod',
                         'value' => 10,
-                        'meaning' => 'Rafforzamento dell’impulso e consolidamento della forza.'
+                        'meaning' => [
+                            'it' => 'Stabilizzazione e mantenimento della forza attiva.',
+                            'en' => 'Stabilization and maintenance of active force.',
+                            'la' => 'Stabilizatio et sustentatio vis activae.',
+                            'he' => 'ייצוב ושימור כוח פעיל'
+                        ]
                     ],
                 ],
 
@@ -7602,41 +7754,55 @@ class AngelMeaningsSeeder extends Seeder
                 'orientation' => 'EST',
 
                 // Salmo
-                'psalm' => 109,
-                'psalm_verse' => 30,
-                'vulgata' => 108,
-                'vulgata_verse' => 30,
-                'psalm_link' => '/salmi/109',
+                'psalm' => 28,
+                'psalm_verse' => 7,
+                'vulgata' => 27,
+                'vulgata_verse' => 7,
+                'psalm_link' => '/salmi/28',
 
                 // Trigramma
                 // 'trigram_sum' => 25,
                 // 'trigram_reduction' => 7,
                 // Contenuti
                 'quality' => [
-                    'it' => 'Forza difensiva e manifestazione di energia protettiva.',
-                    'en' => 'Defensive strength and manifestation of protective energy.',
-                    'la' => 'Vis defensiva et manifestatio energiae protectricis.',
-                    'he' => 'כוח מגן והתגלות אנרגיה מגוננת'
+                    'it' => 'Forza protettiva e resistenza nelle prove.',
+                    'en' => 'Protective strength and endurance in trials.',
+                    'la' => 'Vis protectrix et constantia in probationibus.',
+                    'he' => 'כוח מגן ועמידה בניסיון'
                 ],
                 'help' => [
-                    'it' => 'Favorisce protezione e fermezza nelle difficoltà.',
-                    'en' => 'Fosters protection and firmness in difficulties.',
-                    'la' => 'Protectionem et firmitatem in difficultatibus promovet.',
-                    'he' => 'מסייע בהגנה ובעמידה יציבה'
+                    'it' => 'Sostiene il consolidamento della forza interiore.',
+                    'en' => 'Supports consolidation of inner strength.',
+                    'la' => 'Consolidationem virium interiorum sustinet.',
+                    'he' => 'תומך בחיזוק כוח פנימי'
                 ],
                 'prevent' => [
-                    'it' => 'Previene debolezza e dispersione di energia.',
-                    'en' => 'Prevents weakness and dispersion of energy.',
-                    'la' => 'Infirmitatem et dispersionem energiae impedit.',
-                    'he' => 'מונע חולשה ופיזור כוח'
+                    'it' => 'Previene dispersione della forza e instabilità interiore.',
+                    'en' => 'Prevents dispersion of strength and inner instability.',
+                    'la' => 'Dispersionem virium et instabilitatem impedit.',
+                    'he' => 'מונע פיזור כוח וחוסר יציבות פנימית'
                 ],
             ],
 
             [
                 'number' => 72,
-                'name' => 'Mumiah',
+                'name' => 'Mevamyah (Me-Va-M yah)',
+                'kabal_name' => 'Mumiah',
+
+                // Mem = processo / maturazione
+                // Vav = connessione / passaggio
+                // Mem = compimento / nuovo ciclo
+                'trigram' => "Mem Vav Mem",
+                'trigram_significate' => "maturazione passaggio compimento",
 
                 'definition' => [
+                    'it' => 'MVM - Dio che conduce maturazione, passaggio e compimento',
+                    'en' => 'MVM - God who leads maturation, transition and completion',
+                    'la' => 'MVM - Deus qui maturationem, transitum et consummationem ducit',
+                    'he' => 'MVM - האל המוביל להבשלה, מעבר והשלמה',
+                ],
+
+                'new_definition' => [
                     'it' => 'MVM - Dio che conduce al compimento e al rinnovamento',
                     'en' => 'MVM - God who leads to completion and renewal',
                     'la' => 'MVM - Deus qui ad consummationem et renovationem ducit',
@@ -7651,19 +7817,34 @@ class AngelMeaningsSeeder extends Seeder
                         'letter' => 'מ',
                         'name' => 'Mem',
                         'value' => 40,
-                        'meaning' => 'Processo di maturazione e sviluppo interiore.'
+                        'meaning' => [
+                            'it' => 'Processo di maturazione e sviluppo interiore.',
+                            'en' => 'Process of maturation and inner development.',
+                            'la' => 'Processus maturationis et evolutionis interioris.',
+                            'he' => 'תהליך הבשלה והתפתחות פנימית'
+                        ]
                     ],
                     [
                         'letter' => 'ו',
                         'name' => 'Vav',
                         'value' => 6,
-                        'meaning' => 'Collegamento e transizione tra stati.'
+                        'meaning' => [
+                            'it' => 'Connessione e passaggio tra stati.',
+                            'en' => 'Connection and transition between states.',
+                            'la' => 'Connexio et transitus inter status.',
+                            'he' => 'חיבור ומעבר בין מצבים'
+                        ]
                     ],
                     [
                         'letter' => 'מ',
                         'name' => 'Mem',
                         'value' => 40,
-                        'meaning' => 'Compimento del ciclo e preparazione a nuova manifestazione.'
+                        'meaning' => [
+                            'it' => 'Compimento del ciclo e preparazione al nuovo inizio.',
+                            'en' => 'Completion of the cycle and preparation for a new beginning.',
+                            'la' => 'Consummatio cycli et praeparatio ad novum initium.',
+                            'he' => 'השלמת מחזור והכנה להתחלה חדשה'
+                        ]
                     ],
                 ],
 
@@ -7702,19 +7883,525 @@ class AngelMeaningsSeeder extends Seeder
                     'he' => 'השלמת מחזורים ומעבר לשלב חדש'
                 ],
                 'help' => [
-                    'it' => 'Favorisce conclusione ordinata e rinnovamento.',
-                    'en' => 'Fosters orderly conclusion and renewal.',
-                    'la' => 'Conclusionem ordinatam et renovationem promovet.',
-                    'he' => 'מסייע בסיום מסודר ובהתחדשות'
+                    'it' => 'Aiuta a portare a termine e a iniziare nuovamente con ordine.',
+                    'en' => 'Helps to complete and begin again with order.',
+                    'la' => 'Adiuvat ad consummandum et iterum ordinatim incipere.',
+                    'he' => 'מסייע לסיים ולהתחיל מחדש בסדר'
                 ],
                 'prevent' => [
-                    'it' => 'Previene interruzioni incomplete e stagnazione.',
-                    'en' => 'Prevents incomplete interruption and stagnation.',
-                    'la' => 'Interruptionem imperfectam et stagnationem impedit.',
-                    'he' => 'מונע חוסר השלמה וקיפאון'
+                    'it' => 'Previene incompiutezza e blocco nei passaggi.',
+                    'en' => 'Prevents incompleteness and blockage in transitions.',
+                    'la' => 'Incompletionem et obstructionem in transitu impedit.',
+                    'he' => 'מונע חוסר השלמה וחסימה במעברים'
                 ],
             ],
-            */
+
+            /** I GIORNI DEL BUIO */
+            [
+                'number' => 73,
+                'name' => 'Sandalphon (Sa-N-D-Al-Phon)',
+                'kabal_name' => 'Sandalphon',
+
+                // Samekh = contenitore / ciclo completo
+                // Nun = continuità / fedeltà eterna
+                // Dalet = apertura / passaggio al nuovo
+                'trigram' => "Samekh Nun Dalet",
+                'trigram_significate' => "contenimento continuità transizione",
+
+                'definition' => [
+                    'it' => 'SND - Dio che custodisce il passaggio finale del ciclo',
+                    'en' => 'SND - God who guards the final passage of the cycle',
+                    'la' => 'SND - Deus qui transitum finalem cycli custodit',
+                    'he' => 'SND - האל ששומר על המעבר הסופי של המחזור',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio completa il ciclo e apre il nuovo inizio',
+                    'en' => 'God completes the cycle and opens the new beginning',
+                    'la' => 'Deus cyclum completat et novum initium aperit',
+                    'he' => 'האל משלים את המחזור ופותח התחלה חדשה',
+                ],
+
+                'hebrew_letters' => 'סנד',
+                'hebrew_name' => 'סנדלפון',
+
+                'letter_details' => [
+                    [
+                        'letter' => 'ס',
+                        'name' => 'Samekh',
+                        'value' => 60,
+                        'meaning' => [
+                            'it' => 'Contenitore ciclico e protezione del completamento.',
+                            'en' => 'Cyclic container and protection of completion.',
+                            'la' => 'Continens cyclicus et protectio consummationis.',
+                            'he' => 'כלי מחזורי והגנה על השלמה'
+                        ]
+                    ],
+                    [
+                        'letter' => 'נ',
+                        'name' => 'Nun',
+                        'value' => 50,
+                        'meaning' => [
+                            'it' => 'Continuità eterna oltre il ciclo.',
+                            'en' => 'Eternal continuity beyond the cycle.',
+                            'la' => 'Continuitas aeterna ultra cyclum.',
+                            'he' => 'המשכיות נצחית מעבר למחזור'
+                        ]
+                    ],
+                    [
+                        'letter' => 'ד',
+                        'name' => 'Dalet',
+                        'value' => 4,
+                        'meaning' => [
+                            'it' => 'Apertura verso il nuovo ciclo attraverso umiltà.',
+                            'en' => 'Opening to new cycle through humility.',
+                            'la' => 'Apertura ad novum cyclum per humilitatem.',
+                            'he' => 'פתיחה למחזור חדש דרך ענווה'
+                        ]
+                    ],
+                ],
+
+                'choir' => 'cherubim',
+                'archangel' => 'metatron',
+                'element' => 'ether',
+
+                'zodiac_days' => [
+                    ['day' => 16, 'month' => 3, 'sign' => 'pisci'],
+                ],
+
+                'orientation' => 'EST',
+
+                // Salmo transizione cicli
+                'psalm' => 91,
+                'psalm_verse' => 11,
+                'vulgata' => 90,
+                'vulgata_verse' => 11,
+                'psalm_link' => '/salmi/91',
+
+                'quality' => [
+                    'it' => 'Custodia del completamento e transizione ordinata.',
+                    'en' => 'Guardianship of completion and ordered transition.',
+                    'la' => 'Custodia consummationis et transitus ordinati.',
+                    'he' => 'שמירה על השלמה ומעבר מסודר'
+                ],
+                'help' => [
+                    'it' => 'Aiuta a chiudere cicli e aprire nuovi inizi con protezione.',
+                    'en' => 'Helps close cycles and open new beginnings with protection.',
+                    'la' => 'Cyclos claudere et nova initia protectione aperire iuvat.',
+                    'he' => 'מסייע לסגור מחזורים ולפתוח התחלות חדשות בהגנה'
+                ],
+                'prevent' => [
+                    'it' => 'Previene traumi di passaggio e incompiutezze.',
+                    'en' => 'Prevents transition traumas and incompletenesses.',
+                    'la' => 'Traumata transitionis et incomplete impedita.',
+                    'he' => 'מונע טראומות מעבר וחוסר השלמות'
+                ],
+            ],
+
+            [
+                'number' => 74,
+                'name' => 'Azrael (A-Z-Ra-El)',
+                'kabal_name' => 'Azrael',
+
+                // Aleph = unità primordiale / ritorno all'Essere
+                // Zayin = liberazione / separazione dal ciclo
+                // Resh = ritorno alla Sorgente
+                'trigram' => "Aleph Zayin Resh",
+                'trigram_significate' => "unità liberazione ritorno",
+
+                'definition' => [
+                    'it' => 'AZR - Dio che libera e riporta all\'unità originaria',
+                    'en' => 'AZR - God who frees and returns to original unity',
+                    'la' => 'AZR - Deus qui liberat et ad unitatem originariam reducit',
+                    'he' => 'AZR - האל המשחרר והמחזיר לאחדות המקורית',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio dissolve le forme per il ritorno all\'Essere',
+                    'en' => 'God dissolves forms for return to Being',
+                    'la' => 'Deus formas dissolvit pro reditu ad Esse',
+                    'he' => 'האל מפרק צורות לחזרה אל ההוויה',
+                ],
+
+                'hebrew_letters' => 'אזר',
+                'hebrew_name' => 'עזראאל',
+
+                'letter_details' => [
+                    [
+                        'letter' => 'א',
+                        'name' => 'Aleph',
+                        'value' => 1,
+                        'meaning' => [
+                            'it' => 'Unità primordiale oltre ogni forma.',
+                            'en' => 'Primordial unity beyond all form.',
+                            'la' => 'Unitas primordialis ultra omnem formam.',
+                            'he' => 'אחדות ראשונית מעבר לכל צורה'
+                        ]
+                    ],
+                    [
+                        'letter' => 'ז',
+                        'name' => 'Zayin',
+                        'value' => 7,
+                        'meaning' => [
+                            'it' => 'Separazione e liberazione dalle limitazioni.',
+                            'en' => 'Separation and liberation from limitations.',
+                            'la' => 'Separatio et liberatio a limitationibus.',
+                            'he' => 'הפרדה ושחרור מגבלות'
+                        ]
+                    ],
+                    [
+                        'letter' => 'ר',
+                        'name' => 'Resh',
+                        'value' => 200,
+                        'meaning' => [
+                            'it' => 'Ritorno alla Sorgente e ricongiungimento.',
+                            'en' => 'Return to Source and reunification.',
+                            'la' => 'Reditus ad Fontem et reunificatio.',
+                            'he' => 'חזרה למקור והתאחדות'
+                        ]
+                    ],
+                ],
+
+                'choir' => 'thrones',
+                'archangel' => 'tzaphkiel',
+                'element' => 'ether',
+
+                'zodiac_days' => [
+                    ['day' => 17, 'month' => 3, 'sign' => 'pisces'],
+                ],
+
+                'orientation' => 'EST',
+
+                // Salmo liberazione e ritorno
+                'psalm' => 23,
+                'psalm_verse' => 4,
+                'vulgata' => 22,
+                'vulgata_verse' => 4,
+                'psalm_link' => '/salmi/23',
+
+                'quality' => [
+                    'it' => 'Liberazione dalle forme e ritorno all\'Essere.',
+                    'en' => 'Liberation from forms and return to Being.',
+                    'la' => 'Liberatio a formis et reditus ad Esse.',
+                    'he' => 'שחרור מצורות וחזרה להוויה'
+                ],
+                'help' => [
+                    'it' => 'Aiuta il passaggio attraverso la valle dell\'ombra.',
+                    'en' => 'Helps passage through the valley of shadow.',
+                    'la' => 'Transitum per vallem umbrae adiuvat.',
+                    'he' => 'מסייע במעבר בעמק הצל'
+                ],
+                'prevent' => [
+                    'it' => 'Previene attaccamento alle forme transitorie.',
+                    'en' => 'Prevents attachment to transient forms.',
+                    'la' => 'Affixionem ad formas transitorias impedit.',
+                    'he' => 'מונע התקשרות לצורות חולפות'
+                ],
+            ],
+
+            [
+                'number' => 75,
+                'name' => 'Raguel (Ra-Gu-El)',
+                'kabal_name' => 'Raguel',
+
+                // Resh = giustizia / ordine finale
+                // Gimel = ricompensa / movimento verso equilibrio
+                // Vav = connessione / armonia restaurata
+                'trigram' => "Resh Gimel Vav",
+                'trigram_significate' => "giustizia ricompensa armonia",
+
+                'definition' => [
+                    'it' => 'RGV - Dio che ristabilisce giustizia e armonia',
+                    'en' => 'RGV - God who restores justice and harmony',
+                    'la' => 'RGV - Deus qui iustitiam et harmoniam restaurat',
+                    'he' => 'RGV - האל המשיב צדק והרמוניה',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio bilancia il ciclo con giustizia misericordiosa',
+                    'en' => 'God balances the cycle with merciful justice',
+                    'la' => 'Deus cyclum misericordiosa iustitia aequat',
+                    'he' => 'האל מאזן את המחזור בצדק רחום',
+                ],
+
+                'hebrew_letters' => 'רגו',
+                'hebrew_name' => 'רגואל',
+
+                'letter_details' => [
+                    [
+                        'letter' => 'ר',
+                        'name' => 'Resh',
+                        'value' => 200,
+                        'meaning' => [
+                            'it' => 'Giustizia divina e ordine cosmico restaurato.',
+                            'en' => 'Divine justice and restored cosmic order.',
+                            'la' => 'Iustitia divina et ordo cosmicus restauratus.',
+                            'he' => 'צדק אלוהי וסדר קוסמי משוחזר'
+                        ]
+                    ],
+                    [
+                        'letter' => 'ג',
+                        'name' => 'Gimel',
+                        'value' => 3,
+                        'meaning' => [
+                            'it' => 'Ricompensa e movimento verso l\'equilibrio.',
+                            'en' => 'Reward and movement toward equilibrium.',
+                            'la' => 'Praemium et motus ad aequilibrium.',
+                            'he' => 'שכר ותנועה לאיזון'
+                        ]
+                    ],
+                    [
+                        'letter' => 'ו',
+                        'name' => 'Vav',
+                        'value' => 6,
+                        'meaning' => [
+                            'it' => 'Armonia restaurata e connessione divina.',
+                            'en' => 'Restored harmony and divine connection.',
+                            'la' => 'Harmonia restaurata et connexio divina.',
+                            'he' => 'הרמוניה משוחזרת וחיבור אלוהי'
+                        ]
+                    ],
+                ],
+
+                'choir' => 'thrones',
+                'archangel' => 'tzaphkiel',
+                'element' => 'ether',
+
+                'zodiac_days' => [
+                    ['day' => 18, 'month' => 3, 'sign' => 'pisces'],
+                ],
+
+                'orientation' => 'EST',
+
+                // Salmo del Giudice giusto
+                'psalm' => 98,
+                'psalm_verse' => 9,
+                'vulgata' => 97,
+                'vulgata_verse' => 9,
+                'psalm_link' => '/salmi/98',
+
+                'quality' => [
+                    'it' => 'Giustizia misericordiosa e armonia restaurata.',
+                    'en' => 'Merciful justice and restored harmony.',
+                    'la' => 'Iustitia misericors et harmonia restaurata.',
+                    'he' => 'צדק רחום והרמוניה משוחזרת'
+                ],
+                'help' => [
+                    'it' => 'Ristabilisce equilibrio e giustizia al termine del ciclo.',
+                    'en' => 'Restores balance and justice at cycle\'s end.',
+                    'la' => 'Aequilibrium et iustitiam in fine cycli restaurat.',
+                    'he' => 'משיב איזון וצדק בסוף המחזור'
+                ],
+                'prevent' => [
+                    'it' => 'Previene ingiustizie irrisolte e squilibri.',
+                    'en' => 'Prevents unresolved injustices and imbalances.',
+                    'la' => 'Iniustitias non solutas et inaequalitates impedit.',
+                    'he' => 'מונע עוולות לא פתורות וחוסר איזון'
+                ],
+            ],
+
+            [
+                'number' => 76,
+                'name' => 'Remiel (Re-Mi-El)',
+                'kabal_name' => 'Remiel',
+
+                // Resh = risveglio / rinascita
+                // Mem = speranza / profondità misericordiosa
+                // Aleph = unità / ritorno alla Sorgente
+                'trigram' => "Resh Mem Aleph",
+                'trigram_significate' => "risveglio speranza unità",
+
+                'definition' => [
+                    'it' => 'RMA - Dio che risveglia la speranza nell\'unità',
+                    'en' => 'RMA - God who awakens hope in unity',
+                    'la' => 'RMA - Deus qui spem in unitate suscitat',
+                    'he' => 'RMA - האל המעורר תקווה באחדות',
+                ],
+
+                'new_definition' => [
+                    'it' => 'Dio accende la speranza per il nuovo inizio',
+                    'en' => 'God ignites hope for the new beginning',
+                    'la' => 'Deus spem pro novo initio accendit',
+                    'he' => 'האל מצית תקווה להתחלה חדשה',
+                ],
+
+                'hebrew_letters' => 'רמא',
+                'hebrew_name' => 'רמיאל',
+
+                'letter_details' => [
+                    [
+                        'letter' => 'ר',
+                        'name' => 'Resh',
+                        'value' => 200,
+                        'meaning' => [
+                            'it' => 'Risveglio spirituale e rinascita del ciclo.',
+                            'en' => 'Spiritual awakening and cycle rebirth.',
+                            'la' => 'Evigilatio spiritualis et renascentia cycli.',
+                            'he' => 'התעוררות רוחנית ולידת מחזור'
+                        ]
+                    ],
+                    [
+                        'letter' => 'מ',
+                        'name' => 'Mem',
+                        'value' => 40,
+                        'meaning' => [
+                            'it' => 'Speranza profonda e misericordia rigeneratrice.',
+                            'en' => 'Deep hope and regenerative mercy.',
+                            'la' => 'Spes profunda et misericordia regeneratrix.',
+                            'he' => 'תקווה עמוקה ורחמים מחדשים'
+                        ]
+                    ],
+                    [
+                        'letter' => 'א',
+                        'name' => 'Aleph',
+                        'value' => 1,
+                        'meaning' => [
+                            'it' => 'Unità originaria e ritorno alla Sorgente.',
+                            'en' => 'Original unity and return to Source.',
+                            'la' => 'Unitas originalis et reditus ad Fontem.',
+                            'he' => 'אחדות מקורית וחזרה למקור'
+                        ]
+                    ],
+                ],
+
+                'choir' => 'thrones',
+                'archangel' => 'tzaphkiel',
+                'element' => 'ether',
+
+                'zodiac_days' => [
+                    ['day' => 19, 'month' => 3, 'sign' => 'pisces'],
+                ],
+
+                'orientation' => 'EST',
+
+                // Salmo della speranza nel passaggio
+                'psalm' => 130,
+                'psalm_verse' => 5,
+                'vulgata' => 129,
+                'vulgata_verse' => 5,
+                'psalm_link' => '/salmi/130',
+
+                'quality' => [
+                    'it' => 'Speranza risvegliata e unità restaurata.',
+                    'en' => 'Awakened hope and restored unity.',
+                    'la' => 'Spes suscitata et unitas restaurata.',
+                    'he' => 'תקווה מעוררת ואחדות משוחזרת'
+                ],
+                'help' => [
+                    'it' => 'Infiamma la speranza per la rinascita del ciclo.',
+                    'en' => 'Ignites hope for cycle rebirth.',
+                    'la' => 'Spem pro renascentia cycli inflammat.',
+                    'he' => 'מצית תקווה ללידת המחזור'
+                ],
+                'prevent' => [
+                    'it' => 'Previene disperazione e separazione dalla Sorgente.',
+                    'en' => 'Prevents despair and separation from Source.',
+                    'la' => 'Desperationem et separationem a Fonte impedit.',
+                    'he' => 'מונע ייאוש והתרחקות מהמקור'
+                ],
+            ],
+
+            [
+                'number' => 77,
+                'name' => 'Zadkael (Za-D-Ka-el)',
+                'kabal_name' => 'Zadkiel',
+            
+                // Zayin = liberazione / misericordia trasformatrice
+                // Dalet = struttura / porta del perdono
+                // Kaph = potenza / mano divina misericordiosa
+                'trigram' => "Zayin Dalet Kaph",
+                'trigram_significate' => "liberazione perdono potenza",
+            
+                'definition' => [
+                    'it' => 'ZDK - Dio che libera con misericordia potente',
+                    'en' => 'ZDK - God who frees with powerful mercy',
+                    'la' => 'ZDK - Deus qui misericordia potenti liberat',
+                    'he' => 'ZDK - האל המשחרר ברחמים עוצמתיים',
+                ],
+            
+                'new_definition' => [
+                    'it' => 'Dio trasmuta il karma con misericordia divina',
+                    'en' => 'God transmutes karma with divine mercy',
+                    'la' => 'Deus karman misericordia divina transmutat',
+                    'he' => 'האל מטמיע קארמה ברחמים אלוהיים',
+                ],
+            
+                'hebrew_letters' => 'זדק',
+                'hebrew_name' => 'צדקיאל',
+            
+                'letter_details' => [
+                    [
+                        'letter' => 'ז',
+                        'name' => 'Zayin',
+                        'value' => 7,
+                        'meaning' => [
+                            'it' => 'Liberazione attraverso la misericordia trasformatrice.',
+                            'en' => 'Liberation through transformative mercy.',
+                            'la' => 'Liberatio per misericordiam transformatricem.',
+                            'he' => 'שחרור דרך רחמים מטמיעים'
+                        ]
+                    ],
+                    [
+                        'letter' => 'ד',
+                        'name' => 'Dalet',
+                        'value' => 4,
+                        'meaning' => [
+                            'it' => 'Porta del perdono e passaggio alla grazia.',
+                            'en' => 'Gate of forgiveness and passage to grace.',
+                            'la' => 'Ianua remissionis et transitus ad gratiam.',
+                            'he' => 'שער הסליחה ומעבר לחסד'
+                        ]
+                    ],
+                    [
+                        'letter' => 'ק',
+                        'name' => 'Kaph',
+                        'value' => 20,
+                        'meaning' => [
+                            'it' => 'Potenza divina della mano misericordiosa.',
+                            'en' => 'Divine power of the merciful hand.',
+                            'la' => 'Potentia divina manus misericordis.',
+                            'he' => 'עוצמה אלוהית של יד רחומה'
+                        ]
+                    ],
+                ],
+            
+                'choir' => 'dominions',
+                'archangel' => 'zadkiel',
+                'element' => 'ether',
+            
+                'zodiac_days' => [
+                    ['day' => 20, 'month' => 3, 'sign' => 'pisces'],
+                ],
+            
+                'orientation' => 'EST',
+            
+                // Salmo misericordia infinita
+                'psalm' => 103,
+                'psalm_verse' => 8,
+                'vulgata' => 102,
+                'vulgata_verse' => 8,
+                'psalm_link' => '/salmi/103',
+            
+                'quality' => [
+                    'it' => 'Trasmutazione misericordiosa e liberazione potente.',
+                    'en' => 'Merciful transmutation and powerful liberation.',
+                    'la' => 'Transmutatio misericors et liberatio potens.',
+                    'he' => 'הטמעה רחומה ושחרור עוצמתי'
+                ],
+                'help' => [
+                    'it' => 'Purifica karma e apre alla grazia del nuovo ciclo.',
+                    'en' => 'Purifies karma and opens to new cycle grace.',
+                    'la' => 'Karma purificat et ad novi cycli gratiam aperit.',
+                    'he' => 'מטהר קארמה ופותח לחסד המחזור החדש'
+                ],
+                'prevent' => [
+                    'it' => 'Previene catene karmiche e blocchi energetici.',
+                    'en' => 'Prevents karmic chains and energy blocks.',
+                    'la' => 'Catenas karmicas et obstructiones energeticas impedit.',
+                    'he' => 'מונע שרשראות קארמה וחסימות אנרגטיות'
+                ],
+            ],
+
         ];
 
         foreach ($angels as $angel) {

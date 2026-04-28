@@ -20,7 +20,7 @@ class PlansSeeder extends Seeder
                 'en' => 'Free',
                 'desc_it' => 'Ideale per chi inizia: esplora le funzioni base di Astro e gestisci i tuoi primi contatti senza costi.',
                 'desc_en' => 'Perfect for beginners: explore Astro basics and manage your first contacts at no cost.',
-                'max_contacts' => 3,
+                'max_contacts' => 1, // max user
                 'can_write_diary' => false,
                 'price' => 0.00,
                 'tax' => 0.00,
@@ -31,9 +31,9 @@ class PlansSeeder extends Seeder
                 'en' => 'Basic',
                 'desc_it' => 'Per piccoli professionisti: aumenta il numero di contatti e sblocca la scrittura nel diario olistico.',
                 'desc_en' => 'For small professionals: increase your contact limit and unlock the holistic diary writing feature.',
-                'max_contacts' => 10,
+                'max_contacts' => 10, // Max user -> in caso di utente non proffessionista questo è l'abbonamento annuale per vedere tutto il contenuto
                 'can_write_diary' => true,
-                'price' => 1.20,
+                'price' => 12.22,
                 'tax' => 22.00, // Esempio IVA 22%
             ],
             [
@@ -42,9 +42,9 @@ class PlansSeeder extends Seeder
                 'en' => 'Professional',
                 'desc_it' => 'Controllo avanzato: gestisci un numero elevato di clienti con tutti i vantaggi della piattaforma Astro.',
                 'desc_en' => 'Advanced control: manage a large number of clients with all the benefits of the Astro platform.',
-                'max_contacts' => 50,
+                'max_contacts' => 50, // Max user
                 'can_write_diary' => true,
-                'price' => 3.40,
+                'price' => 30.55,
                 'tax' => 22.00,
             ],
             [
@@ -55,7 +55,7 @@ class PlansSeeder extends Seeder
                 'desc_en' => 'Limitless: the ultimate solution for holistic centers and professionals with high client volumes.',
                 'max_contacts' => 9999, // Gestito come illimitato nel codice
                 'can_write_diary' => true,
-                'price' => 19.90,
+                'price' => 299.90,
                 'tax' => 22.00,
             ],
         ];

@@ -41,6 +41,7 @@ class Message
     public const FILTER_KO = "Invalid filter.";
     public const FISCAL_CODE_KO = "Fiscal Code does not exist.";
     public const FORBIDDEN = "FORBIDDEN - You do not have permission to access this API";
+    public const FORGOT_KO = "Password recovery error";
     public const GET_ORDER_KO = 'Error during get all order for this user';
     public const GENDER_KO = "The gender chosen is incorrect.";
     public const GENERIC_KO = "Generic Error.";
@@ -64,6 +65,7 @@ class Message
     public const PERMISSIONS_NOT_CHANGED = 'Permissions could not be changed due to an error';
     public const PASSWORD_KO = "The provided credentials are incorrect.";
     public const PASSWORD_EXPIRED = "The password code are expired.";
+    public const PLAN_NOT_FOUND = 'This plan appair not found';
     public const PROMPT_KO = "Prompt not found.";
     public const RECOVER_KO = "Error during recover your account.";
     public const REGISTER_KO = "Error during registration.";

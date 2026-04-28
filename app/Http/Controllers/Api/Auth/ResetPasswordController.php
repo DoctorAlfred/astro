@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Lib\Message;
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\PasswordReset;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Lib\Message;
+use App\Models\PasswordReset;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class ResetPasswordController extends Controller
 {
@@ -21,27 +23,47 @@ class ResetPasswordController extends Controller
      */
     public function resetPassword(Request $request): JsonResponse
     {
-        $request->validate([
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
             'token' => 'required|string',
             'password'   => [
                 'required',
-                'min:8',
-                'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
-                'required_with:confirmed',
-                'same:confirmed'
+                'confirmed',
+                Password::min(8)
+                    ->letters()
+                    ->numbers()
+                    ->symbols()
             ],
-            'confirmed'  => 'required'
+            'password_confirmation'  => 'required'
         ]);
 
-        // find the code
-        $passwordReset = PasswordReset::where('token', $request->token)->first();
+        if ($validator->fails()) {
+            /**
+             * RISPOSTE
+             * "password": [
+             *   "The password field confirmation does not match.",
+             *   "The password field must be at least 8 characters.",
+             *   "The password field must contain at least one symbol.",
+             *   "The password field must contain at least one number."
+             * ],
+             * "confirmed": [
+             *   "The confirmed field is required."
+             * ]
+             */ 
 
-        if (!$passwordReset ) {
+            Log::error(Message::REGISTER_KO, [__METHOD__, json_encode($validator->errors()->toArray())]);
+            return $this->sendError(Message::FORGOT_KO, $validator->errors()->toArray(), 400);
+        }
+
+        // find the code
+        $passwordReset = PasswordReset::where('token', $data['token'])->first();
+        if (!$passwordReset) {
             $response = [
                 'message' => 'The token you entered does not appear to exist or is incorrect!'
             ];
             Log::error(Message::DELETE_KO, [$response, __METHOD__]);
-            return $this->sendError( Message::RESET_PASSWORD_KO, $response);
+            return $this->sendError(Message::RESET_PASSWORD_KO, $response);
         }
 
         // check if it does not expired: the time is one hour
@@ -54,7 +76,6 @@ class ResetPasswordController extends Controller
         $user = User::where('email', $passwordReset->email)->first();
         // update user password
         $user->update($request->only('password'));
-
         // delete current code
         $passwordReset->delete();
 

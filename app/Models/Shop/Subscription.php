@@ -28,6 +28,8 @@ class Subscription extends Model
     protected $fillable = [
         'user_id',
         'plan_id',
+        'price_paid',
+        'billing_cycle', // 'monthly', 'annual'
         'starts_at',
         'expires_at',
         'is_active',
@@ -41,6 +43,8 @@ class Subscription extends Model
     protected function casts(): array
     {
         return [
+            'price_paid' => 'decimal:2',
+
             'created_at' => "datetime:d-m-Y H:i",
             'updated_at' => "datetime:d-m-Y H:i",
             'deleted_at' => "datetime:d-m-Y H:i",
