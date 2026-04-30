@@ -278,6 +278,36 @@ class AngelsMeaning extends Model
             'la' => 'Throni',
             'he' => 'אופנים',
         ],
+        'virtues' => [
+            'it' => 'Virtù',
+            'en' => 'Virtues',
+            'la' => 'Virtutes',
+            'he' => 'מלאכים', // Malakim
+        ],
+        'powers' => [
+            'it' => 'Potestà',
+            'en' => 'Powers',
+            'la' => 'Potestates',
+            'he' => 'שליטים', // Shalitim
+        ],
+        'principalities' => [
+            'it' => 'Principati',
+            'en' => 'Principalities',
+            'la' => 'Principatus',
+            'he' => 'נשיאים', // Nesim
+        ],
+        'archangels' => [
+            'it' => 'Arcangeli',
+            'en' => 'Archangels',
+            'la' => 'Archangeli',
+            'he' => 'ארכאנג\'לים', // Archangels
+        ],
+        'angels' => [
+            'it' => 'Angeli',
+            'en' => 'Angels',
+            'la' => 'Angeli',
+            'he' => 'מלאכים', // Malakhim
+        ],
     ];
 
     protected const ARCHANGEL_TRANSLATIONS = [

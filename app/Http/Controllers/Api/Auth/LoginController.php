@@ -126,6 +126,7 @@ class LoginController extends Controller
             // Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin_mail'))->send(new MailRegister($dataToSent));
             Log::info(Message::LOGIN, ['userId' => $user->id, 'email' => $request->email, 'accessDate' => now(), 'ip' => $ip, 'userAgent' => $userAgent, 'token' => $token]);
 
+            
             $subscription = Subscription::where('user_id', $user->id)
                 ->with(['plan' => function ($query) {
                     $query->select(

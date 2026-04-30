@@ -39,7 +39,8 @@ abstract class Controller
                 'data' => $data
             ],
             $statusCode,
-            ['Content-Type' => 'application/json; charset=utf-8']
+            ['Content-Type' => 'application/json; charset=utf-8'],
+            JSON_UNESCAPED_UNICODE 
         );
     }
 
@@ -79,7 +80,8 @@ abstract class Controller
                 'data' => $errorData
             ],
             $statusCode,
-            ['Content-Type' => 'application/json; charset=utf-8']
+            ['Content-Type' => 'application/json; charset=utf-8'],
+            JSON_UNESCAPED_UNICODE 
         );
     }
 }
