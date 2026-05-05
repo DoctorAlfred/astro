@@ -23,11 +23,12 @@ class ColorMeaning extends Model
     protected $fillable = [
         'name',
         'hex',
+        'numerology',
+        'frequency_range',
         'psychology',
         'shadow',
         'spiritual',
         'chakra',
-        'numerology',
         'organs',
         'licnomancy',
         'vibration_frequency',
@@ -53,14 +54,15 @@ class ColorMeaning extends Model
     protected function casts(): array
     {
         return [
-            'name'          => 'array',
-            'psychology'    => 'array',
-            'shadow'        => 'array',
-            'spiritual'     => 'array',
-            'chakra'        => 'array',
-            'organs'        => 'array',
-            'licnomancy'    => 'array',
-            'compatibility' => 'array',
+            'name'            => 'array',
+            'frequency_range' => 'array',
+            'psychology'      => 'array',
+            'shadow'          => 'array',
+            'spiritual'       => 'array',
+            'chakra'          => 'array',
+            'organs'          => 'array',
+            'licnomancy'      => 'array',
+            'compatibility'   => 'array',
 
             'created_at' => "datetime:d-m-Y H:i",
             'updated_at' => "datetime:d-m-Y H:i",

@@ -102,11 +102,12 @@ class ColorController extends Controller
         return [
             'name'       => $color->name[$lang] ?? null,
             'hex'        => $color->hex,
+            'numerology' => $color->numerology,
+            'frequency'  => $color->frequency_range,
             'psychology' => $color->psychology[$lang] ?? null,
             'shadow'     => $color->shadow[$lang] ?? null,
             'spiritual'  => $color->spiritual[$lang] ?? null,
             'chakra'     => $color->chakra[$lang] ?? null,
-            'numerology' => $color->numerology,
             'organs'     => $color->organs[$lang] ?? null,
             'licnomancy' => $color->licnomancy[$lang] ?? null,
         ];

@@ -38,8 +38,21 @@ class UserController extends AuthController
             $user = $this->user;
             if ($user) {
                 $customer = $this->customer;
-                $plan = Subscription::where('user_id', $user['id'])->first();
-                return $this->sendResponse(Message::SHOW_OK, ['user' => $user, 'customer' => $customer, 'plan' => $plan]);
+                $subscription = Subscription::where('user_id', $user['id'])
+                    ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
+                    ->select(
+                        'plans.slug',
+                        'plans.can_write_diary as canWriteDiary',
+                        'plans.max_contacts as maxContacts',
+
+                        'subscriptions.price_paid as pricePaid',
+                        'subscriptions.billing_cycle as billingCicle',
+                        'subscriptions.starts_at as startAt',
+                        'subscriptions.expires_at as expireAt',
+                        'subscriptions.is_active as isActive',
+                    )
+                    ->first();
+                return $this->sendResponse(Message::SHOW_OK, ['user' => $user, 'customer' => $customer, 'subscription' => $subscription]);
             }
 
             Log::error(Message::USER_NOT_FOUND);

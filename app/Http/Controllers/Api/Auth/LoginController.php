@@ -88,14 +88,12 @@ class LoginController extends Controller
             ]);
 
             if ($validator->fails()) {
-
                 /**
-                 * BubuSettete1!
                  * CHECK PASSWORD
                  * "The password field must be at least 8 characters.",
                  * "The password field must contain at least one symbol.",
                  * "The password field must contain at least one number."
-                 */ 
+                 */
                 Log::error(Message::LOGIN_KO, [__METHOD__, 'email' => $request->email, json_encode($validator->errors()->toArray())]);
                 return $this->sendError(Message::LOGIN_KO, $validator->errors()->toArray(), 400);
             }
@@ -126,7 +124,7 @@ class LoginController extends Controller
             // Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin_mail'))->send(new MailRegister($dataToSent));
             Log::info(Message::LOGIN, ['userId' => $user->id, 'email' => $request->email, 'accessDate' => now(), 'ip' => $ip, 'userAgent' => $userAgent, 'token' => $token]);
 
-            
+
             $subscription = Subscription::where('user_id', $user->id)
                 ->with(['plan' => function ($query) {
                     $query->select(
@@ -146,27 +144,8 @@ class LoginController extends Controller
             return $this->sendResponse(
                 Message::AUTH_OK,
                 [
-                    'userName'    => $user->firstname,
-                    'userSurname' => $user->lastname,
                     'userEmail'   => $user->email,
-                    'userPhone'   => $user->phone,
-                    'city_birth'  => $user->city_birth,
-                    'date_birth'  => $user->date_birth,
-                    'hour_birth'  => $user->hour_birth,
-                    'customer'    => [
-                        'id' => $customer->id,
-                        'company'   => $customer->company,
-                        'email'     => $customer->email,
-                        'phone'     => $customer->phone,
-                        'address'   => $customer->address,
-                        'vat'       => $customer->vat,
-                        'identity_number' => $customer->identity_number,
-                        'completed' => $customer->completed,
-                    ],
-                    'role'        => $role,
-                    'permise'     => $permise,
-                    'token'       => $token,
-                    'plan'        => $subscription->slug ?? 'basic',
+                    'token'       => $token
                 ]
             );
         } catch (\Exception $ex) {

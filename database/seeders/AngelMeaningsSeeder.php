@@ -903,7 +903,7 @@ class AngelMeaningsSeeder extends Seeder
                 'trigram_significate' => "vita discernimento origine",
 
                 'definition' => [
-                    'it' => 'HZY - Dio che delimita, separa e ricondduce all’essenza',
+                    'it' => 'HZY - Dio che delimita, separa e riconduce all’essenza',
                     'en' => 'HZY - God who delimits, separates and restores to essence',
                     'la' => 'HZY - Deus qui circumscribit, separat et ad essentiam reducit',
                     'he' => 'HZY - האל המגביל, המפריד ומשיב אל המהות',

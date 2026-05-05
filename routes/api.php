@@ -67,6 +67,21 @@ Route::group([
         Route::get('/all', [\App\Http\Controllers\Colors\ColorController::class, 'getColors']);
     });
 
+    // ---------- ---------- ---------- DIARIES ---------- ---------- ---------- //
+    Route::group([
+        'prefix' => 'diaries',
+        'as' => 'diaries.',
+        'name' => 'diaries.',
+        'middleware' => ['auth:sanctum', 'authenticated']
+    ], function () {
+        // GET Method
+        Route::get('/calendar', [\App\Http\Controllers\Diary\DiaryController::class, 'calendar']);
+        Route::get('/diary/{id}', [\App\Http\Controllers\Diary\DiaryController::class, 'getDiary']);
+        // POST Method
+        Route::post('/store', [\App\Http\Controllers\Diary\DiaryController::class, 'storeDiary']);
+        Route::post('/update', [\App\Http\Controllers\Diary\DiaryController::class, 'updateDiary']);
+    });
+
      // ---------- ---------- ---------- HERBS ---------- ---------- ---------- //
      Route::group([
         'prefix' => 'herbs',

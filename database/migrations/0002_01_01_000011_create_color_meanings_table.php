@@ -17,12 +17,13 @@ return new class extends Migration
             $table->json('name');
             $table->string('hex', 7)->unique();
 
+            $table->integer('numerology')->index();
+            
+            $table->json('frequency_range')->nullable();
             $table->json('psychology');
             $table->json('shadow');
             $table->json('spiritual');
             $table->json('chakra');
-
-            $table->integer('numerology')->index();
 
             $table->json('organs');
             $table->json('licnomancy');
