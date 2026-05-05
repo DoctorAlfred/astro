@@ -43,7 +43,7 @@ class Diary extends Model
     protected function casts(): array
     {
         return [
-            'entry_date' => 'date',
+            'entry_date' => 'date:d-m-Y',
 
             'created_at' => "datetime:d-m-Y H:i",
             'updated_at' => "datetime:d-m-Y H:i",

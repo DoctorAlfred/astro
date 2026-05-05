@@ -62,6 +62,7 @@ class Message
     public const ORDER_NOT_ACTIVE_FOUND = 'No active orders found';
     public const PAYMENT_KO = 'There was a problem processing your payment';
     public const PERMISE_API_KO = 'You don\'t have permission to access these APIs';
+    public const PERMISSIONS_KO = 'You do not have permission to access or write';
     public const PERMISSIONS_NOT_CHANGED = 'Permissions could not be changed due to an error';
     public const PASSWORD_KO = "The provided credentials are incorrect.";
     public const PASSWORD_EXPIRED = "The password code are expired.";

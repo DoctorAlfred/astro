@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Melahel - Astro'),
+    'version' => env('APP_VERSION', '1.9.0'),
 
     /*
     |--------------------------------------------------------------------------

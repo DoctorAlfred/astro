@@ -75,7 +75,7 @@ Route::group([
         'middleware' => ['auth:sanctum', 'authenticated']
     ], function () {
         // GET Method
-        Route::get('/calendar', [\App\Http\Controllers\Diary\DiaryController::class, 'calendar']);
+        Route::get('/calendar/{year?}/{month?}/{day?}', [\App\Http\Controllers\Diary\DiaryController::class, 'calendar']);
         Route::get('/diary/{id}', [\App\Http\Controllers\Diary\DiaryController::class, 'getDiary']);
         // POST Method
         Route::post('/store', [\App\Http\Controllers\Diary\DiaryController::class, 'storeDiary']);
