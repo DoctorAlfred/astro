@@ -3,21 +3,23 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Carbon\Carbon;
-use App\Models\Role;
-use App\Models\Permission;
-use Illuminate\Support\Str;
 use App\Models\Customer\Customer;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\Shop\Subscription;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\DB;
-use Laravel\Sanctum\NewAccessToken;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\NewAccessToken;
 
 class User extends Authenticatable
 {
@@ -137,15 +139,46 @@ class User extends Authenticatable
         return $this->permissions()->first()?->code;
     }
 
-    // public function setDateBirthAttribute($value)
-    // {
-    //     $this->attributes['date_birth'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
-    // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function subscription(): HasOne
+    {
+        return $this->hasOne(\App\Models\Shop\Subscription::class, 'user_id')
+        ->where('is_active', true)
+        ->where('expires_at', '>', now())
+        ->latest()
+        ->with(['plan' => function($query) {
+            $query->select('id', 'slug');
+        }]);
+    }
 
-    // public function setHourBirthAttribute($value)
-    // {
-    //     $this->attributes['hour_birth'] = Carbon::createFromFormat('H:i', $value)->format('H:i:s');
-    // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function activeSubscription(): HasOne
+    {
+        return $this->hasOne(\App\Models\Shop\Subscription::class, 'user_id')
+            ->where('is_active', true)
+            ->where('expires_at', '>', now())
+            ->latest();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
+     */
+    public function activePlan(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            \App\Models\Shop\Plan::class,
+            \App\Models\Shop\Subscription::class,
+            'user_id', // Foreign key on subscriptions table
+            'id',      // Foreign key on plans table
+            'id',      // Local key on users table
+            'plan_id'  // Local key on subscriptions table
+        )->where('subscriptions.is_active', true)
+            ->where('subscriptions.expires_at', '>', now());
+    }
 
     public function getDateBirthAttribute($value)
     {

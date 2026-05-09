@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Lib\Message;
-use App\Mail\Auth\ForgotPasswordMail;
-use App\Models\PasswordReset;
-use App\Models\User;
-use App\Notifications\ForgotPasswordNotification;
 use Carbon\Carbon;
-use Illuminate\Http\JsonResponse;
+use App\Models\User;
+use App\Lib\Message;
 use Illuminate\Http\Request;
+use App\Models\PasswordReset;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\Auth\ForgotPasswordMail;
 use Illuminate\Support\Facades\Validator;
 
 class ForgotController extends Controller
@@ -38,7 +37,7 @@ class ForgotController extends Controller
     {
         try {
             $data = $request->all();
-
+            
             $validator = Validator::make($data, [
                 'email' => 'required|email',
                 'language'  => 'sometimes|nullable|string',
@@ -65,26 +64,21 @@ class ForgotController extends Controller
             // Create Link for Reset Password to FrontEnd
             $createLink = config('app.frontend');
             // Gen new code
-            $token = $this->generateAlphanumericToken(16);
+            $data['token'] = $this->generateAlphanumericToken(16);
             $createdAt = Carbon::now();
             // Update DB
             PasswordReset::create([
                 'email' => $data['email'],
-                'token' => $token,
+                'token' => $data['token'],
                 'created_at' => $createdAt
             ]);
-
-            $language = $data['language'] ?? 'it';
-            // Send with new method Notification
-            $user->notify(new ForgotPasswordNotification($token, $language));
             // Send email to user
-            Mail::mailer('smtp')->to($data['email'])->send(new ForgotPasswordMail($token, $data['email']));
-
+            Mail::mailer('smtp')->to($data['email'])->send(new ForgotPasswordMail($data, $data['email']));
             $response = [
                 'status' => true,
-                'message' => trans('passwords.sent'),
-                // 'reset' => $tokenData['reset']
-                'reset_link' => $createLink . '/password/recovery?token=' . $token
+                'message' => 'Password sent!',
+                'token' => $data['token'],
+                'reset_link' => $createLink . '/password/recovery?token=' . $data['token']
             ];
 
             return $this->sendResponse(Message::SHOW_OK, $response);

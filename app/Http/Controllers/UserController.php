@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Lib\Message;
+use App\Models\Angels\AngelsMeaning;
 use App\Models\Customer\Customer;
 use App\Models\Permission;
 use App\Models\Role;
@@ -37,6 +38,39 @@ class UserController extends AuthController
         try {
             $user = $this->user;
             if ($user) {
+                $angel = null;
+                if (!empty($user['date_birth'])) {
+                    $dateParts = explode('-', $user['date_birth']);
+                    $day = (int) $dateParts[0];
+                    $month = (int) $dateParts[1];
+
+                    $angelModel = AngelsMeaning::whereJsonContains('zodiac_days', [
+                        'day' => $day,
+                        'month' => $month,
+                    ])->first();
+
+                    if ($angelModel) {
+                        // Imposta la lingua dell'utente
+                        $locale = $user['language'] ?? 'it';
+                        $angelModel->setLocale($locale);
+
+                        // Prepara i dati dell'angelo
+                        $angel = [
+                            'name' => $angelModel->kabal_name,
+                            'trigram' => $angelModel->trigram_significate,
+                            'choir' => $angelModel->choir,
+                            'archangel' => $angelModel->archangel,
+                            'element' => $angelModel->element,
+                            'definition' => $angelModel->definition,
+                            'quality' => $angelModel->quality,
+                            'help' => $angelModel->help,
+                            'prevent' => $angelModel->prevent,
+                            'number' => $angelModel->number,
+                            'hebrew_name' => $angelModel->hebrew_name,
+                        ];
+                    }
+                }
+
                 $customer = $this->customer;
                 $subscription = Subscription::where('user_id', $user['id'])
                     ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
@@ -52,7 +86,7 @@ class UserController extends AuthController
                         'subscriptions.is_active as isActive',
                     )
                     ->first();
-                return $this->sendResponse(Message::SHOW_OK, ['user' => $user, 'customer' => $customer, 'subscription' => $subscription]);
+                return $this->sendResponse(Message::SHOW_OK, ['user' => $user, 'customer' => $customer, 'subscription' => $subscription, 'angel' => $angel]);
             }
 
             Log::error(Message::USER_NOT_FOUND);
@@ -84,10 +118,12 @@ class UserController extends AuthController
                 'hour_birth',
                 'from',
                 'ip',
+                'language',
                 'user_agent as userAgent',
                 'created_at as create',
                 'updated_at as update'
             ])
+                ->with(['activeSubscription.plan'])
                 ->when($id, function ($query) use ($id) {
                     $query->where(function ($where) use ($id) {
                         $where->where('id', $id)
@@ -95,8 +131,72 @@ class UserController extends AuthController
                             ->orWhere('lastname', $id);
                     });
                 })
-                ->with('roles')
                 ->get()
+                ->map(function ($user) {
+                    preg_match('/(\d{2})-(\d{2})-(\d{4})/', $user->date_birth, $matches);
+                    $day = (int)$matches[1];
+                    $month = (int)$matches[2];
+
+                    // Search Angel
+                    $angel = AngelsMeaning::whereJsonContains('zodiac_days', [
+                        'day' => $day,
+                        'month' => $month,
+                    ])->first();
+
+                    if ($angel && $user->language) {
+                        $angel->setLocale($user->language);
+                    }
+
+                    $subscriptionData = null;
+                    if ($user->activeSubscription) {
+                        $subscriptionData = [
+                            'plan_slug' => $user->activeSubscription->plan->slug ?? null,
+                            'expires_at' => $user->activeSubscription->expires_at,
+                            'is_active' => $user->activeSubscription->is_active
+                        ];
+                    }
+
+                    return [
+                        'id' => $user->id,
+                        'firstname' => $user->firstname,
+                        'lastname' => $user->lastname,
+                        'email' => $user->email,
+                        'city_birth' => $user->city_birth,
+                        'date_birth' => $user->date_birth,
+                        'hour_birth' => $user->hour_birth,
+                        'from' => $user->from,
+                        'ip' => $user->ip,
+                        'language' => $user->language,
+                        'userAgent' => $user->userAgent,
+                        'create' => $user->create,
+                        'update' => $user->update,
+                        'role' => $user->role,
+                        'permission' => $user->permission,
+                        'angel' => $angel ? [
+                            'name' => $angel->kabal_name,
+                            'trigram' => $angel->trigram_significate,
+                            'choir' => $angel->choir,
+                            'archangel' => $angel->archangel,
+                            'element' => $angel->element,
+                            'psalm' => $angel->psalm,
+                            'psalmVerse' => $angel->psalm_verse,
+                        ] : null,
+                        'subscription' => $subscriptionData
+                    ];
+                    // return [
+                    //     ...$user->toArray(),
+                    //     'angel' => $angel ? [
+                    //         'name' => $angel->kabal_name,
+                    //         'trigram' => $angel->trigram_significate,
+                    //         'choir' => $angel->choir,
+                    //         'archangel' => $angel->archangel,
+                    //         'element' => $angel->element,
+                    //         'psalm' => $angel->psalm,
+                    //         'psalmVerse' => $angel->psalm_verse,
+                    //     ] : null,
+                    //     'subscription' => $subscriptionData
+                    // ];
+                })
                 ->toArray();
 
             if (empty($users)) {

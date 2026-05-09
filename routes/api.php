@@ -79,7 +79,7 @@ Route::group([
         Route::get('/diary/{id}', [\App\Http\Controllers\Diary\DiaryController::class, 'getDiary']);
         // POST Method
         Route::post('/store', [\App\Http\Controllers\Diary\DiaryController::class, 'storeDiary']);
-        Route::post('/update', [\App\Http\Controllers\Diary\DiaryController::class, 'updateDiary']);
+        Route::put('/update', [\App\Http\Controllers\Diary\DiaryController::class, 'updateDiary']);
     });
 
      // ---------- ---------- ---------- HERBS ---------- ---------- ---------- //

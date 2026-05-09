@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="it-IT" style="width:100%;">
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Astro - Melahel - Forgot Password</title>
+      <title>Astro - Melahel - Password</title>
 
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   </head>
 
-  <body style="margin:0;padding:0;width:100%;height:100vh;background-color:#ffffff;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:'Montserrat',Arial,sans-serif;">
+  <body style="margin:0;padding:0;width:100%;height:100vh;min-height:550px;background-color:#ffffff;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:'Montserrat',Arial,sans-serif;">
 
     <header style="width:100%;margin:0;padding:0;background-color:#ffffff;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
@@ -33,19 +34,27 @@
                         <td style="padding:24px 20px 24px 20px;text-align:center;">
 
                             <h2 style="margin:0 0 16px 0;font-size:26px;line-height:1.3;font-weight:700;color:#000000;text-align:center;">
-                                Richiesta su Astro di Melahel!
+                                Ciao da Astro di Melahel!
                             </h2>
 
                             <p style="margin:0 0 8px 0;font-size:16px;line-height:1.4;font-weight:400;color:#333333;text-align:center;">
-                                Hai appena fatto richiesta per il recupero password
+                                Hai appena richiesto di resettare la tua password, segui il link qui sotto, dalla tua app, per resettare la password:
                             </p>
 
-                            <p style="margin:0 0 8px 0;font-size:16px;line-height:1.4;font-weight:400;color:#333333;text-align:center;">
-                                segui il seguente link per resettare la tua password:
+                            <p style="margin:0 0 16px 0;font-size:14px;line-height:1.4;font-weight:700;color:#ff0000;text-align:center;">
+                                <strong>ATTENZIONE: Il reset della password è disponibile SOLO dall'app mobile</strong>
                             </p>
 
                             <p style="margin:8px 0 4px 0;font-size:16px;line-height:1.4;font-weight:400;color:#555555;text-align:center;">
-                                <span style="font-weight:700;color:#2f2f2f;">{{ $data['from'] }}</span>
+                                <a href="melahelapp://auth/reset?token={{ $data['token'] }}"
+                                   style="color:#0066cc;text-decoration:underline;">
+                                    Clicca qui per resettare la password
+                                </a>
+                            </p>
+
+                            <p style="margin:8px 0 4px 0;font-size:16px;line-height:1.4;font-weight:400;color:#555555;text-align:center;">
+                                <span style="color:#575757;font-weight:400;">la tua email:</span>
+                                <span style="font-weight:700;color:#2f2f2f;">{{ $data['email'] }}</span>
                             </p>
 
                             <p style="margin:4px 0 0 0;font-size:16px;line-height:1.4;font-weight:400;color:#555555;text-align:center;">

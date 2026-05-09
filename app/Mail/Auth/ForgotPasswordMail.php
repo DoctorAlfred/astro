@@ -3,12 +3,12 @@
 namespace App\Mail\Auth;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ForgotPasswordMail extends Mailable
 {
@@ -36,7 +36,7 @@ class ForgotPasswordMail extends Mailable
             replyTo: [
                 new Address(config('app.admin'), 'Admin'),
             ],
-            subject: 'Login to Astro',
+            subject: 'Forgot Password',
             tags: ['forgot', 'password', 'user', 'astro'],
         );
     }

@@ -9,7 +9,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   </head>
 
-  <body style="margin:0;padding:0;width:100%;height:100vh;background-color:#ffffff;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:'Montserrat',Arial,sans-serif;">
+  <body style="margin:0;padding:0;width:100%;height:100vh;min-height:550px;background-color:#ffffff;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:'Montserrat',Arial,sans-serif;">
 
     <header style="width:100%;margin:0;padding:0;background-color:#ffffff;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
@@ -61,7 +61,7 @@
         </tr>
     </table>
 
-    <footer style="position:fixed;bottom:0;width:100%;margin:0;padding:0;background-color:#000000;">
+    <footer style="position:absolute;bottom:0;width:100%;margin:0;padding:0;background-color:#000000;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;">
             <tr>
                 <td align="center" style="padding:12px 10px 12px 10px;">

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Lib\Message;
+use App\Models\User;
 use App\Mail\Auth\LoginMail;
+use Illuminate\Http\Request;
 use App\Models\Customer\Customer;
 use App\Models\Shop\Subscription;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
