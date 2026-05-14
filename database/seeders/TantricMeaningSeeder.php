@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Numbers\TantricMeaning;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TantricMeaningSeeder extends Seeder
 {
@@ -21,11 +20,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Corpo dell’anima',
 
                     'meaning' => [
-                        'cos_e' => 'Il Corpo dell’Anima rappresenta il nucleo più profondo e immortale dell’essere umano. È la sede dell’identità spirituale, della coscienza superiore e dell’intuizione autentica. Attraverso questo corpo l’individuo percepisce il senso della propria esistenza, distingue ciò che è essenziale da ciò che è superfluo e riconosce la propria direzione interiore. È il punto di contatto tra l’essere umano e il principio universale o divino.',
-                        'uso' => 'Guida le scelte fondamentali della vita, specialmente quelle legate ai valori, all’etica e allo scopo personale. Si manifesta quando una decisione nasce da una certezza interiore profonda, non da paura, convenienza o desiderio.',
-                        'fini' => 'Condurre l’individuo verso autenticità, coerenza interiore e allineamento con il proprio destino spirituale. Favorisce una vita vissuta in accordo con la verità dell’essere.',
-                        'benessere' => 'Chiarezza spirituale, senso di scopo, integrità, compassione e stabilità interiore. La persona percepisce continuità tra ciò che è, ciò che fa e ciò che sceglie.',
-                        'malessere' => 'Confusione esistenziale, perdita di significato, vuoto interiore e disconnessione spirituale. Le decisioni risultano incoerenti e fortemente influenzate da fattori esterni.',
+                        'what_is' => 'Il Corpo dell’Anima rappresenta il nucleo più profondo e immortale dell’essere umano. È la sede dell’identità spirituale, della coscienza superiore e dell’intuizione autentica. Attraverso questo corpo l’individuo percepisce il senso della propria esistenza, distingue ciò che è essenziale da ciò che è superfluo e riconosce la propria direzione interiore. È il punto di contatto tra l’essere umano e il principio universale o divino.',
+                        'usage' => 'Guida le scelte fondamentali della vita, specialmente quelle legate ai valori, all’etica e allo scopo personale. Si manifesta quando una decisione nasce da una certezza interiore profonda, non da paura, convenienza o desiderio.',
+                        'purpose' => 'Condurre l’individuo verso autenticità, coerenza interiore e allineamento con il proprio destino spirituale. Favorisce una vita vissuta in accordo con la verità dell’essere.',
+                        'wellbeing' => 'Chiarezza spirituale, senso di scopo, integrità, compassione e stabilità interiore. La persona percepisce continuità tra ciò che è, ciò che fa e ciò che sceglie.',
+                        'imbalance' => 'Confusione esistenziale, perdita di significato, vuoto interiore e disconnessione spirituale. Le decisioni risultano incoerenti e fortemente influenzate da fattori esterni.',
                     ],
 
                     'applications' => [
@@ -65,11 +64,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Mente Negativa',
 
                     'meaning' => [
-                        'cos_e' => 'La Mente Negativa è la funzione della coscienza deputata alla protezione e al discernimento dei pericoli. Valuta rischi, limiti e conseguenze, permettendo all’individuo di riconoscere ciò che può nuocere alla propria integrità fisica, emotiva o spirituale. Non è pessimista per natura, ma cauta e realistica.',
-                        'uso' => 'Opera ogni volta che è necessario stabilire confini, valutare situazioni potenzialmente dannose e prevenire errori. È essenziale nei processi decisionali che richiedono prudenza e responsabilità.',
-                        'fini' => 'Garantire sicurezza, sopravvivenza e discernimento. Insegna a riconoscere i limiti e a rispettarli senza cadere nella paura.',
-                        'benessere' => 'Prudenza, senso di protezione, capacità di dire no, stabilità emotiva e lucidità nelle valutazioni.',
-                        'malessere' => 'Paura costante, chiusura, diffidenza eccessiva, paranoia o blocco dell’azione per timore del fallimento.',
+                        'what_is' => 'La Mente Negativa è la funzione della coscienza deputata alla protezione e al discernimento dei pericoli. Valuta rischi, limiti e conseguenze, permettendo all’individuo di riconoscere ciò che può nuocere alla propria integrità fisica, emotiva o spirituale. Non è pessimista per natura, ma cauta e realistica.',
+                        'usage' => 'Opera ogni volta che è necessario stabilire confini, valutare situazioni potenzialmente dannose e prevenire errori. È essenziale nei processi decisionali che richiedono prudenza e responsabilità.',
+                        'purpose' => 'Garantire sicurezza, sopravvivenza e discernimento. Insegna a riconoscere i limiti e a rispettarli senza cadere nella paura.',
+                        'wellbeing' => 'Prudenza, senso di protezione, capacità di dire no, stabilità emotiva e lucidità nelle valutazioni.',
+                        'imbalance' => 'Paura costante, chiusura, diffidenza eccessiva, paranoia o blocco dell’azione per timore del fallimento.',
                     ],
 
                     'applications' => [
@@ -109,11 +108,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Mente Positiva',
 
                     'meaning' => [
-                        'cos_e' => 'La Mente Positiva è la funzione espansiva della coscienza. È orientata alla visione, alla fiducia e alla capacità di riconoscere opportunità, possibilità e potenziale di crescita. Sostiene l’ottimismo, la creatività e la proiezione verso il futuro.',
-                        'uso' => 'Si manifesta quando è necessario motivarsi, ispirare sé stessi e gli altri, e intraprendere nuove esperienze con apertura e fiducia.',
-                        'fini' => 'Favorire espansione, crescita e fiducia nella vita. Insegna a vedere oltre i limiti immediati.',
-                        'benessere' => 'Ottimismo equilibrato, entusiasmo, creatività, apertura mentale e fiducia nelle possibilità.',
-                        'malessere' => 'Ingenuità, superficialità, eccessiva fiducia, tendenza a ignorare rischi o segnali di pericolo.',
+                        'what_is' => 'La Mente Positiva è la funzione espansiva della coscienza. È orientata alla visione, alla fiducia e alla capacità di riconoscere opportunità, possibilità e potenziale di crescita. Sostiene l’ottimismo, la creatività e la proiezione verso il futuro.',
+                        'usage' => 'Si manifesta quando è necessario motivarsi, ispirare sé stessi e gli altri, e intraprendere nuove esperienze con apertura e fiducia.',
+                        'purpose' => 'Favorire espansione, crescita e fiducia nella vita. Insegna a vedere oltre i limiti immediati.',
+                        'wellbeing' => 'Ottimismo equilibrato, entusiasmo, creatività, apertura mentale e fiducia nelle possibilità.',
+                        'imbalance' => 'Ingenuità, superficialità, eccessiva fiducia, tendenza a ignorare rischi o segnali di pericolo.',
                     ],
 
                     'applications' => [
@@ -153,11 +152,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Mente Neutra',
 
                     'meaning' => [
-                        'cos_e' => 'La Mente Neutra è la funzione di sintesi e saggezza che integra la Mente Negativa e la Mente Positiva. È il centro dell’intuizione meditativa, della visione imparziale e del giudizio equilibrato. Permette di osservare la realtà senza essere dominati da paura o entusiasmo.',
-                        'uso' => 'Opera nei momenti in cui è richiesta chiarezza profonda, decisione etica e capacità di vedere oltre le reazioni emotive. È fondamentale nella meditazione e nel servizio consapevole.',
-                        'fini' => 'Condurre a decisioni giuste, equilibrate e allineate al bene più alto. Insegna l’arte della presenza e dell’ascolto interiore.',
-                        'benessere' => 'Chiarezza mentale, calma interiore, saggezza, capacità di mediazione e visione lucida delle situazioni.',
-                        'malessere' => 'Indecisione, distacco emotivo eccessivo, rabbia repressa o incapacità di scegliere.',
+                        'what_is' => 'La Mente Neutra è la funzione di sintesi e saggezza che integra la Mente Negativa e la Mente Positiva. È il centro dell’intuizione meditativa, della visione imparziale e del giudizio equilibrato. Permette di osservare la realtà senza essere dominati da paura o entusiasmo.',
+                        'usage' => 'Opera nei momenti in cui è richiesta chiarezza profonda, decisione etica e capacità di vedere oltre le reazioni emotive. È fondamentale nella meditazione e nel servizio consapevole.',
+                        'purpose' => 'Condurre a decisioni giuste, equilibrate e allineate al bene più alto. Insegna l’arte della presenza e dell’ascolto interiore.',
+                        'wellbeing' => 'Chiarezza mentale, calma interiore, saggezza, capacità di mediazione e visione lucida delle situazioni.',
+                        'imbalance' => 'Indecisione, distacco emotivo eccessivo, rabbia repressa o incapacità di scegliere.',
                     ],
 
                     'applications' => [
@@ -197,11 +196,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Corpo fisico',
 
                     'meaning' => [
-                        'cos_e' => 'Il Corpo Fisico è il veicolo materiale dell’esperienza umana. Rappresenta la capacità di incarnare lo spirito nella materia, sostenendo azione, disciplina e presenza nel mondo. È il fondamento che permette agli altri corpi di esprimersi concretamente.',
-                        'uso' => 'Opera attraverso il lavoro, la cura del corpo, la routine e l’azione responsabile. Richiede disciplina e rispetto dei ritmi naturali.',
-                        'fini' => 'Stabilizzare l’esperienza spirituale nella realtà concreta. Insegna l’equilibrio tra mondo materiale e dimensione interiore.',
-                        'benessere' => 'Forza, resistenza, stabilità, affidabilità e capacità di sostenere impegni nel tempo.',
-                        'malessere' => 'Affaticamento cronico, rigidità, trascuratezza del corpo, perdita di grounding e disordine nella vita quotidiana.',
+                        'what_is' => 'Il Corpo Fisico è il veicolo materiale dell’esperienza umana. Rappresenta la capacità di incarnare lo spirito nella materia, sostenendo azione, disciplina e presenza nel mondo. È il fondamento che permette agli altri corpi di esprimersi concretamente.',
+                        'usage' => 'Opera attraverso il lavoro, la cura del corpo, la routine e l’azione responsabile. Richiede disciplina e rispetto dei ritmi naturali.',
+                        'purpose' => 'Stabilizzare l’esperienza spirituale nella realtà concreta. Insegna l’equilibrio tra mondo materiale e dimensione interiore.',
+                        'wellbeing' => 'Forza, resistenza, stabilità, affidabilità e capacità di sostenere impegni nel tempo.',
+                        'imbalance' => 'Affaticamento cronico, rigidità, trascuratezza del corpo, perdita di grounding e disordine nella vita quotidiana.',
                     ],
 
                     'applications' => [
@@ -241,11 +240,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Linea d’Arco',
 
                     'meaning' => [
-                        'cos_e' => 'La Linea d’Arco è un campo energetico che attraversa la testa come un arco e governa concentrazione, proiezione mentale e integrità. È collegata alla capacità di mantenere una direzione chiara, alla parola data e alla forza della volontà.',
-                        'uso' => 'Opera quando è necessario mantenere focus, coerenza e chiarezza di intenti. È coinvolta nella comunicazione, nella leadership e nella capacità di mantenere impegni.',
-                        'fini' => 'Sostenere integrità, direzione e affidabilità. Insegna a proiettare la propria volontà in modo coerente e responsabile.',
-                        'benessere' => 'Chiarezza mentale, concentrazione, coerenza tra pensiero e azione, affidabilità e forza interiore.',
-                        'malessere' => 'Confusione mentale, incoerenza, difficoltà a mantenere impegni, manipolazione o dispersione di energia.',
+                        'what_is' => 'La Linea d’Arco è un campo energetico che attraversa la testa come un arco e governa concentrazione, proiezione mentale e integrità. È collegata alla capacità di mantenere una direzione chiara, alla parola data e alla forza della volontà.',
+                        'usage' => 'Opera quando è necessario mantenere focus, coerenza e chiarezza di intenti. È coinvolta nella comunicazione, nella leadership e nella capacità di mantenere impegni.',
+                        'purpose' => 'Sostenere integrità, direzione e affidabilità. Insegna a proiettare la propria volontà in modo coerente e responsabile.',
+                        'wellbeing' => 'Chiarezza mentale, concentrazione, coerenza tra pensiero e azione, affidabilità e forza interiore.',
+                        'imbalance' => 'Confusione mentale, incoerenza, difficoltà a mantenere impegni, manipolazione o dispersione di energia.',
                     ],
 
                     'applications' => [
@@ -285,11 +284,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Aura',
 
                     'meaning' => [
-                        'cos_e' => 'L’Aura è il campo energetico che circonda il corpo fisico e gli altri corpi sottili. Funziona come uno scudo protettivo e come mezzo di interazione con l’ambiente. Riflette forza, presenza e stabilità energetica.',
-                        'uso' => 'Opera nella protezione personale, nelle relazioni e nella capacità di sostenere pressioni esterne. È coinvolta nella presenza magnetica e nella sicurezza interiore.',
-                        'fini' => 'Proteggere l’integrità energetica dell’individuo e permettere un’interazione equilibrata con il mondo.',
-                        'benessere' => 'Forza energetica, carisma, stabilità emotiva, protezione e presenza sicura.',
-                        'malessere' => 'Debolezza energetica, ipersensibilità, esaurimento, difficoltà a mantenere confini sani.',
+                        'what_is' => 'L’Aura è il campo energetico che circonda il corpo fisico e gli altri corpi sottili. Funziona come uno scudo protettivo e come mezzo di interazione con l’ambiente. Riflette forza, presenza e stabilità energetica.',
+                        'usage' => 'Opera nella protezione personale, nelle relazioni e nella capacità di sostenere pressioni esterne. È coinvolta nella presenza magnetica e nella sicurezza interiore.',
+                        'purpose' => 'Proteggere l’integrità energetica dell’individuo e permettere un’interazione equilibrata con il mondo.',
+                        'wellbeing' => 'Forza energetica, carisma, stabilità emotiva, protezione e presenza sicura.',
+                        'imbalance' => 'Debolezza energetica, ipersensibilità, esaurimento, difficoltà a mantenere confini sani.',
                     ],
 
                     'applications' => [
@@ -329,11 +328,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Corpo Pranico',
 
                     'meaning' => [
-                        'cos_e' => 'Il Corpo Pranico governa l’energia vitale (prana) che sostiene tutte le funzioni dell’essere umano. È strettamente legato al respiro, alla vitalità e alla capacità di ricaricarsi energeticamente. Quando è in equilibrio, sostiene salute, presenza e resilienza.',
-                        'uso' => 'Opera attraverso la respirazione, il movimento consapevole e il rapporto con l’energia vitale. È centrale nelle pratiche yogiche e nella gestione delle risorse interiori.',
-                        'fini' => 'Sostenere la vita, la vitalità e la capacità di rigenerazione. Insegna l’uso consapevole dell’energia.',
-                        'benessere' => 'Energia costante, vitalità, resistenza, chiarezza e capacità di recupero.',
-                        'malessere' => 'Stanchezza cronica, apatia, dipendenza da stimoli esterni, difficoltà respiratorie o energetiche.',
+                        'what_is' => 'Il Corpo Pranico governa l’energia vitale (prana) che sostiene tutte le funzioni dell’essere umano. È strettamente legato al respiro, alla vitalità e alla capacità di ricaricarsi energeticamente. Quando è in equilibrio, sostiene salute, presenza e resilienza.',
+                        'usage' => 'Opera attraverso la respirazione, il movimento consapevole e il rapporto con l’energia vitale. È centrale nelle pratiche yogiche e nella gestione delle risorse interiori.',
+                        'purpose' => 'Sostenere la vita, la vitalità e la capacità di rigenerazione. Insegna l’uso consapevole dell’energia.',
+                        'wellbeing' => 'Energia costante, vitalità, resistenza, chiarezza e capacità di recupero.',
+                        'imbalance' => 'Stanchezza cronica, apatia, dipendenza da stimoli esterni, difficoltà respiratorie o energetiche.',
                     ],
 
                     'applications' => [
@@ -373,11 +372,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Corpo Sottile',
 
                     'meaning' => [
-                        'cos_e' => 'Il Corpo Sottile è la funzione della coscienza che permette di percepire il non visibile, cogliere il significato profondo delle esperienze e connettersi al mistero dell’esistenza. Governa intuizione, sensibilità spirituale e percezione raffinata.',
-                        'uso' => 'Opera nei momenti di intuizione profonda, comprensione silenziosa e connessione con dimensioni non ordinarie della realtà.',
-                        'fini' => 'Favorire comprensione sottile, coraggio spirituale e fiducia nell’intuizione. Insegna a riconoscere il senso oltre l’apparenza.',
-                        'benessere' => 'Intuizione chiara, sensibilità equilibrata, profondità spirituale e coraggio interiore.',
-                        'malessere' => 'Iper-sensibilità, confusione intuitiva, fuga dalla realtà o disconnessione spirituale.',
+                        'what_is' => 'Il Corpo Sottile è la funzione della coscienza che permette di percepire il non visibile, cogliere il significato profondo delle esperienze e connettersi al mistero dell’esistenza. Governa intuizione, sensibilità spirituale e percezione raffinata.',
+                        'usage' => 'Opera nei momenti di intuizione profonda, comprensione silenziosa e connessione con dimensioni non ordinarie della realtà.',
+                        'purpose' => 'Favorire comprensione sottile, coraggio spirituale e fiducia nell’intuizione. Insegna a riconoscere il senso oltre l’apparenza.',
+                        'wellbeing' => 'Intuizione chiara, sensibilità equilibrata, profondità spirituale e coraggio interiore.',
+                        'imbalance' => 'Iper-sensibilità, confusione intuitiva, fuga dalla realtà o disconnessione spirituale.',
                     ],
 
                     'applications' => [
@@ -417,11 +416,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Corpo Radiante',
             
                     'meaning' => [
-                        'cos_e' => 'Il Corpo Radiante è la funzione della coscienza che esprime presenza, coraggio e autorità naturale. Rappresenta la capacità di irradiare sicurezza, ispirazione e dignità, influenzando l’ambiente attraverso la sola presenza.',
-                        'uso' => 'Opera nella leadership, nel servizio e nelle situazioni che richiedono coraggio e responsabilità. Si manifesta quando una persona guida con l’esempio piuttosto che con il controllo.',
-                        'fini' => 'Ispirare gli altri attraverso presenza autentica e integrità. Insegna l’uso consapevole del potere personale.',
-                        'benessere' => 'Presenza magnetica, fiducia, coraggio, chiarezza e capacità di guidare senza imposizione.',
-                        'malessere' => 'Insicurezza, paura di esporsi, abuso di potere o ego eccessivo mascherato da autorità.',
+                        'what_is' => 'Il Corpo Radiante è la funzione della coscienza che esprime presenza, coraggio e autorità naturale. Rappresenta la capacità di irradiare sicurezza, ispirazione e dignità, influenzando l’ambiente attraverso la sola presenza.',
+                        'usage' => 'Opera nella leadership, nel servizio e nelle situazioni che richiedono coraggio e responsabilità. Si manifesta quando una persona guida con l’esempio piuttosto che con il controllo.',
+                        'purpose' => 'Ispirare gli altri attraverso presenza autentica e integrità. Insegna l’uso consapevole del potere personale.',
+                        'wellbeing' => 'Presenza magnetica, fiducia, coraggio, chiarezza e capacità di guidare senza imposizione.',
+                        'imbalance' => 'Insicurezza, paura di esporsi, abuso di potere o ego eccessivo mascherato da autorità.',
                     ],
             
                     'applications' => [
@@ -461,11 +460,11 @@ class TantricMeaningSeeder extends Seeder
                     'name' => 'Campo Magnetico',
             
                     'meaning' => [
-                        'cos_e' => 'Il Campo Magnetico rappresenta l’integrazione e la padronanza dei Dieci Corpi. È la funzione della coscienza che unifica tutte le dimensioni dell’essere, permettendo stabilità, armonia e presenza completa.',
-                        'uso' => 'Opera quando l’individuo è chiamato a mantenere equilibrio globale tra mente, corpo e spirito. Si manifesta nella capacità di attrarre ciò che è allineato e di mantenere centratura.',
-                        'fini' => 'Favorire l’armonia complessiva e la padronanza di sé. Insegna l’unità e l’integrazione delle parti.',
-                        'benessere' => 'Equilibrio globale, stabilità, coerenza interiore, capacità di attrazione consapevole.',
-                        'malessere' => 'Disallineamento, dispersione, instabilità emotiva e perdita di centratura.',
+                        'what_is' => 'Il Campo Magnetico rappresenta l’integrazione e la padronanza dei Dieci Corpi. È la funzione della coscienza che unifica tutte le dimensioni dell’essere, permettendo stabilità, armonia e presenza completa.',
+                        'usage' => 'Opera quando l’individuo è chiamato a mantenere equilibrio globale tra mente, corpo e spirito. Si manifesta nella capacità di attrarre ciò che è allineato e di mantenere centratura.',
+                        'purpose' => 'Favorire l’armonia complessiva e la padronanza di sé. Insegna l’unità e l’integrazione delle parti.',
+                        'wellbeing' => 'Equilibrio globale, stabilità, coerenza interiore, capacità di attrazione consapevole.',
+                        'imbalance' => 'Disallineamento, dispersione, instabilità emotiva e perdita di centratura.',
                     ],
             
                     'applications' => [
