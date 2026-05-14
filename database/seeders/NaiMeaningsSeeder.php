@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Numbers\NaiMeanings;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class NaiMeaningsSeeder extends Seeder
 {
@@ -13,106 +12,295 @@ class NaiMeaningsSeeder extends Seeder
      */
     public function run(): void
     {
-        $fields = [
-            'lifePath'    => ['en' => 'Life Path',     'it' => 'Percorso di Vita'],
-            'expression'  => ['en' => 'Expression',    'it' => 'Espressione'],
-            'soulUrge'    => ['en' => 'Soul Urge',     'it' => "Impulso dell'Anima"],
-            'personality' => ['en' => 'Personality',   'it' => 'Personalità'],
-            'maturity'    => ['en' => 'Maturity',      'it' => 'Maturità'],
-            'pinnacles'   => ['en' => 'Pinnacle',      'it' => 'Apice'],
-            'challenges'  => ['en' => 'Challenge',     'it' => 'Sfida'],
+        $fields = ['lifePath', 'expression', 'soulUrge', 'personality', 'maturity', 'pinnacles', 'challenges'];
+
+        $metaField = [
+            'lifePath' => [
+                'en' => [
+                    'definition' => 'Core life lessons and trajectory.',
+                    'scope' => 'Direction, recurring lessons, overall tone.'
+                ],
+                'it' => [
+                    'definition' => 'Lezione fondamentale e traiettoria di vita.',
+                    'scope' => 'Direzione, prove ricorrenti, tono generale.'
+                ],
+            ],
+            'expression' => [
+                'en' => [
+                    'definition' => 'Innate talents and expressive style.',
+                    'scope' => 'How you manifest potential.'
+                ],
+                'it' => [
+                    'definition' => 'Talenti innati e stile espressivo.',
+                    'scope' => 'Come manifesti il potenziale.'
+                ],
+            ],
+            'soulUrge' => [
+                'en' => [
+                    'definition' => "Inner desires and heart's motivation.",
+                    'scope' => 'What you profoundly long for.'
+                ],
+                'it' => [
+                    'definition' => "Desideri interiori e motivazione del cuore.",
+                    'scope' => 'Ciò che desideri profondamente.'
+                ],
+            ],
+            'personality' => [
+                'en' => [
+                    'definition' => 'Outer impression perceived by others.',
+                    'scope' => 'Image, style, how you appear.'
+                ],
+                'it' => [
+                    'definition' => 'Impressione esterna percepita dagli altri.',
+                    'scope' => 'Immagine e stile con cui appari.'
+                ],
+            ],
+            'maturity' => [
+                'en' => [
+                    'definition' => 'Synthesis that emerges with age.',
+                    'scope' => 'Mature direction of potential.'
+                ],
+                'it' => [
+                    'definition' => 'Sintesi che emerge con l’età.',
+                    'scope' => 'Direzione matura del potenziale.'
+                ],
+            ],
+            'pinnacles' => [
+                'en' => [
+                    'definition' => 'Predominant growth themes per phase.',
+                    'scope' => 'Focus/opportunities per phase.'
+                ],
+                'it' => [
+                    'definition' => 'Temi evolutivi per fase.',
+                    'scope' => 'Focus/opportunità di ogni fase.'
+                ],
+            ],
+            'challenges' => [
+                'en' => [
+                    'definition' => 'Areas requiring integration.',
+                    'scope' => 'What to harmonize to grow.'
+                ],
+                'it' => [
+                    'definition' => 'Aree che richiedono integrazione.',
+                    'scope' => 'Cosa armonizzare per crescere.'
+                ],
+            ],
         ];
 
-        // Field meta (EN/IT)
-        $metaFieldEn = [
-            'lifePath'    => ['explanation' => 'Sum and reduce YYYY-MM-DD digits to a single digit.', 'definition' => 'Core life lessons and trajectory.', 'scope' => 'Direction, recurring lessons, overall tone.'],
-            'expression'  => ['explanation' => 'Sum chaldean values of First+Last letters; reduce.', 'definition' => 'Innate talents and expressive style.', 'scope' => 'How you manifest potential.'],
-            'soulUrge'    => ['explanation' => 'Sum vowels of First+Last; reduce.', 'definition' => "Inner desires and heart's motivation.", 'scope' => 'What you profoundly long for.'],
-            'personality' => ['explanation' => 'Sum consonants of First+Last; reduce.', 'definition' => 'Outer impression perceived by others.', 'scope' => 'Image, style, how you appear.'],
-            'maturity'    => ['explanation' => 'Reduce (Life Path + Expression).', 'definition' => 'Synthesis that emerges with age.', 'scope' => 'Mature direction of potential.'],
-            'pinnacles'   => ['explanation' => 'Four growth phases (current formula).', 'definition' => 'Predominant growth themes per phase.', 'scope' => 'Focus/opportunities per phase.'],
-            'challenges'  => ['explanation' => 'Four core challenges (0–9 allowed).', 'definition' => 'Areas requiring integration.', 'scope' => 'What to harmonize to grow.'],
-        ];
-        $metaFieldIt = [
-            'lifePath'    => ['spiegazione' => 'Somma e riduzione delle cifre di AAAA-MM-GG.', 'definizione' => 'Lezione fondamentale e traiettoria di vita.', 'scopo' => 'Direzione, prove ricorrenti, tono generale.'],
-            'expression'  => ['spiegazione' => 'Somma valori caldei delle lettere di Nome+Cognome; riduzione.', 'definizione' => 'Talenti innati e stile espressivo.', 'scopo' => 'Come manifesti il potenziale.'],
-            'soulUrge'    => ['spiegazione' => 'Somma delle vocali di Nome+Cognome; riduzione.', 'definizione' => "Desideri interiori e motivazione del cuore.", 'scopo' => 'Ciò che desideri profondamente.'],
-            'personality' => ['spiegazione' => 'Somma delle consonanti di Nome+Cognome; riduzione.', 'definizione' => 'Impressione esterna percepita dagli altri.', 'scopo' => 'Immagine e stile con cui appari.'],
-            'maturity'    => ['spiegazione' => 'Riduzione di (Percorso di Vita + Espressione).', 'definizione' => 'Sintesi che emerge con l’età.', 'scopo' => 'Direzione matura del potenziale.'],
-            'pinnacles'   => ['spiegazione' => 'Quattro fasi di crescita (formula attuale).', 'definizione' => 'Temi evolutivi per fase.', 'scopo' => 'Focus/opportunità di ogni fase.'],
-            'challenges'  => ['spiegazione' => 'Quattro sfide (0–9 ammesso).', 'definizione' => 'Aree che richiedono integrazione.', 'scopo' => 'Cosa armonizzare per crescere.'],
+        $numbers = [
+            0 => [
+                'en' => [
+                    'description' => 'Reset / pause: a time to step back, clear the slate, and learn to restart with trust in the unknown.',
+                    'keywords' => ['reset', 'pause', 'restart'],
+                    'element' => 'Void',
+                    'planet' => 'None',
+                    'color' => 'Clear',
+                    'chakra' => 'Crown'
+                ],
+                'it' => [
+                    'description' => 'Reset / pausa: un momento per fermarsi, azzerare e imparare a ripartire con fiducia nell\'ignoto.',
+                    'keywords' => ['reset', 'pausa', 'ripartenza'],
+                    'element' => 'Vuoto',
+                    'planet' => 'Nessuno',
+                    'color' => 'Trasparente',
+                    'chakra' => 'Corona'
+                ],
+            ],
+            1 => [
+                'en' => [
+                    'description' => 'Leadership, initiative, individuality: the power to forge your own path, take bold action, and stand confidently in your unique identity.',
+                    'keywords' => ['leadership', 'initiative', 'independence'],
+                    'element' => 'Fire',
+                    'planet' => 'Sun',
+                    'color' => 'Red',
+                    'chakra' => 'Root'
+                ],
+                'it' => [
+                    'description' => 'Leadership, iniziativa, individualità: il potere di forgiare la propria strada, agire con coraggio e stare con fiducia nella propria identità unica.',
+                    'keywords' => ['leadership', 'iniziativa', 'indipendenza'],
+                    'element' => 'Fuoco',
+                    'planet' => 'Sole',
+                    'color' => 'Rosso',
+                    'chakra' => 'Radice'
+                ],
+            ],
+            2 => [
+                'en' => [
+                    'description' => 'Cooperation, sensitivity, diplomacy: the art of building bridges through empathy, understanding others deeply, and finding peaceful solutions together.',
+                    'keywords' => ['cooperation', 'sensitivity', 'diplomacy'],
+                    'element' => 'Water',
+                    'planet' => 'Moon',
+                    'color' => 'White',
+                    'chakra' => 'Sacral'
+                ],
+                'it' => [
+                    'description' => 'Cooperazione, sensibilità, diplomazia: l\'arte di costruire ponti attraverso l\'empatia, comprendere profondamente gli altri e trovare soluzioni pacifiche insieme.',
+                    'keywords' => ['cooperazione', 'sensibilità', 'diplomazia'],
+                    'element' => 'Acqua',
+                    'planet' => 'Luna',
+                    'color' => 'Bianco',
+                    'chakra' => 'Sacrale'
+                ],
+            ],
+            3 => [
+                'en' => [
+                    'description' => 'Creativity, communication, joy: expressing your authentic soul through art, sharing your voice with the world, and finding happiness in self-expression.',
+                    'keywords' => ['creativity', 'communication', 'joy'],
+                    'element' => 'Air',
+                    'planet' => 'Jupiter',
+                    'color' => 'Yellow',
+                    'chakra' => 'Solar Plexus'
+                ],
+                'it' => [
+                    'description' => 'Creatività, comunicazione, gioia: esprimere la tua anima autentica attraverso l\'arte, condividere la tua voce con il mondo e trovare felicità nell\'espressione di te stesso.',
+                    'keywords' => ['creatività', 'comunicazione', 'gioia'],
+                    'element' => 'Aria',
+                    'planet' => 'Giove',
+                    'color' => 'Giallo',
+                    'chakra' => 'Plesso Solare'
+                ],
+            ],
+            4 => [
+                'en' => [
+                    'description' => 'Stability, work, structure: building a solid foundation through discipline, creating lasting value with dedicated effort, and organizing chaos into order.',
+                    'keywords' => ['stability', 'work', 'structure'],
+                    'element' => 'Earth',
+                    'planet' => 'Saturn',
+                    'color' => 'Green',
+                    'chakra' => 'Root'
+                ],
+                'it' => [
+                    'description' => 'Stabilità, lavoro, struttura: costruire fondamenta solide attraverso la disciplina, creare valore duraturo con impegno dedicato e organizzare il caos in ordine.',
+                    'keywords' => ['stabilità', 'lavoro', 'struttura'],
+                    'element' => 'Terra',
+                    'planet' => 'Saturno',
+                    'color' => 'Verde',
+                    'chakra' => 'Radice'
+                ],
+            ],
+            5 => [
+                'en' => [
+                    'description' => 'Change, freedom, versatility: embracing life\'s adventures with open arms, breaking free from limitations, and adapting gracefully to any situation.',
+                    'keywords' => ['change', 'freedom', 'versatility'],
+                    'element' => 'Air',
+                    'planet' => 'Mercury',
+                    'color' => 'Turquoise',
+                    'chakra' => 'Throat'
+                ],
+                'it' => [
+                    'description' => 'Cambiamento, libertà, versatilità: abbracciare le avventure della vita a braccia aperte, liberarsi dalle limitazioni e adattarsi con grazia a qualsiasi situazione.',
+                    'keywords' => ['cambiamento', 'libertà', 'versatilità'],
+                    'element' => 'Aria',
+                    'planet' => 'Mercurio',
+                    'color' => 'Turchese',
+                    'chakra' => 'Gola'
+                ],
+            ],
+            6 => [
+                'en' => [
+                    'description' => 'Care, responsibility, harmony: nurturing others with unconditional love, honoring your commitments with integrity, and creating balance in all relationships.',
+                    'keywords' => ['care', 'responsibility', 'harmony'],
+                    'element' => 'Earth',
+                    'planet' => 'Venus',
+                    'color' => 'Pink',
+                    'chakra' => 'Heart'
+                ],
+                'it' => [
+                    'description' => 'Cura, responsabilità, armonia: nutrire gli altri con amore incondizionato, onorare i tuoi impegni con integrità e creare equilibrio in tutte le relazioni.',
+                    'keywords' => ['cura', 'responsabilità', 'armonia'],
+                    'element' => 'Terra',
+                    'planet' => 'Venere',
+                    'color' => 'Rosa',
+                    'chakra' => 'Cuore'
+                ],
+            ],
+            7 => [
+                'en' => [
+                    'description' => 'Analysis, spirituality, introspection: diving deep into life\'s mysteries, trusting your inner wisdom, and connecting with the sacred within and around you.',
+                    'keywords' => ['analysis', 'spirituality', 'introspection'],
+                    'element' => 'Water',
+                    'planet' => 'Neptune',
+                    'color' => 'Indigo',
+                    'chakra' => 'Third Eye'
+                ],
+                'it' => [
+                    'description' => 'Analisi, spiritualità, introspezione: immergerti nei misteri della vita, fidarti della tua saggezza interiore e connetterti con il sacro dentro e intorno a te.',
+                    'keywords' => ['analisi', 'spiritualità', 'introspezione'],
+                    'element' => 'Acqua',
+                    'planet' => 'Nettuno',
+                    'color' => 'Indaco',
+                    'chakra' => 'Terzo Occhio'
+                ],
+            ],
+            8 => [
+                'en' => [
+                    'description' => 'Power, material mastery, ambition: manifesting abundance through focused intention, mastering the material world with skill, and achieving great success with integrity.',
+                    'keywords' => ['power', 'mastery', 'ambition'],
+                    'element' => 'Earth',
+                    'planet' => 'Saturn',
+                    'color' => 'Black',
+                    'chakra' => 'Solar Plexus'
+                ],
+                'it' => [
+                    'description' => 'Potere, maestria materiale, ambizione: manifestare l\'abbondanza attraverso l\'intenzione focalizzata, padroneggiare il mondo materiale con abilità e raggiungere grandi successi con integrità.',
+                    'keywords' => ['potere', 'maestria', 'ambizione'],
+                    'element' => 'Terra',
+                    'planet' => 'Saturno',
+                    'color' => 'Nero',
+                    'chakra' => 'Plesso Solare'
+                ],
+            ],
+            9 => [
+                'en' => [
+                    'description' => 'Compassion, completion, universality: embracing all of humanity with an open heart, finishing karmic cycles with grace, and seeing the divine in every soul.',
+                    'keywords' => ['compassion', 'completion', 'universality'],
+                    'element' => 'Fire',
+                    'planet' => 'Mars',
+                    'color' => 'Violet',
+                    'chakra' => 'Heart'
+                ],
+                'it' => [
+                    'description' => 'Compassione, compimento, universalità: abbracciare tutta l\'umanità con cuore aperto, completare i cicli karmici con grazia e vedere il divino in ogni anima.',
+                    'keywords' => ['compassione', 'compimento', 'universalità'],
+                    'element' => 'Fuoco',
+                    'planet' => 'Marte',
+                    'color' => 'Viola',
+                    'chakra' => 'Cuore'
+                ],
+            ],
         ];
 
-        // Base number meanings (EN / IT)
-        $numEn = [
-            0 => ['title' => 'Number 0', 'description' => 'Reset / pause; learn to restart with trust.', 'meta' => ['theme' => 'reset']],
-            1 => ['title' => 'Number 1', 'description' => 'Leadership, initiative, individuality.', 'meta' => ['keywords' => ['leadership', 'initiative', 'independence'], 'element' => 'Fire', 'planet' => 'Sun', 'color' => 'Red', 'chakra' => 'Root']],
-            2 => ['title' => 'Number 2', 'description' => 'Cooperation, sensitivity, diplomacy.', 'meta' => ['keywords' => ['cooperation', 'sensitivity', 'diplomacy'], 'element' => 'Water', 'planet' => 'Moon', 'color' => 'White', 'chakra' => 'Sacral']],
-            3 => ['title' => 'Number 3', 'description' => 'Creativity, communication, joy.', 'meta' => ['keywords' => ['creativity', 'communication', 'joy'], 'element' => 'Air', 'planet' => 'Jupiter', 'color' => 'Yellow', 'chakra' => 'Solar Plexus']],
-            4 => ['title' => 'Number 4', 'description' => 'Stability, work, structure.', 'meta' => ['keywords' => ['stability', 'work', 'structure'], 'element' => 'Earth', 'planet' => 'Saturn', 'color' => 'Green', 'chakra' => 'Root']],
-            5 => ['title' => 'Number 5', 'description' => 'Change, freedom, versatility.', 'meta' => ['keywords' => ['change', 'freedom', 'versatility'], 'element' => 'Air', 'planet' => 'Mercury', 'color' => 'Turquoise', 'chakra' => 'Throat']],
-            6 => ['title' => 'Number 6', 'description' => 'Care, responsibility, harmony.', 'meta' => ['keywords' => ['care', 'responsibility', 'harmony'], 'element' => 'Earth', 'planet' => 'Venus', 'color' => 'Pink', 'chakra' => 'Heart']],
-            7 => ['title' => 'Number 7', 'description' => 'Analysis, spirituality, introspection.', 'meta' => ['keywords' => ['analysis', 'spirituality', 'introspection'], 'element' => 'Water', 'planet' => 'Neptune', 'color' => 'Indigo', 'chakra' => 'Third Eye']],
-            8 => ['title' => 'Number 8', 'description' => 'Power, material mastery, ambition.', 'meta' => ['keywords' => ['power', 'mastery', 'ambition'], 'element' => 'Earth', 'planet' => 'Saturn', 'color' => 'Black', 'chakra' => 'Solar Plexus']],
-            9 => ['title' => 'Number 9', 'description' => 'Compassion, completion, universality.', 'meta' => ['keywords' => ['compassion', 'completion', 'universality'], 'element' => 'Fire', 'planet' => 'Mars', 'color' => 'Violet', 'chakra' => 'Heart']],
-        ];
-        $numIt = [
-            0 => ['title' => 'Numero 0', 'description' => 'Reset / sospensione; ripartire con fiducia.', 'meta' => ['tema' => 'reset']],
-            1 => ['title' => 'Numero 1', 'description' => 'Leadership, iniziativa, individualità.', 'meta' => ['paroleChiave' => ['leadership', 'iniziativa', 'indipendenza'], 'elemento' => 'Fuoco', 'pianeta' => 'Sole', 'colore' => 'Rosso', 'chakra' => 'Radice']],
-            2 => ['title' => 'Numero 2', 'description' => 'Cooperazione, sensibilità, diplomazia.', 'meta' => ['paroleChiave' => ['cooperazione', 'sensibilità', 'diplomazia'], 'elemento' => 'Acqua', 'pianeta' => 'Luna', 'colore' => 'Bianco', 'chakra' => 'Sacrale']],
-            3 => ['title' => 'Numero 3', 'description' => 'Creatività, comunicazione, gioia.', 'meta' => ['paroleChiave' => ['creatività', 'comunicazione', 'gioia'], 'elemento' => 'Aria', 'pianeta' => 'Giove', 'colore' => 'Giallo', 'chakra' => 'Plesso Solare']],
-            4 => ['title' => 'Numero 4', 'description' => 'Stabilità, lavoro, struttura.', 'meta' => ['paroleChiave' => ['stabilità', 'lavoro', 'struttura'], 'elemento' => 'Terra', 'pianeta' => 'Saturno', 'colore' => 'Verde', 'chakra' => 'Radice']],
-            5 => ['title' => 'Numero 5', 'description' => 'Cambiamento, libertà, versatilità.', 'meta' => ['paroleChiave' => ['cambiamento', 'libertà', 'versatilità'], 'elemento' => 'Aria', 'pianeta' => 'Mercurio', 'colore' => 'Turchese', 'chakra' => 'Gola']],
-            6 => ['title' => 'Numero 6', 'description' => 'Cura, responsabilità, armonia.', 'meta' => ['paroleChiave' => ['cura', 'responsabilità', 'armonia'], 'elemento' => 'Terra', 'pianeta' => 'Venere', 'colore' => 'Rosa', 'chakra' => 'Cuore']],
-            7 => ['title' => 'Numero 7', 'description' => 'Analisi, spiritualità, introspezione.', 'meta' => ['paroleChiave' => ['analisi', 'spiritualità', 'introspezione'], 'elemento' => 'Acqua', 'pianeta' => 'Nettuno', 'colore' => 'Indaco', 'chakra' => 'Terzo Occhio']],
-            8 => ['title' => 'Numero 8', 'description' => 'Potere, maestria materiale, ambizione.', 'meta' => ['paroleChiave' => ['potere', 'maestria', 'ambizione'], 'elemento' => 'Terra', 'pianeta' => 'Saturno', 'colore' => 'Nero', 'chakra' => 'Plesso Solare']],
-            9 => ['title' => 'Numero 9', 'description' => 'Compassione, compimento, universalità.', 'meta' => ['paroleChiave' => ['compassione', 'compimento', 'universalità'], 'elemento' => 'Fuoco', 'pianeta' => 'Marte', 'colore' => 'Viola', 'chakra' => 'Cuore']],
-        ];
+        foreach (['en', 'it'] as $lang) {
+            foreach ($fields as $field) {
+                $numbersRange = ($field === 'challenges') ? range(0, 9) : range(1, 9);
 
-        $fieldsList     = ['lifePath', 'expression', 'soulUrge', 'personality', 'maturity', 'pinnacles'];
-        $oneToNine      = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        $challengesSet  = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                foreach ($numbersRange as $number) {
+                    $numData = $numbers[$number][$lang];
+                    $fieldMeta = $metaField[$field][$lang];
 
-        $upsert = function (string $lang, string $name, int $number, string $title, ?string $description, array $meta = []) {
-            NaiMeanings::updateOrCreate(
-                ['lang' => $lang, 'name' => $name, 'number' => $number],
-                [
-                    'code'        => $name,   // keep code = name (schema requires non-null)
-                    'title'       => $title,
-                    'description' => $description,
-                    'meta'        => $meta,
-                ]
-            );
-        };
-
-        // EN: fields 1..9
-        foreach ($fieldsList as $name) {
-            foreach ($oneToNine as $n) {
-                $base = $numEn[$n];
-                $meta = array_merge($base['meta'] ?? [], $metaFieldEn[$name] ?? []);
-                $upsert('en', $name, $n, $fields[$name]['en'] . ' ' . $n, $base['description'] ?? null, $meta);
+                    NaiMeanings::updateOrCreate(
+                        [
+                            'lang' => $lang,
+                            'name' => $field,
+                            'number' => $number
+                        ],
+                        [
+                            'code' => $field,
+                            'description' => $numData['description'],
+                            'meta' => array_merge(
+                                $fieldMeta,
+                                [
+                                    'keywords' => $numData['keywords'],
+                                    'element' => $numData['element'],
+                                    'planet' => $numData['planet'],
+                                    'color' => $numData['color'],
+                                    'chakra' => $numData['chakra'],
+                                ]
+                            ),
+                        ]
+                    );
+                }
             }
-        }
-        // EN: challenges 0..9
-        foreach ($challengesSet as $n) {
-            $base = $numEn[$n];
-            $meta = array_merge($base['meta'] ?? [], $metaFieldEn['challenges'] ?? []);
-            $upsert('en', 'challenges', $n, $fields['challenges']['en'] . ' ' . $n, $base['description'] ?? null, $meta);
-        }
-
-        // IT: fields 1..9
-        foreach ($fieldsList as $name) {
-            foreach ($oneToNine as $n) {
-                $base = $numIt[$n];
-                $meta = array_merge($base['meta'] ?? [], $metaFieldIt[$name] ?? []);
-                $upsert('it', $name, $n, $fields[$name]['it'] . ' ' . $n, $base['description'] ?? null, $meta);
-            }
-        }
-        // IT: challenges 0..9
-        foreach ($challengesSet as $n) {
-            $base = $numIt[$n];
-            $meta = array_merge($base['meta'] ?? [], $metaFieldIt['challenges'] ?? []);
-            $upsert('it', 'challenges', $n, $fields['challenges']['it'] . ' ' . $n, $base['description'] ?? null, $meta);
         }
     }
 }

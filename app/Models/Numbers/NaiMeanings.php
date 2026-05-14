@@ -30,7 +30,6 @@ class NaiMeanings extends Model
         'number',
         'lang',
         'code',
-        'title',
         'description',
         'meta',
     ];

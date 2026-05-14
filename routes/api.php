@@ -171,7 +171,7 @@ Route::group([
         'prefix' => 'customer',
         'as' => 'customer.',
         'name' => 'customer.',
-        'middleware' => ['auth:sanctum', 'authenticated', 'admin']
+        'middleware' => ['auth:sanctum', 'authenticated']
     ], function () {
         // GET Method
         Route::get('/get-contacts', [\App\Http\Controllers\Customer\CustomerController::class, 'getContacts']);

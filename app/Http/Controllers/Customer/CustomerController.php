@@ -33,7 +33,7 @@ class CustomerController extends Controller
                     ->orderBy('firstname')
                     ->get();
             } else {
-                $contacts = $user->addressBooks()
+                $contacts = $customer->addressBooks()
                     ->orderBy('lastname')
                     ->orderBy('firstname')
                     ->get();

@@ -15,12 +15,15 @@ class NaiServices
    * @param int    $number
    * @return array|null
    */
-  private function meaning(string $lang, string $code, int $number): ?array
+  private function meaning(string $lang, string $name, int $number): ?array
   {
 
-    $m = NaiMeanings::where('lang', $lang)->where('code', $code)->where('number', $number)->first();
+    $m = NaiMeanings::where('lang', $lang)
+      ->where('name', $name)
+      ->where('number', $number)
+      ->first();
+
     return [
-      'title'       => $m->title       ?? ($code . ' ' . $number),
       'number'      => $number,
       'description' => $m->description ?? null,
       'meta'        => $m->meta        ?? null,
@@ -88,13 +91,14 @@ class NaiServices
   public function calculatePersonality(string $firstName, string $lastName): int
   {
     $mapping = $this->getLetterMappingCaldeo();
-    $consonants = array_diff(
-      mb_str_split(mb_strtoupper($firstName . $lastName)),
-      ['A', 'E', 'I', 'O', 'U', 'Y']
-    );
+    $vowels = ['A', 'E', 'I', 'O', 'U', 'Y'];
+    $text = mb_strtoupper($firstName . $lastName);
     $sum = 0;
-    foreach ($consonants as $char) {
-      if (isset($mapping[$char])) $sum += $mapping[$char];
+
+    foreach (mb_str_split($text) as $char) {
+      if (!in_array($char, $vowels) && isset($mapping[$char])) {
+        $sum += $mapping[$char];
+      }
     }
     return $this->reduceToOneDigit($sum);
   }
@@ -125,22 +129,22 @@ class NaiServices
     $lifePath = $this->calculateLifePath($birthDate);
 
     $pinnacles = [
-      'numberOne' => $this->reduceToOneDigit($lifePath + 1),
-      'numberTwo' => $this->reduceToOneDigit($lifePath + 2),
-      'numberThree' => $this->reduceToOneDigit($lifePath + 3),
-      'numberFour' => $this->reduceToOneDigit($lifePath + 4),
+      $this->reduceToOneDigit($lifePath + 1),
+      $this->reduceToOneDigit($lifePath + 2),
+      $this->reduceToOneDigit($lifePath + 3),
+      $this->reduceToOneDigit($lifePath + 4),
     ];
 
-    $challenges = [
-      $this->reduceToOneDigit(abs($lifePath - 1)),
-      $this->reduceToOneDigit(abs($lifePath - 2)),
-      $this->reduceToOneDigit(abs(($lifePath - 1) - ($lifePath - 2))),
-      $this->reduceToOneDigit(abs($lifePath - 3)),
-    ];
+    $first = $this->reduceToOneDigit(abs($lifePath - 1));
+    $second = $this->reduceToOneDigit(abs($lifePath - 2));
+    $third = $this->reduceToOneDigit(abs($first - $second));
+    $fourth = $this->reduceToOneDigit(abs($lifePath - 3));
+
+    $challenges = [$first, $second, $third, $fourth];
 
     return [
-      'pinnacles'  => $pinnacles,   // Codice evolutivo personale
-      'challenges' => $challenges,  // Ostacoli o Compiti ricorrenti
+      'pinnacles'  => $pinnacles,
+      'challenges' => $challenges,
     ];
   }
 
@@ -159,27 +163,21 @@ class NaiServices
     $birthDate = Carbon::createFromFormat('d-m-Y', $birthDate)->format('Y-m-d');
 
     $pc         = $this->calculatePinnaclesAndChallenges($birthDate);
-    $pinnNums   = array_values($pc['pinnacles']);   // es. [4,5,6,7]
-    $challNums  = array_values($pc['challenges']);  // es. [2,1,1,0]
 
-    $pinnacles  = array_map(fn($n) => $this->meaning($lang, 'pinnacles',  (int)$n), $pinnNums);
-    $challenges = array_map(fn($n) => $this->meaning($lang, 'challenges', (int)$n), $challNums);
-
-    // campi principali
-    $lifePath    = $this->calculateLifePath($birthDate);
-    $expression  = $this->calculateExpression($firstName, $lastName);
-    $soulUrge    = $this->calculateSoulUrge($firstName, $lastName);
-    $personality = $this->calculatePersonality($firstName, $lastName);
-    $maturity    = $this->calculateMaturity($birthDate, $firstName, $lastName);
+    $lifePathNum    = $this->calculateLifePath($birthDate);
+    $expressionNum  = $this->calculateExpression($firstName, $lastName);
+    $soulUrgeNum    = $this->calculateSoulUrge($firstName, $lastName);
+    $personalityNum = $this->calculatePersonality($firstName, $lastName);
+    $maturityNum    = $this->calculateMaturity($birthDate, $firstName, $lastName);
 
     $payload = [
-      'lifePath'    => $this->meaning($lang, 'lifePath',    $lifePath),
-      'expression'  => $this->meaning($lang, 'expression',  $expression),
-      'soulUrge'    => $this->meaning($lang, 'soulUrge',    $soulUrge),
-      'personality' => $this->meaning($lang, 'personality', $personality),
-      'maturity'    => $this->meaning($lang, 'maturity',    $maturity),
-      'pinnacles'   => $pinnacles,
-      'challenges'  => $challenges,
+      'lifePath'    => $this->meaning($lang, 'lifePath',    $lifePathNum),
+      'expression'  => $this->meaning($lang, 'expression',  $expressionNum),
+      'soulUrge'    => $this->meaning($lang, 'soulUrge',    $soulUrgeNum),
+      'personality' => $this->meaning($lang, 'personality', $personalityNum),
+      'maturity'    => $this->meaning($lang, 'maturity',    $maturityNum),
+      'pinnacles'   => array_map(fn($n) => $this->meaning($lang, 'pinnacles', $n), $pc['pinnacles']),
+      'challenges'  => array_map(fn($n) => $this->meaning($lang, 'challenges', $n), $pc['challenges']),
     ];
 
     return $payload;
@@ -277,43 +275,6 @@ class NaiServices
       'Z' => 7,
       'F' => 8,
       'P' => 8,
-    ];
-  }
-
-  /**
-   * Return the letter→number mapping (Pitagora style).
-   *
-   * @return array<string,int>
-   */
-  private function getLetterMappingPitagora(): array
-  {
-    return [
-      'A' => 1,
-      'J' => 1,
-      'S' => 1,
-      'B' => 2,
-      'K' => 2,
-      'T' => 2,
-      'C' => 3,
-      'L' => 3,
-      'U' => 3,
-      'D' => 4,
-      'M' => 4,
-      'V' => 4,
-      'E' => 5,
-      'N' => 5,
-      'W' => 5,
-      'F' => 6,
-      'O' => 6,
-      'X' => 6,
-      'G' => 7,
-      'P' => 7,
-      'Y' => 7,
-      'H' => 8,
-      'Q' => 8,
-      'Z' => 8,
-      'I' => 9,
-      'R' => 9,
     ];
   }
 }

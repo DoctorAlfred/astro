@@ -46,7 +46,7 @@
                             </p>
 
                             <p style="margin:8px 0 4px 0;font-size:16px;line-height:1.4;font-weight:400;color:#555555;text-align:center;">
-                                <a href="melahelapp://auth/reset?token={{ $data['token'] }}"
+                                <a href="https://www.melahel.it/reset-password/?token={{ $data['token'] }}"
                                    style="color:#0066cc;text-decoration:underline;">
                                     Clicca qui per resettare la password
                                 </a>

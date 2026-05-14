@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('number');
             $table->string('lang', 2);
             $table->string('code', 64);
-            $table->string('title', 255);
             $table->text('description')->nullable();
             $table->json('meta')->nullable(); 
 
