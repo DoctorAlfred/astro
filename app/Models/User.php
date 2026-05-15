@@ -203,33 +203,36 @@ class User extends Authenticatable
             return false;
         }
 
-        $role = Role::where('name', $role)->first();
+        $role = Role::where('code', $role)->first();
         if (!$role) {
             return false;
         }
 
-        $permission = Permission::where('name', $role->name)->first();
+        $permission = Permission::where('code', $role->name)->first();
         if (!$permission) {
             return false;
         }
 
         $change = $user->roles()->sync($role);
-        $user->permissions()->sync($permission);
-
-        if ($change['attached']) {
-
+        $hasAttached = !empty($change['attached']);
+        $hasDetached = !empty($change['detached']);
+        $isAlreadySynced = !$hasAttached && !$hasDetached;
+        
+        if ($hasAttached || $isAlreadySynced) {
+            $user->permissions()->syncWithoutDetaching($permission);
+            
             DB::table('permission_user')->where('user_id', $userId)
                 ->update([
                     'level' => 1,
                     'is_active' => true,
-                    'is_banned' => 'false',
+                    'is_banned' => false,
                     'first_in' => 0,
                     'first_login' => 0
                 ]);
-
+            
             return true;
         }
-
+        
         return false;
     }
 
