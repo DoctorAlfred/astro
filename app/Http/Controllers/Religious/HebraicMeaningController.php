@@ -56,6 +56,17 @@ class HebraicMeaningController extends Controller
 
             /*
             |--------------------------------------------------------------------------
+            | FILTER: BY NUMBER
+            |--------------------------------------------------------------------------
+            */
+            if ($request->filled('number')) {
+                $number = strtolower($request->get('number'));
+
+                $query->where('number', $number);
+            }
+
+            /*
+            |--------------------------------------------------------------------------
             | ORDER BY NUMBER (canonical order 1–27)
             |--------------------------------------------------------------------------
             */
