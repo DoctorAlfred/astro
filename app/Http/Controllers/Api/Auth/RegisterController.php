@@ -60,6 +60,11 @@ class RegisterController extends Controller
                 return $this->sendError(Message::REGISTER_KO, $validator->errors()->toArray(), 400);
             }
 
+            $dateBirthValidation = $this->validateDateBirth($request->date_birth);
+            if ($dateBirthValidation !== true) {
+                return $this->sendError(Message::REGISTER_KO, ['date_birth' => $dateBirthValidation], 400);
+            }
+
             $plan = Plan::where('slug', 'free')->first();
 
             $existUserToDb = User::withTrashed()
@@ -79,7 +84,7 @@ class RegisterController extends Controller
                     'deleted_at'
                 )
                 ->first();
-            
+
             if ($existUserToDb) {
                 $existUser = [
                     'id' => $existUserToDb->id,
@@ -204,6 +209,96 @@ class RegisterController extends Controller
         } catch (\Throwable $ex) {
             Log::error(Message::BAD_REQUEST, [__METHOD__, $ex]);
             return $this->sendError(Message::BAD_REQUEST, [$ex->getMessage()], 400);
+        }
+    }
+
+    private function validateDateBirth($dateBirth)
+    {
+        // Se non obbligatoria, è valido
+        if (empty($dateBirth)) {
+            return true;
+        }
+
+        // 1. Controllo formato base (GG-MM-AAAA)
+        if (!preg_match('/^\d{2}-\d{2}-\d{4}$/', $dateBirth)) {
+            return 'Il formato della data di nascita deve essere GG-MM-AAAA (es: 15-04-1984)';
+        }
+
+        // 2. Parsing con verifica validità
+        $date = \DateTime::createFromFormat('d-m-Y', $dateBirth);
+        if (!$date || $date->format('d-m-Y') !== $dateBirth) {
+            return 'La data inserita non è valida. Verifica giorno, mese e anno.';
+        }
+
+        $year = (int)$date->format('Y');
+        $month = (int)$date->format('m');
+        $day = (int)$date->format('d');
+        $currentYear = (int)now()->format('Y');
+        $currentDate = now();
+
+        // 3. Controllo anno minimo (1900)
+        if ($year < 1900) {
+            return 'L\'anno di nascita non può essere precedente al 1900. Hai inserito: ' . $year;
+        }
+
+        // 4. Controllo anno futuro
+        if ($year > $currentYear) {
+            return 'L\'anno di nascita non può essere futuro. Hai inserito: ' . $year;
+        }
+
+        // 5. CONTROLLO SPECIFICO PER ANNI A 2 CIFRE (es: 0084)
+        // Se l'anno è troppo basso (es < 100) probabilmente l'utente ha inserito 2 cifre
+        if ($year < 100) {
+            $possibleYear4Digits = $year + 1900; // 84 -> 1984
+            if ($possibleYear4Digits <= $currentYear) {
+                return sprintf(
+                    'Hai inserito un anno a 2 cifre (%d). Forse intendevi %d? Per favore inserisci l\'anno completo a 4 cifre (es: 1984)',
+                    $year,
+                    $possibleYear4Digits
+                );
+            }
+            return 'Per favore inserisci l\'anno completo a 4 cifre (es: 1984)';
+        }
+
+        // 6. Controllo età minima (18 anni)
+        $birthDate = Carbon::create($year, $month, $day);
+        $age = $birthDate->age;
+
+        if ($age < 18) {
+            return sprintf('Devi avere almeno 18 anni per registrarti. La tua età sarebbe: %d anni', $age);
+        }
+
+        // 7. Controllo età massima (120 anni)
+        if ($age > 120) {
+            return sprintf('Età non valida. Hai inserito una data che corrisponde a %d anni', $age);
+        }
+
+        // 8. Controllo data non troppo vicina al futuro (es. domani)
+        if ($birthDate->isFuture()) {
+            return 'La data di nascita non può essere nel futuro';
+        }
+
+        // Tutti i controlli passati
+        return true;
+    }
+
+    private function parseDateBirth($dateBirth)
+    {
+        if (empty($dateBirth)) {
+            return null;
+        }
+
+        try {
+            // Assicurati che la data sia già stata validata
+            $date = Carbon::createFromFormat('d-m-Y', $dateBirth);
+            return $date->format('Y-m-d');
+        } catch (\Exception $e) {
+            // Questo non dovrebbe accadere perché la validazione è già passata
+            Log::error('Errore parsing data nonostante validazione', [
+                'date_birth' => $dateBirth,
+                'error' => $e->getMessage()
+            ]);
+            return null;
         }
     }
 }

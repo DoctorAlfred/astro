@@ -28,7 +28,7 @@ class DiaryController extends AuthController
             if (!$year) {
                 $year = Carbon::now()->year;
             }
-            
+
             // Search by query
             $query = Diary::where('user_id', $this->user['id'])
                 ->where('category', 'diary')
@@ -48,7 +48,7 @@ class DiaryController extends AuthController
             }
 
             $diaries = $query->get(['id', 'entry_date', 'title', 'description']);
-            
+
             // Get data for Day
             if ($day) {
                 $entries = $diaries->map(function ($diary) {
@@ -205,6 +205,7 @@ class DiaryController extends AuthController
                     'subscriptions.updated_at as started'
                 )
                 ->first();
+
             if (!$subscription->canWriteDiary) {
                 return $this->sendError(Message::CREATE_KO, [
                     'status' => false,
@@ -212,20 +213,30 @@ class DiaryController extends AuthController
                 ], 404);
             }
 
-
             $data = $request->validate([
                 'title'       => 'required|string|max:150',
                 'description' => 'required|string|max:5000',
             ]);
 
-            $entry = Diary::updateOrCreate(
-                [
-                    'user_id' => $this->user['id'],
-                    'entry_date' => today(),
-                    'category' => 'diary'
-                ],
-                $data
-            );
+            $existingEntry = Diary::where('user_id', $this->user['id'])
+                ->where('entry_date', today())
+                ->where('category', 'diary')
+                ->first();
+
+            if ($existingEntry) {
+                return $this->sendError(Message::CREATE_KO, [
+                    'status' => false,
+                    'message' => 'exist'
+                ], 409); // 409 Conflict
+            }
+
+            $entry = Diary::create([
+                'user_id' => $this->user['id'],
+                'entry_date' => today(),
+                'category' => $data['category'] ?? 'diary',
+                'title' => $data['title'],
+                'description' => $data['description'],
+            ]);
 
             return $this->sendResponse(Message::CREATE_OK, [
                 'status' => 'success',

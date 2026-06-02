@@ -51,10 +51,10 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Vav',
                         'value' => 6,
                         'meaning' => [
-                            'it' => 'Connessione verticale che apre il canale tra il divino e il creato.',
-                            'en' => 'Vertical connection opening the channel between the divine and creation.',
-                            'la' => 'Connexio verticalis quae canalem inter divinum et creatum aperit.',
-                            'he' => 'חיבור אנכי הפותח את הערוץ בין האלוהי לבריאה'
+                            'it' => 'Prima lettera — CONNESSIONE: La propria vita inizia con l’atto di collegare il cielo e la terra. Si è chiamati a essere un ponte, non un muro. Il proprio compito è aprire canali dove prima c’era separatezza.',
+                            'en' => 'First letter — CONNECTION: One’s life begins with the act of connecting heaven and earth. One is called to be a bridge, not a wall. One’s task is to open channels where separation once reigned.',
+                            'la' => 'Littera prima — CONNEXIO: Vita propria incipit ab actu coniungendi caelum et terram. Vocatur quis ut sit pons, non murus. Officium est aperire canales ubi prius erat separatio.',
+                            'he' => 'אות ראשונה — חיבור: חייו של אדם מתחילים במעשה של חיבור שמיים וארץ. נקרא האדם להיות גשר, לא חומה. תפקידו לפתוח ערוצים במקום שבו הייתה נפרדות.',
                         ]
                     ],
                     [
@@ -62,10 +62,10 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'He',
                         'value' => 5,
                         'meaning' => [
-                            'it' => 'Rivelazione e manifestazione del soffio divino nella realtà.',
-                            'en' => 'Revelation and manifestation of the divine breath into reality.',
-                            'la' => 'Revelatio et manifestatio spiritus divini in realitate.',
-                            'he' => 'התגלות ונשימת הרוח האלוהית במציאות'
+                            'it' => 'Seconda lettera — RIVELAZIONE: Attraverso di sé passa un soffio che rende visibile ciò che era nascosto. La propria vita rivela senso dove c’era caos. Non si tratta di inventare, ma di lasciare che la verità si manifesti attraverso le proprie azioni.',
+                            'en' => 'Second letter — REVELATION: Through oneself passes a breath that makes visible what was hidden. One\'s life reveals meaning where there was chaos. It is not about inventing, but allowing truth to manifest through one\'s actions.',
+                            'la' => 'Littera secunda — REVELATIO: Per se ipsum transit spiritus qui manifestat quod erat occultum. Vita propria revelat sensum ubi erat chaos. Non est invenire, sed veritatem per actiones suas manifestare.',
+                            'he' => 'אות שנייה — התגלות: דרך עצמו עוברת נשימה ההופכת את הנסתר לגלוי. חייו של אדם מגלים משמעות במקום שהיה תוהו. לא להמציא, אלא לתת לאמת להתגלות דרך מעשיו.',
                         ]
                     ],
                     [
@@ -73,10 +73,10 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Vav',
                         'value' => 6,
                         'meaning' => [
-                            'it' => 'Connessione che stabilizza e trasmette l’energia divina nel mondo manifesto.',
-                            'en' => 'Connection that stabilizes and transmits divine energy into the manifested world.',
-                            'la' => 'Connexio quae energiam divinam in mundo manifesto stabilit et transmittit.',
-                            'he' => 'חיבור המייצב ומעביר את האנרגיה האלוהית בעולם הגלוי'
+                            'it' => 'Terza lettera — CONNESSIONE STABILIZZANTE: Dopo aver aperto il canale e rivelato, occorre rendere stabile il legame. La propria missione è trasformare l’intuizione in presenza duratura, l’energia in forma. Senza questo passaggio, la rivelazione si disperde.',
+                            'en' => 'Third letter — STABILIZING CONNECTION: After opening the channel and revealing, one must make the bond stable. One\'s mission is to transform intuition into lasting presence, energy into form. Without this step, revelation scatters.',
+                            'la' => 'Littera tertia — CONNEXIO STABILIS: Post apertum canalem et revelationem, stabile reddendum est vinculum. Missio propria est transformare intuitionem in praesentiam durabilem, industriam in formam. Sine hoc gradu, revelatio dissipatur.',
+                            'he' => 'אות שלישית — חיבור מייצב: לאחר פתיחת הערוץ וההתגלות, יש לייצב את הקשר. משימתו של האדם היא להפוך את האינטואיציה לנוכחות מתמשכת, את האנרגיה לצורה. ללא שלב זה, ההתגלות מתפזרת.',
                         ]
                     ],
                 ],
@@ -132,7 +132,7 @@ class AngelMeaningsSeeder extends Seeder
             [
                 'number' => 2,
                 'name' => "Yelyel (Ye-l-y el)",
-                'kabal_name' => "Jeliel", // Giacobbe Jacob più antico Yakob in forma latina tradizionale (Golden Dawn / Ambelain)
+                'kabal_name' => "Yeliel", // Giacobbe Jacob più antico Yakob in forma latina tradizionale (Golden Dawn / Ambelain)
                 // Yod = scintilla divina originaria (punto primordiale)
                 // Lamed = elevazione, apprendimento, direzione verso l’Alto (movimento ascensionale)
                 // Yod = scintilla divina originaria (ritorno al principio)
@@ -162,33 +162,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Yod',
                         'value' => 10,
                         'meaning' => [
-                            'it' => 'Scintilla divina originaria che dà inizio al movimento dell’esistenza.',
-                            'en' => 'Primordial divine spark that initiates the movement of existence.',
-                            'la' => 'Scintilla divina primordialis quae motum existentiae init.',
-                            'he' => 'ניצוץ אלוהי ראשוני הפותח את תנועת הקיום'
-                        ]
+                            'it' => 'Prima lettera — ORIGINE: La propria vita è un ritorno consapevole alla scintilla divina originaria. Ogni azione nasce da un punto luminoso interiore. Ciò che si è chiamati a fare è iniziare dal proprio nucleo essenziale, non dalle apparenze.',
+                            'en' => 'First letter — ORIGIN: One\'s life is a conscious return to the primordial divine spark. Every action arises from an inner luminous point. One is called to begin from one\'s essential core, not from appearances.',
+                            'la' => 'Littera prima — ORIGO: Vita propria est reditus conscius ad scintillam divinam primordialem. Omnis actio oritur ex puncto luminoso interiore. Vocatur quis ut incipiat a suo nucleo essentiali, non a speciebus.',
+                            'he' => 'אות ראשונה — מקור: חייו של אדם הם חזרה מודעת אל הניצוץ האלוהי הראשוני. כל פעולה נובעת מנקודה פנימית מאירה. נקרא האדם להתחיל מליבתו המהותית, לא ממראית העין.',
+                        ],
                     ],
                     [
                         'letter' => 'ל',
                         'name' => 'Lamed',
                         'value' => 30,
                         'meaning' => [
-                            'it' => 'Elevazione e guida spirituale che orienta verso l’Alto e ordina il cammino.',
-                            'en' => 'Spiritual elevation and guidance directing upward and ordering the path.',
-                            'la' => 'Elevatio et directio spiritualis quae sursum ducit et iter ordinat.',
-                            'he' => 'התעלות והכוונה רוחנית המובילה כלפי מעלה ומסדרת את הדרך'
-                        ]
+                            'it' => 'Seconda lettera — ELEVAZIONE: Attraverso l’apprendimento e l’orientamento spirituale, la propria vita si eleva. Ciò che si è chiamati a fare è imparare a salire senza perdere la radice. La direzione verso l’Alto ordina il cammino e dà senso ai passi.',
+                            'en' => 'Second letter — ELEVATION: Through learning and spiritual guidance, one\'s life rises. One is called to learn how to ascend without losing one\'s root. The upward direction orders the path and gives meaning to each step.',
+                            'la' => 'Littera secunda — ELEVATIO: Per doctrinam et directionem spiritualem, vita propria elevatur. Vocatur quis ut discat ascendere sine radicis amissione. Directio sursum iter ordinat et passibus sensum tribuit.',
+                            'he' => 'אות שנייה — התעלות: דרך למידה והכוונה רוחנית, חייו של אדם מתעלים. נקרא האדם ללמוד לעלות מבלי לאבד את השורש. הכיוון כלפי מעלה מסדר את הדרך ונותן משמעות לצעדים.',
+                        ],
                     ],
                     [
                         'letter' => 'י',
                         'name' => 'Yod',
                         'value' => 10,
                         'meaning' => [
-                            'it' => 'Ritorno al principio divino, compimento del ciclo e reintegrazione nell’unità originaria.',
-                            'en' => 'Return to the divine origin, completion of the cycle and reintegration into primordial unity.',
-                            'la' => 'Redditus ad principium divinum, completio circuli et reintegratio in unitatem primordialem.',
-                            'he' => 'חזרה למקור האלוהי, השלמת המעגל ושיבה לאחדות הראשונית'
-                        ]
+                            'it' => 'Terza lettera — RITORNO ALL’ORIGINE: Dopo l’elevazione, la propria vita completa il ciclo tornando consapevolmente al principio. Non si tratta di ripetizione, ma di reintegrazione nell’unità originaria. Ciò che si è chiamati a realizzare è chiudere il cerchio con maturità, portando nel punto di partenza la saggezza acquisita.',
+                            'en' => 'Third letter — RETURN TO ORIGIN: After elevation, one\'s life completes the cycle by consciously returning to the beginning. It is not repetition, but reintegration into primordial unity. One is called to close the circle with maturity, bringing acquired wisdom back to the starting point.',
+                            'la' => 'Littera tertia — REDDITUS AD ORIGINEM: Post elevationem, vita propria cyclum complet conscie redeundo ad principium. Non est repetitio, sed reintegratio in unitatem primordialem. Vocatur quis ut claudat circulum cum maturitate, sapientiam acquisitam ad punctum initialem referens.',
+                            'he' => 'אות שלישית — חזרה למקור: לאחר ההתעלות, חייו של אדם משלימים את המעגל בחזרה מודעת אל ההתחלה. לא מדובר בחזרה גרידא, אלא באינטגרציה מחדש אל האחדות הראשונית. נקרא האדם לסגור את המעגל בבגרות, להביא את החוכמה שנרכשה בחזרה אל נקודת ההתחלה.',
+                        ],
                     ],
                 ],
 
@@ -270,33 +270,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Samekh',
                         'value' => 60,
                         'meaning' => [
-                            'it' => 'Sostegno strutturale che avvolge e protegge, fondamento della stabilità.',
-                            'en' => 'Structural support that surrounds and protects, foundation of stability.',
-                            'la' => 'Sustentatio structurae circumdans et protegens, fundamentum stabilitatis.',
-                            'he' => 'תמיכה מבנית המקיפה ומגינה, יסוד היציבות'
-                        ]
+                            'it' => 'Prima lettera — SOSTEGNO: La propria vita si fonda su una struttura stabile che avvolge e protegge. Ciò che si è chiamati a fare è costruire basi solide per sé e per gli altri. Senza sostegno, nulla può durare; con esso, ogni cosa trova il suo posto.',
+                            'en' => 'First letter — SUPPORT: One\'s life is founded on a stable structure that surrounds and protects. One is called to build solid foundations for oneself and for others. Without support, nothing can last; with it, everything finds its place.',
+                            'la' => 'Littera prima — SUSTENTATIO: Vita propria fundatur in structura stabili quae circumdat et protegit. Vocatur quis ut aedificet fundamenta solida sibi et aliis. Sine sustentatione nihil durare potest; cum ea, omnia locum suum inveniunt.',
+                            'he' => 'אות ראשונה — תמיכה: חייו של אדם מבוססים על מבנה יציב המקיף ומגן. נקרא האדם לבנות יסודות מוצקים לעצמו ולאחרים. ללא תמיכה שום דבר לא יכול להחזיק מעמד; עם תמיכה, הכל מוצא את מקומו.',
+                        ],
                     ],
                     [
                         'letter' => 'י',
                         'name' => 'Yod',
                         'value' => 10,
                         'meaning' => [
-                            'it' => 'Scintilla originaria che attiva l’intenzione e orienta l’azione.',
-                            'en' => 'Primordial spark activating intention and directing action.',
-                            'la' => 'Scintilla primordialis intentionem excitans et actionem dirigens.',
-                            'he' => 'ניצוץ ראשוני המפעיל כוונה ומכוון פעולה'
-                        ]
+                            'it' => 'Seconda lettera — ORIGINE ATTIVA: All’interno del sostegno, si attiva una scintilla che orienta l’intenzione e l’azione. La propria vita non è solo protezione passiva, ma impulso cosciente. Ciò che si è chiamati a fare è agire partendo dal proprio nucleo più vero, trasformando la stabilità in movimento.',
+                            'en' => 'Second letter — ACTIVE ORIGIN: Within the support, a spark activates and orients intention and action. One\'s life is not merely passive protection, but conscious impulse. One is called to act from one\'s truest core, transforming stability into movement.',
+                            'la' => 'Littera secunda — ORIGO ACTIVA: Intra sustentationem, scintilla intentionem et actionem excitat et dirigit. Vita propria non est mera protectio passiva, sed impulsus conscius. Vocatur quis ut agat ex suo nucleo verissimo, stabilitatem in motum transformans.',
+                            'he' => 'אות שנייה — מקור פעיל: בתוך התמיכה, ניצוץ מפעיל ומכוון כוונה ופעולה. חייו של אדם אינם רק הגנה פסיבית, אלא דחף מודע. נקרא האדם לפעול מליבתו האמיתית ביותר, להפוך יציבות לתנועה.',
+                        ],
                     ],
                     [
                         'letter' => 'ט',
                         'name' => 'Teth',
                         'value' => 9,
                         'meaning' => [
-                            'it' => 'Bene custodito che matura interiormente e si manifesta come protezione compiuta.',
-                            'en' => 'Guarded goodness maturing inwardly and manifesting as fulfilled protection.',
-                            'la' => 'Bonum custoditum interius maturans et in protectione perfecta manifestatum.',
-                            'he' => 'טוב שמור המתפתח בפנים ומתבטא כהגנה מושלמת'
-                        ]
+                            'it' => 'Terza lettera — BENE CUSTODITO: Il bene che matura interiormente diventa protezione compiuta. La propria vita è un grembo dove il bene viene custodito fino al momento giusto per manifestarsi. Ciò che si è chiamati a realizzare è non forzare la nascita, ma fidarsi del tempo di maturazione. Alla fine, la protezione non è un muro ma un frutto.',
+                            'en' => 'Third letter — GUARDED GOODNESS: Goodness that matures inwardly becomes fulfilled protection. One\'s life is a womb where goodness is guarded until the right moment to manifest. One is called not to force the birth, but to trust the time of maturation. In the end, protection is not a wall but a fruit.',
+                            'la' => 'Littera tertia — BONUM CUSTODITUM: Bonum quod interius maturat fit protectio perfecta. Vita propria est uterus ubi bonum custoditur usque ad tempus manifestationis. Vocatur quis ut non cogat nativitatem, sed confidat tempori maturationis. Denique protectio non est murus sed fructus.',
+                            'he' => 'אות שלישית — טוב שמור: הטוב המתפתח בפנים הופך להגנה מושלמת. חייו של אדם הם רחם שבו הטוב נשמר עד לרגע המתאים להתגלות. נקרא האדם לא לכפות את הלידה, אלא לבטוח בזמן ההבשלה. בסופו של דבר, ההגנה אינה חומה אלא פרי.',
+                        ],
                     ],
                 ],
 
@@ -379,33 +379,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Ayin',
                         'value' => 70,
                         'meaning' => [
-                            'it' => 'Visione profonda che apre la consapevolezza e permette discernimento.',
-                            'en' => 'Deep vision opening awareness and enabling discernment.',
-                            'la' => 'Visio profunda conscientiam aperiens et discretionem permittens.',
-                            'he' => 'ראייה עמוקה הפותחת מודעות ומאפשרת הבחנה'
-                        ]
+                            'it' => 'Prima lettera — VISIONE PROFONDA: La propria vita è dotata di uno sguardo che penetra oltre le apparenze. Ciò che si è chiamati a fare è aprire la propria consapevolezza e imparare a discernere. Senza visione, si cammina nel buio; con essa, ogni scelta diventa chiara.',
+                            'en' => 'First letter — DEEP VISION: One\'s life is endowed with a gaze that penetrates beyond appearances. One is called to open one\'s awareness and learn to discern. Without vision, one walks in darkness; with it, every choice becomes clear.',
+                            'la' => 'Littera prima — VISIO PROFUNDA: Vita propria dotatur intuitu qui penetrat ultra apparentias. Vocatur quis ut aperiat suam conscientiam et discat discernere. Sine visione, in tenebris ambulatur; cum ea, omnis electio clara fit.',
+                            'he' => 'אות ראשונה — ראייה עמוקה: חייו של אדם מצוידים במבט החודר מעבר למראה. נקרא האדם לפתוח את מודעותו וללמוד להבחין. ללא ראייה, הולכים בחושך; עם ראייה, כל בחירה נעשית ברורה.',
+                        ],
                     ],
                     [
                         'letter' => 'ל',
                         'name' => 'Lamed',
                         'value' => 30,
                         'meaning' => [
-                            'it' => 'Elevazione attraverso apprendimento e orientamento verso l’ordine superiore.',
-                            'en' => 'Elevation through learning and orientation toward higher order.',
-                            'la' => 'Elevatio per doctrinam et directio ad ordinem superiorem.',
-                            'he' => 'התעלות דרך לימוד והכוונה לסדר עליון'
-                        ]
+                            'it' => 'Seconda lettera — ELEVAZIONE: Dopo aver visto, la propria vita si eleva attraverso l’apprendimento. Ciò che si è chiamati a fare è orientarsi verso l’ordine superiore, lasciando che la conoscenza trasformi la prospettiva. L’elevazione non è fuga dal mondo, ma sguardo più alto su di esso.',
+                            'en' => 'Second letter — ELEVATION: After seeing, one\'s life rises through learning. One is called to orient oneself toward higher order, allowing knowledge to transform one\'s perspective. Elevation is not escape from the world, but a higher gaze upon it.',
+                            'la' => 'Littera secunda — ELEVATIO: Post visionem, vita propria elevatur per doctrinam. Vocatur quis ut se orientetur ad ordinem superiorem, sciens ut perspectivam transformet. Elevatio non est fuga mundi, sed altior intuitus super eum.',
+                            'he' => 'אות שנייה — התעלות: לאחר הראייה, חייו של אדם מתעלים דרך למידה. נקרא האדם לכוון את עצמו אל הסדר העליון, לאפשר לידע לשנות את הפרספקטיבה. התעלות אינה בריחה מהעולם, אלא מבט גבוה יותר עליו.',
+                        ],
                     ],
                     [
                         'letter' => 'ם',
                         'name' => 'Mem',
                         'value' => 40,
                         'meaning' => [
-                            'it' => 'Flusso compiuto e maturazione interiore che conduce alla trasformazione.',
-                            'en' => 'Fulfilled flow and inner maturation leading to transformation.',
-                            'la' => 'Fluxus perfectus et maturatio interior ad transformationem ducens.',
-                            'he' => 'זרימה מושלמת והבשלה פנימית המובילה לשינוי'
-                        ]
+                            'it' => 'Terza lettera — FLUSSO COMPIUTO: Dopo la visione e l’elevazione, la propria vita diventa un flusso che matura e trasforma. Ciò che si è chiamati a realizzare è lasciare che l’energia scorra senza forzature, portando a compimento ciò che è stato iniziato. La trasformazione non è violenta: è acqua che scolpisce la pietra con pazienza.',
+                            'en' => 'Third letter — FULFILLED FLOW: After vision and elevation, one\'s life becomes a flow that matures and transforms. One is called to let energy flow without forcing, bringing to completion what has been begun. Transformation is not violent: it is water that sculpts stone with patience.',
+                            'la' => 'Littera tertia — FLUXUS PERFECTUS: Post visionem et elevationem, vita propria fit fluxus qui maturat et transformat. Vocatur quis ut permittat industriam fluere sine vi, ad consummationem ducens quod inceptum est. Transformatio non est violenta: est aqua quae lapidem patientia sculpit.',
+                            'he' => 'אות שלישית — זרימה מושלמת: לאחר הראייה וההתעלות, חייו של אדם הופכים לזרימה המבשילה ומשנה. נקרא האדם לתת לאנרגיה לזרום ללא כפייה, להביא לידי השלמה את מה שהתחיל. השינוי אינו אלים: הוא מים המפסלים אבן בסבלנות.',
+                        ],
                     ],
                 ],
 
@@ -488,33 +488,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Mem',
                         'value' => 40,
                         'meaning' => [
-                            'it' => 'Flusso originario e matrice interiore da cui nasce la purificazione.',
-                            'en' => 'Primordial flow and inner matrix from which purification arises.',
-                            'la' => 'Fluxus primordialis et matrix interior unde purificatio oritur.',
-                            'he' => 'זרימה ראשונית ומטריצה פנימית שממנה נולד הטיהור'
-                        ]
+                            'it' => 'Prima lettera — FLUSSO ORIGINARIO: La propria vita attinge a una fonte interiore da cui nasce ogni purificazione. Ciò che si è chiamati a fare è entrare in contatto con la propria matrice profonda, lasciando che le acque della coscienza scorrano libere. Senza questo flusso, la vita ristagna; con esso, ogni impurità può essere sciolta.',
+                            'en' => 'First letter — PRIMORDIAL FLOW: One\'s life draws from an inner source from which all purification arises. One is called to connect with one\'s deep matrix, allowing the waters of consciousness to flow freely. Without this flow, life stagnates; with it, every impurity can be dissolved.',
+                            'la' => 'Littera prima — FLUXUS PRIMORDIALIS: Vita propria haurit ex fonte interiore unde omnis purificatio oritur. Vocatur quis ut coniungatur cum sua matrice profunda, permittens aquas conscientiae libere fluere. Sine hoc fluxu, vita stagnat; cum eo, omnis impuritas dissolvi potest.',
+                            'he' => 'אות ראשונה — זרימה ראשונית: חייו של אדם שואבים ממקור פנימי שממנו נולד כל טיהור. נקרא האדם להתחבר למטריצה העמוקה שלו, לאפשר למי התודעה לזרום בחופשיות. ללא זרימה זו, החיים עומדים; עם זרימה, כל טומאה יכולה להתמוסס.',
+                        ],
                     ],
                     [
                         'letter' => 'ה',
                         'name' => 'He',
                         'value' => 5,
                         'meaning' => [
-                            'it' => 'Rivelazione che apre ciò che era nascosto e rende visibile la verità.',
-                            'en' => 'Revelation opening what was hidden and making truth visible.',
-                            'la' => 'Revelatio occultum aperiens et veritatem manifestans.',
-                            'he' => 'התגלות הפותחת את הנסתר ומגלה את האמת'
-                        ]
+                            'it' => 'Seconda lettera — RIVELAZIONE: Dal flusso emerge una luce che apre ciò che era nascosto. La propria vita diventa capace di rendere visibile la verità. Ciò che si è chiamati a fare è non temere la rivelazione: anche ciò che sembra oscuro, una volta portato alla luce, può essere compreso e trasformato.',
+                            'en' => 'Second letter — REVELATION: From the flow emerges a light that opens what was hidden. One\'s life becomes capable of making truth visible. One is called not to fear revelation: even what seems dark, once brought to light, can be understood and transformed.',
+                            'la' => 'Littera secunda — REVELATIO: Ex fluxu emergit lux quae aperit quod erat occultum. Vita propria fit capax manifestandi veritatem. Vocatur quis ut non timeat revelationem: etiam quod videtur obscurum, ad lucem delatum, intellegi et transformari potest.',
+                            'he' => 'אות שנייה — התגלות: מהזרימה עולה אור הפותח את מה שהיה נסתר. חייו של אדם הופכים למסוגלים להפוך את האמת לגלויה. נקרא האדם לא לפחד מההתגלות: אפילו מה שנראה אפל, לאחר שהובא לאור, יכול להיות מובן ומשונה.',
+                        ],
                     ],
                     [
                         'letter' => 'ש',
                         'name' => 'Shin',
                         'value' => 300,
                         'meaning' => [
-                            'it' => 'Fuoco compiuto che trasforma e purifica attraverso intensità spirituale.',
-                            'en' => 'Fulfilled fire that transforms and purifies through spiritual intensity.',
-                            'la' => 'Ignis perfectus qui per intensitatem spiritualem transformat et purificat.',
-                            'he' => 'אש מושלמת המשנה ומטהרת בעוצמה רוחנית'
-                        ]
+                            'it' => 'Terza lettera — FUOCO TRASFORMANTE: Dopo il flusso e la rivelazione, la propria vita accende un fuoco che trasforma e purifica attraverso l’intensità spirituale. Ciò che si è chiamati a realizzare è lasciare che questo fuoco bruci ciò che è falso, senza essere consumati. La trasformazione non è distruzione: è alchimia che cambia il piombo in oro.',
+                            'en' => 'Third letter — TRANSFORMING FIRE: After the flow and revelation, one\'s life ignites a fire that transforms and purifies through spiritual intensity. One is called to let this fire burn what is false, without being consumed. Transformation is not destruction: it is alchemy that changes lead into gold.',
+                            'la' => 'Littera tertia — IGNIS TRANSFORMANS: Post fluxum et revelationem, vita propria accendit ignem qui per spiritualem intensitatem transformat et purificat. Vocatur quis ut permittat hunc ignem urere quod falsum est, sine consummatione. Transformatio non est destructio: est alchemia quae plumbum in aurum mutat.',
+                            'he' => 'אות שלישית — אש משנה: לאחר הזרימה וההתגלות, חייו של אדם מציתים אש המשנה ומטהרת בעוצמה רוחנית. נקרא האדם לתת לאש זו לשרוף את מה ששקרי, מבלי להישרף. השינוי אינו הרס: הוא אלכימיה ההופכת עופרת לזהב.',
+                        ],
                     ],
                 ],
 
@@ -597,33 +597,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Lamed',
                         'value' => 30,
                         'meaning' => [
-                            'it' => 'Elevazione attraverso la conoscenza e tensione verso l’apprendimento.',
-                            'en' => 'Elevation through knowledge and aspiration toward learning.',
-                            'la' => 'Elevatio per scientiam et intentio ad doctrinam.',
-                            'he' => 'התעלות דרך ידע ושאיפה ללימוד'
-                        ]
+                            'it' => 'Prima lettera — ELEVAZIONE: La propria vita è tesa verso l’apprendimento e la conoscenza. Ciò che si è chiamati a fare è salire, passo dopo passo, senza mai credere di aver già compreso tutto. L’elevazione non è un privilegio, ma un impegno: ogni giorno si può imparare qualcosa di nuovo.',
+                            'en' => 'First letter — ELEVATION: One\'s life is oriented toward learning and knowledge. One is called to ascend, step by step, without ever believing one has already understood everything. Elevation is not a privilege, but a commitment: every day one can learn something new.',
+                            'la' => 'Littera prima — ELEVATIO: Vita propria tendit ad doctrinam et scientiam. Vocatur quis ut ascendat, gradatim, numquam credens se omnia iam intellexisse. Elevatio non est privilegium, sed officium: cotidie aliquid novi discere potest.',
+                            'he' => 'אות ראשונה — התעלות: חייו של אדם מכוונים ללמידה וידע. נקרא האדם לעלות, צעד אחר צעד, מבלי להאמין שכבר הבין הכל. התעלות אינה פריבילגיה, אלא מחויבות: כל יום אפשר ללמוד משהו חדש.',
+                        ],
                     ],
                     [
                         'letter' => 'ל',
                         'name' => 'Lamed',
                         'value' => 30,
                         'meaning' => [
-                            'it' => 'Rafforzamento dell’elevazione e consolidamento della coscienza.',
-                            'en' => 'Strengthening of elevation and consolidation of awareness.',
-                            'la' => 'Confirmatio elevationis et consolidatio conscientiae.',
-                            'he' => 'חיזוק ההתעלות והעמקת המודעות'
-                        ]
+                            'it' => 'Seconda lettera — RAFFORZAMENTO: La propria vita non si accontenta di una sola elevazione. Ciò che si è chiamati a fare è rafforzare e consolidare la coscienza, rendendo stabile ciò che è stato acquisito. Non basta salire una volta: occorre rendere quella altezza dimora abituale.',
+                            'en' => 'Second letter — STRENGTHENING: One\'s life is not satisfied with a single elevation. One is called to strengthen and consolidate awareness, making stable what has been acquired. It is not enough to rise once: one must make that height a habitual dwelling.',
+                            'la' => 'Littera secunda — CONFIRMATIO: Vita propria non contenta est una elevatione. Vocatur quis ut confirmet et consolidet conscientiam, stabilem reddens quod acquisitum est. Non sufficit semel ascendere: oportet ut illa altitudo fiat habitatio consueta.',
+                            'he' => 'אות שנייה — חיזוק: חייו של אדם אינם מסתפקים בהתעלות אחת. נקרא האדם לחזק ולגבש את המודעות, לייצב את מה שנרכש. לא מספיק לעלות פעם אחת: יש להפוך את הגובה הזה למשכן קבוע.',
+                        ],
                     ],
                     [
                         'letter' => 'ה',
                         'name' => 'He',
                         'value' => 5,
                         'meaning' => [
-                            'it' => 'Apertura luminosa che rende visibile ciò che è stato compreso interiormente.',
-                            'en' => 'Luminous opening that makes visible what has been understood inwardly.',
-                            'la' => 'Apertio luminosa quae intellectum interiorem manifestat.',
-                            'he' => 'פתיחה מאירה המגלה את ההבנה הפנימית'
-                        ]
+                            'it' => 'Terza lettera — RIVELAZIONE LUMINOSA: Dopo aver elevato e consolidato, la propria vita si apre come una luce che rende visibile ciò che è stato compreso interiormente. Ciò che si è chiamati a realizzare è manifestare nel mondo la saggezza acquisita. La vera conoscenza non rimane nascosta: diventa trasparenza che illumina anche gli altri.',
+                            'en' => 'Third letter — LUMINOUS REVELATION: After elevating and consolidating, one\'s life opens like a light that makes visible what has been understood inwardly. One is called to manifest in the world the wisdom acquired. True knowledge does not remain hidden: it becomes a transparency that illuminates others as well.',
+                            'la' => 'Littera tertia — REVELATIO LUMINOSA: Post elevationem et confirmationem, vita propria aperit se sicut lux quae manifestat quod interius intellectum est. Vocatur quis ut manifestet in mundo sapientiam acquisitam. Vera scientia non manet occulta: fit transparentia quae etiam alios illuminat.',
+                            'he' => 'אות שלישית — התגלות מאירה: לאחר ההתעלות והחיזוק, חייו של אדם נפתחים כמו אור ההופך את ההבנה הפנימית לגלויה. נקרא האדם לגלות בעולם את החוכמה שנרכשה. ידע אמיתי אינו נשאר נסתר: הוא הופך לשקיפות המאירה גם אחרים.',
+                        ],
                     ],
                 ],
 
@@ -675,7 +675,7 @@ class AngelMeaningsSeeder extends Seeder
             [
                 'number' => 7,
                 'name' => "Akayah (A-k-a yah)",
-                'kabal_name' => "Achayah",
+                'kabal_name' => "Akhayah",
 
                 // Aleph = principio unitario / origine indivisa
                 // Kaf = contenitore / forma che accoglie
@@ -706,33 +706,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Aleph',
                         'value' => 1,
                         'meaning' => [
-                            'it' => 'Principio unitario, origine indivisa e radice dell’essere.',
-                            'en' => 'Unitary principle, undivided origin and root of being.',
-                            'la' => 'Principium unitarium et radix existentiae.',
-                            'he' => 'עיקרון אחדותי ושורש הקיום'
-                        ]
+                            'it' => 'Prima lettera — PRINCIPIO UNITARIO: La propria vita affonda le radici in un’origine indivisa, precedente ogni separazione. Ciò che si è chiamati a fare è ricordare che esiste un’unità silenziosa da cui tutto proviene. Prima di agire, prima di parlare, c’è un respiro unico che ci accomuna.',
+                            'en' => 'First letter — UNITARY PRINCIPLE: One\'s life is rooted in an undivided origin, prior to all separation. One is called to remember that there is a silent unity from which everything comes. Before acting, before speaking, there is a single breath that unites us.',
+                            'la' => 'Littera prima — PRINCIPIUM UNITARIUM: Vita propria radicatur in origine indivisa, ante omnem separationem. Vocatur quis ut meminerit esse unitatem silentem ex qua omnia procedunt. Ante agere, ante loqui, est unus spiritus qui nos coniungit.',
+                            'he' => 'אות ראשונה — עיקרון אחדותי: חייו של אדם מושרשים במקור בלתי מחולק, הקודם לכל הפרדה. נקרא האדם לזכור כי ישנה אחדות שקטה שממנה הכל בא. לפני הפעולה, לפני הדיבור, יש נשימה אחת המאחדת אותנו.',
+                        ],
                     ],
                     [
                         'letter' => 'כ',
                         'name' => 'Kaf',
                         'value' => 20,
                         'meaning' => [
-                            'it' => 'Contenitore della potenzialità, forma che accoglie e struttura l’esperienza.',
-                            'en' => 'Container of potential, form that receives and structures experience.',
-                            'la' => 'Vas potentiae quod experientiam format.',
-                            'he' => 'כלי הפוטנציאל המעצב את החוויה'
-                        ]
+                            'it' => 'Seconda lettera — CONTENITORE: Dall’unità originaria emerge una forma che accoglie e struttura l’esperienza. La propria vita è un vaso che contiene potenzialità. Ciò che si è chiamati a fare è dare forma senza irrigidire, accogliere senza imprigionare. Il contenitore è sacro perché custodisce il seme del ritorno.',
+                            'en' => 'Second letter — CONTAINER: From the original unity emerges a form that receives and structures experience. One\'s life is a vessel that contains potential. One is called to give form without hardening, to receive without imprisoning. The container is sacred because it holds the seed of return.',
+                            'la' => 'Littera secunda — VAS: Ex unitate originali emergit forma quae experientiam accipit et structurat. Vita propria est vas quod potentialitatem continet. Vocatur quis ut formet sine induratione, accipiat sine incarceratione. Vas sacrum est quia semen reditus custodit.',
+                            'he' => 'אות שנייה — כלי: מהאחדות המקורית עולה צורה המקבלת ומבנה את החוויה. חייו של אדם הם כלי המכיל פוטנציאל. נקרא האדם לתת צורה מבלי להקשיח, לקבל מבלי לכלוא. הכלי קדוש כי הוא שומר את זרע החזרה.',
+                        ],
                     ],
                     [
                         'letter' => 'א',
                         'name' => 'Aleph',
                         'value' => 1,
                         'meaning' => [
-                            'it' => 'Ritorno consapevole all’unità dopo il processo di maturazione.',
-                            'en' => 'Conscious return to unity after maturation.',
-                            'la' => 'Redditus conscius ad unitatem post maturationem.',
-                            'he' => 'חזרה מודעת לאחדות לאחר תהליך ההבשלה'
-                        ]
+                            'it' => 'Terza lettera — RITORNO ALL’UNITÀ: Dopo aver dato forma all’esperienza, la propria vita compie un ritorno consapevole all’unità originaria. Ciò che si è chiamati a realizzare è non disperdersi nel molteplice, ma ricordare che ogni forma è temporanea e che la vera meta è il ritorno. Non si tratta di fuggire dal mondo, ma di attraversarlo con la leggerezza di chi sa da dove viene e dove torna.',
+                            'en' => 'Third letter — RETURN TO UNITY: After having given form to experience, one\'s life makes a conscious return to the original unity. One is called not to disperse in multiplicity, but to remember that every form is temporary and that the true goal is return. It is not about escaping the world, but moving through it with the lightness of one who knows where they come from and where they return.',
+                            'la' => 'Littera tertia — REDDITUS AD UNITATEM: Postquam formam experientiae dedit, vita propria facit reditum conscium ad unitatem originalem. Vocatur quis ut non dispergatur in multitudine, sed meminerit omnem formam esse temporalem et verum finem esse reditum. Non est de mundo fugere, sed per eum ambulare cum levitate eius qui scit unde venit et quo redit.',
+                            'he' => 'אות שלישית — חזרה לאחדות: לאחר שנתן צורה לחוויה, חייו של אדם עושים חזרה מודעת אל האחדות המקורית. נקרא האדם שלא להתפזר בריבוי, אלא לזכור שכל צורה זמנית ושהמטרה האמיתית היא החזרה. לא מדובר בבריחה מהעולם, אלא בתנועה דרכו בקלילות של מי שיודע מאין בא ולאן שב.',
+                        ],
                     ],
                 ],
 
@@ -815,33 +815,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Kaf',
                         'value' => 20,
                         'meaning' => [
-                            'it' => 'Potenzialità operativa che accoglie e trasforma in azione concreta.',
-                            'en' => 'Operative potential that receives and transforms into concrete action.',
-                            'la' => 'Potentia operativa quae in actum convertitur.',
-                            'he' => 'פוטנציאל פעיל ההופך למעשה ממשי'
-                        ]
+                            'it' => 'Prima lettera — POTENZIALITÀ OPERATIVA: La propria vita è dotata di una forza che accoglie le opportunità e le trasforma in azioni concrete. Ciò che si è chiamati a fare è non disperdere il proprio potenziale, ma raccoglierlo e plasmarlo. Il seme va piantato, non custodito per sempre. La potenzialità diventa reale solo quando si traduce in gesto.',
+                            'en' => 'First letter — OPERATIVE POTENTIAL: One\'s life is endowed with a force that receives opportunities and transforms them into concrete actions. One is called not to disperse one\'s potential, but to gather it and shape it. The seed must be planted, not kept forever. Potential becomes real only when translated into gesture.',
+                            'la' => 'Littera prima — POTENTIA OPERATIVA: Vita propria dotatur vi quae opportunitates recipit et in actiones concretas transformat. Vocatur quis ut non dispergat suum potentiale, sed colligat et formet. Semen plantandum est, non in aeternum custodiendum. Potentia fit realis tantum cum in gestum vertitur.',
+                            'he' => 'אות ראשונה — פוטנציאל פעיל: חייו של אדם מצוידים בכוח המקבל הזדמנויות והופך אותן לפעולות קונקרטיות. נקרא האדם לא לפזר את הפוטנציאל שלו, אלא לאסוף ולעצב אותו. את הזרע יש לזרוע, לא לשמר לעד. הפוטנציאל הופך לממשי רק כאשר הוא מתורגם למעשה.',
+                        ],
                     ],
                     [
                         'letter' => 'ה',
                         'name' => 'He',
                         'value' => 5,
                         'meaning' => [
-                            'it' => 'Apertura rivelatrice che permette alla forza di manifestarsi.',
-                            'en' => 'Revealing openness that allows force to manifest.',
-                            'la' => 'Apertio revelans quae vim manifestari sinit.',
-                            'he' => 'פתיחה מגלה המאפשרת לכוח להתגלות'
-                        ]
+                            'it' => 'Seconda lettera — APERTURA RIVELATRICE: Dall’azione concreta emerge un’apertura che permette alla forza di manifestarsi pienamente. La propria vita non agisce nel buio: ciò che si è chiamati a fare è lasciare che la propria azione sia trasparente alla luce. Non si tratta di mostrarsi, ma di rendere visibile il bene che si compie. L’apertura è la porta attraverso cui l’energia diventa benedizione per gli altri.',
+                            'en' => 'Second letter — REVEALING OPENNESS: From concrete action emerges an opening that allows force to manifest fully. One\'s life does not act in darkness: one is called to let one\'s action be transparent to light. It is not about showing oneself, but making visible the good one accomplishes. Openness is the door through which energy becomes a blessing for others.',
+                            'la' => 'Littera secunda — APERTIO REVELANS: Ex actione concreta emergit apertio quae permittit vim plene manifestari. Vita propria non agit in tenebris: vocatur quis ut sua actio sit transparens ad lucem. Non est de se ostendere, sed de bono quod facit visibile facere. Apertio est ianua per quam energia fit benedictio aliis.',
+                            'he' => 'אות שנייה — פתיחה מגלה: מהפעולה הקונקרטית עולה פתיחה המאפשרת לכוח להתגלות במלואו. חייו של אדם אינם פועלים בחושך: נקרא האדם לתת לפעולתו להיות שקופה לאור. לא מדובר בהתפארות, אלא בהפיכת הטוב שהוא עושה לגלוי. הפתיחה היא הדלת שדרכה האנרגיה הופכת לברכה עבור אחרים.',
+                        ],
                     ],
                     [
                         'letter' => 'ת',
                         'name' => 'Tav',
                         'value' => 400,
                         'meaning' => [
-                            'it' => 'Sigillo finale e compimento concreto di ciò che è stato iniziato.',
-                            'en' => 'Final seal and concrete completion of what was initiated.',
-                            'la' => 'Sigillum finale et consummatio concreta.',
-                            'he' => 'חותם סופי והשלמה מעשית'
-                        ]
+                            'it' => 'Terza lettera — SIGILLO E COMPIMENTO: Dopo aver agito e rivelato, la propria vita appone un sigillo finale che rende compiuto ciò che è stato iniziato. Ciò che si è chiamati a realizzare è portare a termine senza lasciare tracce aperte. Il compimento non è una fine violenta, ma una chiusura naturale, come il frutto che matura e si stacca dall’albero. Il sigillo non imprigiona: protegge e onora ciò che è stato fatto.',
+                            'en' => 'Third letter — SEAL AND COMPLETION: After acting and revealing, one\'s life places a final seal that completes what has been begun. One is called to bring to completion without leaving open traces. Completion is not a violent end, but a natural closing, like fruit that ripens and falls from the tree. The seal does not imprison: it protects and honors what has been done.',
+                            'la' => 'Littera tertia — SIGILLUM ET CONSUMMATIO: Post actum et revelationem, vita propria ponit sigillum finale quod consummat quod inceptum est. Vocatur quis ut perducat ad finem sine apertis vestigiis. Consummatio non est finis violentus, sed clausura naturalis, sicut fructus qui maturescit et de arbore cadit. Sigillum non incarcerat: protegit et honorat quod factum est.',
+                            'he' => 'אות שלישית — חותם והשלמה: לאחר פעולה והתגלות, חייו של אדם שמים חותם סופי המשלים את מה שהתחיל. נקרא האדם להביא לידי גמר מבלי להשאיר עקבות פתוחים. ההשלמה אינה סוף אלים, אלא סגירה טבעית, כמו פרי שמבשיל ונושר מהעץ. החותם אינו לוכד: הוא מגן ומכבד את מה שנעשה.',
+                        ],
                     ],
                 ],
 
@@ -925,33 +925,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Chet',
                         'value' => 8,
                         'meaning' => [
-                            'it' => 'Vita ed energia che sostengono e proteggono all’interno di un recinto sacro.',
-                            'en' => 'Life and sustaining energy within a sacred enclosure.',
-                            'la' => 'Vita et energia intra clausuram sacram custodita.',
-                            'he' => 'חיים ואנרגיה השומרים בתוך מסגרת קדושה'
-                        ]
+                            'it' => 'Prima lettera — VITA PROTETTA: La propria vita si svolge all’interno di un recinto sacro, dove l’energia vitale è custodita e sostenuta. Ciò che si è chiamati a fare è riconoscere i propri confini come benedizione, non come prigione. Il recinto non separa dal divino: lo rende abitabile. Dentro questo spazio sacro, la vita può fiorire senza essere dispersa.',
+                            'en' => 'First letter — PROTECTED LIFE: One\'s life unfolds within a sacred enclosure, where vital energy is guarded and sustained. One is called to recognize one\'s boundaries as a blessing, not as a prison. The enclosure does not separate from the divine: it makes it habitable. Within this sacred space, life can flourish without being dispersed.',
+                            'la' => 'Littera prima — VITA PROTECTA: Vita propria intra clausuram sacram evolvitur, ubi energia vitalis custoditur et sustinetur. Vocatur quis ut recognoscat suos limites ut benedictionem, non ut carcerem. Clausura non separat a divino: facit eam habitabilem. Intra hoc spatium sacrum, vita florere potest sine dispersione.',
+                            'he' => 'אות ראשונה — חיים מוגנים: חייו של אדם מתנהלים בתוך מתחם קדוש, שם האנרגיה החיונית נשמרת ונתמכת. נקרא האדם להכיר בגבולותיו כברכה, לא ככלא. המתחם אינו מפריד מהאלוהי: הוא הופך אותו למגורים. בתוך מרחב קדוש זה, החיים יכולים לפרוח ללא פיזור.',
+                        ],
                     ],
                     [
                         'letter' => 'ז',
                         'name' => 'Zayin',
                         'value' => 7,
                         'meaning' => [
-                            'it' => 'Discernimento attraverso la prova e maturazione nella lotta.',
-                            'en' => 'Discernment through trial and maturation in struggle.',
-                            'la' => 'Discretio per probationem et certamen.',
-                            'he' => 'הבחנה דרך ניסיון והבשלה במאבק'
-                        ]
+                            'it' => 'Seconda lettera — DISCERNIMENTO ATTRAVERSO LA PROVA: All’interno dello spazio protetto, la propria vita incontra prove che affinano il discernimento. Ciò che si è chiamati a fare è non rifuggire dalla lotta, ma comprenderla come strumento di maturazione. Ogni conflitto ben affrontato taglia via ciò che è superfluo e rivela ciò che è essenziale. La vera forza nasce dalla prova superata con coscienza.',
+                            'en' => 'Second letter — DISCERNMENT THROUGH TRIAL: Within the protected space, one\'s life encounters trials that refine discernment. One is called not to flee from struggle, but to understand it as a tool of maturation. Every conflict faced well cuts away what is superfluous and reveals what is essential. True strength is born from trial overcome with awareness.',
+                            'la' => 'Littera secunda — DISCRETIO PER PROBATIONEM: Intra spatium protectum, vita propria probationes encounter quae discretionem excolunt. Vocatur quis ut non fugiat a certamine, sed intellegat illud ut instrumentum maturationis. Omnis conflictus bene adgressus abscindit quod superfluum est et revelat quod essentiale est. Vera fortitudo nascitur ex probatione cum conscientia superata.',
+                            'he' => 'אות שנייה — הבחנה דרך ניסיון: בתוך המרחב המוגן, חייו של אדם פוגשים ניסיונות המחדדים את ההבחנה. נקרא האדם לא לברוח מהמאבק, אלא להבין אותו ככלי להתבגרות. כל קונפליקט שנותנים לו מענה הולם חותך את המיותר וחושף את המהותי. כוח אמיתי נולד מניסיון שעוברים במודעות.',
+                        ],
                     ],
                     [
                         'letter' => 'י',
                         'name' => 'Yod',
                         'value' => 10,
                         'meaning' => [
-                            'it' => 'Scintilla divina che orienta l’azione verso misericordia e coscienza.',
-                            'en' => 'Divine spark directing action toward mercy and awareness.',
-                            'la' => 'Scintilla divina actionem ad misericordiam dirigit.',
-                            'he' => 'ניצוץ אלוהי המכוון לפעולה מתוך רחמים ותודעה'
-                        ]
+                            'it' => 'Terza lettera — SCINTILLA DI MISERICORDIA: Dopo la protezione e il discernimento, nella propria vita si accende una scintilla divina che orienta l’azione verso la misericordia e la coscienza. Ciò che si è chiamati a realizzare è che la lotta non indurisce il cuore: lo apre. La vera vittoria non è sopraffare l’altro, ma trasformare il conflitto in perdono. La scintilla divina è la forza che rende possibile riconciliare invece che dividere.',
+                            'en' => 'Third letter — SPARK OF MERCY: After protection and discernment, a divine spark ignites in one\'s life, directing action toward mercy and awareness. One is called to realize that struggle does not harden the heart: it opens it. True victory is not overcoming the other, but transforming conflict into forgiveness. The divine spark is the force that makes reconciliation possible instead of division.',
+                            'la' => 'Littera tertia — SCINTILLA MISERICORDIAE: Post protectionem et discretionem, scintilla divina in vita propria accenditur, actionem ad misericordiam et conscientiam dirigens. Vocatur quis ut intellegat certamen non indurare cor: aperit illud. Vera victoria non est superare alterum, sed transformare conflictum in veniam. Scintilla divina est vis quae reconciliationem possibilem facit loco divisionis.',
+                            'he' => 'אות שלישית — ניצוץ של רחמים: לאחר ההגנה וההבחנה, ניצוץ אלוהי נדלק בחייו של אדם, המכוון את הפעולה לרחמים ותודעה. נקרא האדם להבין שהמאבק אינו מקשה את הלב: הוא פותח אותו. ניצחון אמיתי אינו להכריע את האחר, אלא להפוך קונפליקט לסליחה. הניצוץ האלוהי הוא הכוח ההופך פיוס לאפשרי במקום פילוג.',
+                        ],
                     ],
                 ],
 
@@ -1034,33 +1034,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Aleph',
                         'value' => 1,
                         'meaning' => [
-                            'it' => 'Unità originaria e principio primo da cui tutto procede.',
-                            'en' => 'Primordial unity and first principle from which all proceeds.',
-                            'la' => 'Unitas primordialis et principium primum.',
-                            'he' => 'אחדות ראשונית ועיקרון ראשון'
-                        ]
+                            'it' => 'Prima lettera — UNITÀ ORIGINARIA: La propria vita affonda le radici in un principio primo dal quale tutto procede. Ciò che si è chiamati a fare è non dimenticare che esiste un’unità silenziosa prima di ogni separazione. Quando ci si sente frammentati, si può tornare a respirare quel respiro unico che riconnette ogni cosa. L’unità non è un concetto astratto: è la sorgente da cui ogni azione può ripartire.',
+                            'en' => 'First letter — PRIMORDIAL UNITY: One\'s life is rooted in a first principle from which all proceeds. One is called not to forget that there is a silent unity before every separation. When feeling fragmented, one can return to breathing that unique breath that reconnects everything. Unity is not an abstract concept: it is the source from which every action can restart.',
+                            'la' => 'Littera prima — UNITAS PRIMORDIALIS: Vita propria radicatur in principio primo ex quo omnia procedunt. Vocatur quis ut non obliviscatur esse unitatem silentem ante omnem separationem. Cum sentitur fragmentatus, potest redire ad spirandum illum unicum spiritum qui omnia reconnectit. Unitas non est conceptus abstractus: est fons a quo omnis actio potest reincipere.',
+                            'he' => 'אות ראשונה — אחדות ראשונית: חייו של אדם מושרשים בעיקרון ראשון שממנו הכל נובע. נקרא האדם לא לשכוח כי ישנה אחדות שקטה לפני כל הפרדה. כאשר מרגישים מפורקים, ניתן לחזור לנשום את אותה נשימה ייחודית המחברת מחדש את הכל. אחדות אינה מושג מופשט: היא המקור שממנו כל פעולה יכולה להתחיל מחדש.',
+                        ],
                     ],
                     [
                         'letter' => 'ל',
                         'name' => 'Lamed',
                         'value' => 30,
                         'meaning' => [
-                            'it' => 'Elevazione e orientamento verso l’Alto che ristabilisce ordine e direzione.',
-                            'en' => 'Elevation and upward orientation restoring order and direction.',
-                            'la' => 'Elevatio et directio sursum ordinem restituens.',
-                            'he' => 'התעלות והכוונה כלפי מעלה המשיבה סדר וכיוון'
-                        ]
+                            'it' => 'Seconda lettera — ELEVAZIONE CHE RISTABILISCE: Dall’unità originaria, la propria vita si eleva e si orienta verso l’Alto. Ciò che si è chiamati a fare è lasciare che questa elevazione ristabilisca ordine e direzione. Non si tratta di fuggire in alto, ma di trovare un punto di osservazione più chiaro. Quando si è persa la bussola, l’elevazione permette di vedere il percorso dall’alto e ritrovare il cammino.',
+                            'en' => 'Second letter — ELEVATION THAT RESTORES: From primordial unity, one\'s life rises orients itself upward. One is called to let this elevation restore order and direction. It is not about fleeing upward, but finding a clearer vantage point. When the compass is lost, elevation allows one to see the path from above and find the way again.',
+                            'la' => 'Littera secunda — ELEVATIO QUAE RESTITUIT: Ex unitate primordial, vita propria se elevat et sursum ordinat. Vocatur quis ut permittat hanc elevationem restituere ordinem et directionem. Non est de sursum fugere, sed de clariore intuitu inveniendo. Cum amissa est bussola, elevatio permittit videre iter desuper et redire ad viam.',
+                            'he' => 'אות שנייה — התעלות המשיבה סדר: מהאחדות הראשונית, חייו של אדם מתעלים ומכוונים עצמם כלפי מעלה. נקרא האדם לתת להתעלות זו להשיב סדר וכיוון. לא מדובר בבריחה למעלה, אלא במציאת נקודת תצפית בהירה יותר. כאשר המצפן אבד, ההתעלות מאפשרת לראות את הדרך מלמעלה ולמצוא שוב את הנתיב.',
+                        ],
                     ],
                     [
                         'letter' => 'ד',
                         'name' => 'Dalet',
                         'value' => 4,
                         'meaning' => [
-                            'it' => 'Porta e passaggio verso una nuova condizione, apertura alla trasformazione.',
-                            'en' => 'Door and passage toward a new condition, opening to transformation.',
-                            'la' => 'Ianua et transitus ad novam condicionem.',
-                            'he' => 'דלת ומעבר למצב חדש'
-                        ]
+                            'it' => 'Terza lettera — PORTA E PASSAGGIO: Dopo l’unità e l’elevazione, la propria vita si apre come una porta verso una nuova condizione. Ciò che si è chiamati a realizzare è attraversare la soglia senza paura. Il passaggio non è una perdita, ma una trasformazione: si lascia ciò che non serve più per entrare in uno spazio più ampio. La porta è umile (Dalet), perché il vero cambiamento inizia con l’umiltà di riconoscere che si deve passare oltre.',
+                            'en' => 'Third letter — DOOR AND PASSAGE: After unity and elevation, one\'s life opens like a door to a new condition. One is called to cross the threshold without fear. The passage is not a loss, but a transformation: one leaves behind what is no longer needed to enter a wider space. The door is humble (Dalet), because true change begins with the humility to recognize that one must move on.',
+                            'la' => 'Littera tertia — IANUA ET TRANSITUS: Post unitatem et elevationem, vita propria aperit se sicut ianua ad novam condicionem. Vocatur quis ut transeat limen sine timore. Transitus non est damnum, sed transformatio: quis relinquit quod non est amplius necessarium ut intret in spatium latius. Ianua humilis est (Dalet), quia vera mutatio incipit cum humilitate recognoscendi quod ultra procedendum est.',
+                            'he' => 'אות שלישית — דלת ומעבר: לאחר האחדות וההתעלות, חייו של אדם נפתחים כמו דלת למצב חדש. נקרא האדם לחצות את הסף ללא פחד. המעבר אינו אובדן, אלא שינוי: משאירים מאחור את מה שאינו נחוץ עוד כדי להיכנס למרחב רחב יותר. הדלת ענווה (דלת), כי שינוי אמיתי מתחיל בענווה להכיר בכך שיש להמשיך הלאה.',
+                        ],
                     ],
                 ],
 
@@ -1143,33 +1143,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Lamed',
                         'value' => 30,
                         'meaning' => [
-                            'it' => 'Elevazione e movimento verso l’alto attraverso apprendimento e rettitudine.',
-                            'en' => 'Elevation and upward movement through learning and righteousness.',
-                            'la' => 'Elevatio et ascensus per doctrinam et rectitudinem.',
-                            'he' => 'התעלות ועלייה דרך לימוד וצדק'
-                        ]
+                            'it' => 'Prima lettera — ELEVAZIONE: La propria vita si muove verso l’alto attraverso l’apprendimento e la rettitudine. Ciò che si è chiamati a fare è salire senza perdere l’integrità. Ogni passo in alto richiede onestà e studio. Non si può elevare chi non è disposto a imparare e a essere giusto. L’elevazione autentica non calpesta: solleva anche ciò che sta sotto.',
+                            'en' => 'First letter — ELEVATION: One\'s life moves upward through learning and righteousness. One is called to ascend without losing integrity. Every step upward requires honesty and study. One cannot elevate who is not willing to learn and to be just. Authentic elevation does not trample: it also lifts what is below.',
+                            'la' => 'Littera prima — ELEVATIO: Vita propria movetur sursum per doctrinam et rectitudinem. Vocatur quis ut ascendat sine amissione integritatis. Omnis gradus sursum requirit honestatem et studium. Non potest elevare qui non est volens discere et esse iustus. Elevatio authentica non calcit: etiam levat quod infra est.',
+                            'he' => 'אות ראשונה — התעלות: חייו של אדם נעים כלפי מעלה דרך למידה וצדק. נקרא האדם לעלות מבלי לאבד את היושרה. כל צעד למעלה דורש יושרה ולמידה. מי שאינו מוכן ללמוד ולהיות צודק אינו יכול להתרומם. התעלות אמיתית אינה רומסת: היא גם מרימה את מה שנמצא למטה.',
+                        ],
                     ],
                     [
                         'letter' => 'א',
                         'name' => 'Aleph',
                         'value' => 1,
                         'meaning' => [
-                            'it' => 'Unità originaria e principio divino che fonda ogni realtà.',
-                            'en' => 'Primordial unity and divine principle grounding all reality.',
-                            'la' => 'Unitas primordialis et principium divinum.',
-                            'he' => 'אחדות ראשונית ועיקרון אלוהי'
-                        ]
+                            'it' => 'Seconda lettera — UNITÀ ORIGINARIA: Alla base dell’elevazione, la propria vita riconosce un principio divino che fonda ogni realtà. Ciò che si è chiamati a fare è ricordare che tutto ciò che è in alto è come ciò che è in basso, perché l’unità originaria li tiene insieme. L’elevazione non allontana dalla terra: la riconnette alla sua radice celeste.',
+                            'en' => 'Second letter — PRIMORDIAL UNITY: At the foundation of elevation, one\'s life recognizes a divine principle that grounds all reality. One is called to remember that what is above is like what is below, because the primordial unity holds them together. Elevation does not distance from the earth: it reconnects it to its celestial root.',
+                            'la' => 'Littera secunda — UNITAS PRIMORDIALIS: In fundamento elevationis, vita propria recognoscit principium divinum quod omnem realitatem fundat. Vocatur quis ut meminerit quod sursum est sicut quod deorsum est, quia unitas primordialis ea simul tenet. Elevatio non distat a terra: eam reconiungit ad suam radicem caelestem.',
+                            'he' => 'אות שנייה — אחדות ראשונית: ביסוד ההתעלות, חייו של אדם מכירים בעיקרון אלוהי המייסד כל מציאות. נקרא האדם לזכור כי מה שלמעלה הוא כמו מה שלמטה, כי האחדות הראשונית מחזיקה אותם יחד. ההתעלות אינה מרחיקה מהאדמה: היא מחברת אותה מחדש לשורש השמימי שלה.',
+                        ],
                     ],
                     [
                         'letter' => 'ו',
                         'name' => 'Vav',
                         'value' => 6,
                         'meaning' => [
-                            'it' => 'Connessione tra il cielo e la terra, tra l’intuizione e la realtà concreta.',
-                            'en' => 'Connection between heaven and earth, intuition and concrete reality.',
-                            'la' => 'Coniunctio inter caelum et terram.',
-                            'he' => 'חיבור בין שמים לארץ'
-                        ]
+                            'it' => 'Terza lettera — CONNESSIONE: Dopo l’elevazione e il riconoscimento dell’unità, la propria vita diventa un ponte tra cielo e terra, tra intuizione e realtà concreta. Ciò che si è chiamati a realizzare è unire senza confondere, collegare senza mescolare. La connessione non è fusione: è rispetto delle differenze che comunicano. La propria vita è il filo che tesse insieme spirito e materia, pensiero e azione, ispirazione e pratica.',
+                            'en' => 'Third letter — CONNECTION: After elevation and recognition of unity, one\'s life becomes a bridge between heaven and earth, between intuition and concrete reality. One is called to unite without confusing, to connect without mixing. Connection is not fusion: it is respect for differences that communicate. One\'s life is the thread that weaves together spirit and matter, thought and action, inspiration and practice.',
+                            'la' => 'Littera tertia — CONNEXIO: Post elevationem et recognitionem unitatis, vita propria fit pons inter caelum et terram, inter intuitionem et realitatem concretam. Vocatur quis ut uniat sine confusione, connectat sine mixtione. Connexio non est fusio: est respectus differentiarum quae communicant. Vita propria est filum quod texit simul spiritum et materiam, cogitationem et actionem, inspirationem et praxim.',
+                            'he' => 'אות שלישית — חיבור: לאחר ההתעלות וההכרה באחדות, חייו של אדם הופכים לגשר בין שמיים לארץ, בין אינטואיציה למציאות קונקרטית. נקרא האדם לאחד ללא בלבול, לחבר ללא ערבוב. חיבור אינו איחוי: הוא כבוד להבדלים שמתקשרים. חייו של האדם הם החוט האורג יחד רוח וחומר, מחשבה ומעשה, השראה ומעש.',
+                        ],
                     ],
                 ],
 
@@ -1252,33 +1252,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'He',
                         'value' => 5,
                         'meaning' => [
-                            'it' => 'Apertura e manifestazione della presenza divina.',
-                            'en' => 'Opening and manifestation of divine presence.',
-                            'la' => 'Apertio et manifestatio praesentiae divinae.',
-                            'he' => 'פתיחה והתגלות הנוכחות האלוהית'
-                        ]
+                            'it' => 'Prima lettera — APERTURA: La propria vita inizia con un’apertura che permette alla presenza divina di manifestarsi. Ciò che si è chiamati a fare è lasciare che qualcosa di più grande entri nel proprio respiro. L’apertura non è debolezza: è la condizione perché la luce possa entrare. Senza di essa, si rimane chiusi nella propria piccola stanza; con essa, si diventa dimora dell’inaspettato.',
+                            'en' => 'First letter — OPENING: One\'s life begins with an opening that allows divine presence to manifest. One is called to let something greater enter one\'s breath. Openness is not weakness: it is the condition for light to enter. Without it, one remains closed in one\'s small room; with it, one becomes a dwelling for the unexpected.',
+                            'la' => 'Littera prima — APERTIO: Vita propria incipit cum apertione quae permittit praesentiam divinam manifestari. Vocatur quis ut permittat aliquid maius intrare in suum spiritum. Apertio non est infirmitas: est condicio ut lux possit intrare. Sine ea, manet clausus in sua parva camera; cum ea, fit habitatio inexpectati.',
+                            'he' => 'אות ראשונה — פתיחה: חייו של אדם מתחילים בפתיחה המאפשרת לנוכחות האלוהית להתגלות. נקרא האדם לתת למשהו גדול יותר להיכנס לנשימתו. פתיחות אינה חולשה: היא התנאי לאור להיכנס. בלעדיה, נשארים סגורים בחדרו הקטן; עם פתיחות, הופכים למשכן לבלתי צפוי.',
+                        ],
                     ],
                     [
                         'letter' => 'ה',
                         'name' => 'He',
                         'value' => 5,
                         'meaning' => [
-                            'it' => 'Espansione dell’apertura che amplia lo spazio della rivelazione.',
-                            'en' => 'Expansion of openness enlarging the space of revelation.',
-                            'la' => 'Dilatatio aperturae quae spatium revelationis auget.',
-                            'he' => 'הרחבת הפתיחה המגדילה את מרחב ההתגלות'
-                        ]
+                            'it' => 'Seconda lettera — ESPANSIONE: Dopo la prima apertura, la propria vita espande lo spazio della rivelazione. Ciò che si è chiamati a fare è non accontentarsi di una piccola crepa: allargare il varco perché più luce possa entrare e più verità possa essere vista. L’espansione non è invadenza: è generosità dell’anima che non tiene per sé ciò che ha ricevuto.',
+                            'en' => 'Second letter — EXPANSION: After the first opening, one\'s life expands the space of revelation. One is called not to settle for a small crack: to widen the gap so that more light can enter and more truth can be seen. Expansion is not intrusion: it is the generosity of a soul that does not keep for itself what it has received.',
+                            'la' => 'Littera secunda — EXPANSIO: Post primam apertionem, vita propria expandit spatium revelationis. Vocatur quis ut non acquiescat parvae rimae: dilatet foramen ut plus lux possit intrare et plus veritas possit videri. Expansio non est intrusio: est generositas animae quae non retinet sibi quod accepit.',
+                            'he' => 'אות שנייה — הרחבה: לאחר הפתיחה הראשונה, חייו של אדם מרחיבים את מרחב ההתגלות. נקרא האדם לא להסתפק בסדק קטן: להרחיב את הפתח כדי שיותר אור יוכל להיכנס ויותר אמת תוכל להיראות. הרחבה אינה פלישה: היא נדיבותה של נפש שאינה שומרת לעצמה את מה שקיבלה.',
+                        ],
                     ],
                     [
                         'letter' => 'ע',
                         'name' => 'Ayin',
                         'value' => 70,
                         'meaning' => [
-                            'it' => 'Visione interiore e percezione profonda oltre le apparenze.',
-                            'en' => 'Inner vision and deep perception beyond appearances.',
-                            'la' => 'Visio interior et perceptio profunda.',
-                            'he' => 'ראייה פנימית ותפיסה עמוקה'
-                        ]
+                            'it' => 'Terza lettera — VISIONE INTERIORE: Dopo l’apertura e l’espansione, la propria vita sviluppa una visione profonda che va oltre le apparenze. Ciò che si è chiamati a realizzare è vedere con gli occhi dell’anima, non solo con quelli del corpo. La percezione interiore coglie ciò che è nascosto, ciò che non si vede ma che è reale. Non ci si lascia ingannare dalle maschere: si guarda il cuore delle cose. Questa visione è il dono più grande: sapere che la verità si trova spesso dove nessuno cerca.',
+                            'en' => 'Third letter — INNER VISION: After opening and expansion, one\'s life develops a deep vision that goes beyond appearances. One is called to see with the eyes of the soul, not only with those of the body. Inner perception grasps what is hidden, what is not seen but is real. One is not deceived by masks: one looks at the heart of things. This vision is the greatest gift: knowing that truth is often found where no one looks.',
+                            'la' => 'Littera tertia — VISIO INTERIOR: Post apertionem et expansionem, vita propria developat visionem profundam quae vadit ultra apparentias. Vocatur quis ut videat cum oculis animae, non tantum cum illis corporis. Perceptio interior capit quod est occultum, quod non videtur sed est reale. Non decipitur a personis: spectat cor rerum. Haec visio est maximum donum: scire quod veritas saepe invenitur ubi nemo quaerit.',
+                            'he' => 'אות שלישית — ראייה פנימית: לאחר הפתיחה וההרחבה, חייו של אדם מפתחים ראייה עמוקה ההולכת מעבר למראה. נקרא האדם לראות בעיני הנשמה, לא רק בעיני הגוף. תפיסה פנימית תופסת את מה שנסתר, את מה שאינו נראה אך הוא אמיתי. לא מתפתים מהמסכות: מביטים אל לב הדברים. ראייה זו היא המתנה הגדולה ביותר: לדעת שהאמת נמצאת לעתים קרובות במקום שאף אחד לא מחפש.',
+                        ],
                     ],
                 ],
 
@@ -1361,33 +1361,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Yod',
                         'value' => 10,
                         'meaning' => [
-                            'it' => 'Scintilla divina originaria che avvia il movimento dell’intenzione.',
-                            'en' => 'Primordial divine spark initiating intentional movement.',
-                            'la' => 'Scintilla divina primordialis motum intentionis incipiens.',
-                            'he' => 'ניצוץ אלוהי ראשוני הפותח את תנועת הכוונה'
-                        ]
+                            'it' => 'Prima lettera — SCINTILLA ORIGINARIA: La propria vita inizia con una scintilla divina che avvia il movimento dell’intenzione. Ciò che si è chiamati a fare è non lasciare che questa scintilla si spenga prima di aver agito. Ogni grande azione nasce da un piccolo impulso iniziale. La scintilla è il momento in cui l’anima dice: “Voglio”. Onorare questa scintilla significa non tradire il proprio primo movimento.',
+                            'en' => 'First letter — ORIGINARY SPARK: One\'s life begins with a divine spark that initiates the movement of intention. One is called not to let this spark go out before acting. Every great action is born from a small initial impulse. The spark is the moment when the soul says: “I want.” Honoring this spark means not betraying one\'s first movement.',
+                            'la' => 'Littera prima — SCINTILLA ORIGINARIA: Vita propria incipit cum scintilla divina quae motum intentionis initiat. Vocatur quis ut non permittat hanc scintillam exstingui antequam agat. Omnis magna actio nascitur ex parvo impulsu initiali. Scintilla est momentum cum anima dicit: “Volo”. Honorare hanc scintillam est non tradere suum primum motum.',
+                            'he' => 'אות ראשונה — ניצוץ מקורי: חייו של אדם מתחילים בניצוץ אלוהי המתחיל את תנועת הכוונה. נקרא האדם לא לתת לניצוץ זה לכבות לפני הפעולה. כל פעולה גדולה נולדת מדחף ראשוני קטן. הניצוץ הוא הרגע שבו הנשמה אומרת: "אני רוצה". לכבד ניצוץ זה פירושו לא לבגוד בתנועה הראשונה של עצמו.',
+                        ],
                     ],
                     [
                         'letter' => 'ז',
                         'name' => 'Zayin',
                         'value' => 7,
                         'meaning' => [
-                            'it' => 'Discernimento attivo che separa, purifica e ordina l’azione.',
-                            'en' => 'Active discernment that separates, purifies and orders action.',
-                            'la' => 'Discretio activa quae actionem separat et ordinat.',
-                            'he' => 'הבחנה פעילה המבדילה ומסדרת את הפעולה'
-                        ]
+                            'it' => 'Seconda lettera — DISCERNIMENTO ATTIVO: Dalla scintilla, la propria vita sviluppa un discernimento che separa, purifica e ordina l’azione. Ciò che si è chiamati a fare è tagliare via ciò che è superfluo, confuso o dannoso. Il discernimento non è dubbio paralizzante: è la spada che distingue il vero dal falso, l’essenziale dall’accessorio. Senza di esso, l’intenzione si disperde; con esso, ogni gesto diventa preciso e vero.',
+                            'en' => 'Second letter — ACTIVE DISCERNMENT: From the spark, one\'s life develops a discernment that separates, purifies and orders action. One is called to cut away what is superfluous, confused or harmful. Discernment is not paralyzing doubt: it is the sword that distinguishes true from false, essential from accessory. Without it, intention scatters; with it, every gesture becomes precise and true.',
+                            'la' => 'Littera secunda — DISCRETIO ACTIVA: Ex scintilla, vita propria developat discretionem quae separat, purificat et ordinat actionem. Vocatur quis ut abscindat quod superfluum, confusum vel noxium est. Discretio non est dubium paralyticum: est gladius qui distinguit verum a falso, essentiale ab accessorio. Sine ea, intentio dispergitur; cum ea, omnis gestus fit praecisus et verus.',
+                            'he' => 'אות שנייה — הבחנה פעילה: מהניצוץ, חייו של אדם מפתחים הבחנה המפרידה, מטהרת ומסדרת את הפעולה. נקרא האדם לחתוך את מה שמיותר, מבולבל או מזיק. הבחנה אינה ספק משתק: היא החרב המבדילה בין אמת לשקר, בין מהותי לטפל. בלעדיה, הכוונה מתפזרת; עם הבחנה, כל מחווה הופכת מדויקת ואמיתית.',
+                        ],
                     ],
                     [
                         'letter' => 'ל',
                         'name' => 'Lamed',
                         'value' => 30,
                         'meaning' => [
-                            'it' => 'Elevazione e apprendimento che conducono verso un ordine superiore.',
-                            'en' => 'Elevation and learning leading toward higher order.',
-                            'la' => 'Elevatio et doctrina ad ordinem superiorem ducens.',
-                            'he' => 'התעלות ולימוד המובילים לסדר עליון'
-                        ]
+                            'it' => 'Terza lettera — ELEVAZIONE: Dopo la scintilla e il discernimento, la propria vita si eleva verso un ordine superiore attraverso l’apprendimento. Ciò che si è chiamati a realizzare è che ogni azione ben discriminata diventa una scala per salire. L’elevazione non è fuga dalla realtà: è la capacità di vedere la propria vita da una prospettiva più alta, dove tutto acquista senso. Si impara da ogni passo, e ogni passo porta più in alto.',
+                            'en' => 'Third letter — ELEVATION: After the spark and discernment, one\'s life rises toward a higher order through learning. One is called to realize that every well-discriminated action becomes a ladder to ascend. Elevation is not escape from reality: it is the ability to see one\'s life from a higher perspective, where everything gains meaning. One learns from every step, and every step leads higher.',
+                            'la' => 'Littera tertia — ELEVATIO: Post scintillam et discretionem, vita propria elevatur ad ordinem superiorem per doctrinam. Vocatur quis ut intellegat omnem actionem bene discriminatam fieri scalam ad ascendendum. Elevatio non est fuga a realitate: est facultas videndi suam vitam ex altiori prospectu, ubi omnia sensum acquirunt. Discit ex omni gradu, et omnis gradus ducit altius.',
+                            'he' => 'אות שלישית — התעלות: לאחר הניצוץ וההבחנה, חייו של אדם מתעלים אל סדר עליון דרך למידה. נקרא האדם להבין שכל פעולה המובחנת היטב הופכת לסולם לעלות. התעלות אינה בריחה מהמציאות: היא היכולת לראות את חייו מפרספקטיבה גבוהה יותר, שבה הכל מקבל משמעות. לומדים מכל צעד, וכל צעד מוביל גבוה יותר.',
+                        ],
                     ],
                 ],
 
@@ -1470,33 +1470,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'Mem',
                         'value' => 40,
                         'meaning' => [
-                            'it' => 'Flusso originario che genera movimento e trasforma ciò che tocca.',
-                            'en' => 'Primordial flow generating movement and transforming what it touches.',
-                            'la' => 'Fluxus primordialis motum generans et transformans.',
-                            'he' => 'זרימה ראשונית היוצרת תנועה ומשנה את הנוגע בה'
-                        ]
+                            'it' => 'Prima lettera — FLUSSO ORIGINARIO: La propria vita è un flusso che genera movimento e trasforma ciò che tocca. Ciò che si è chiamati a fare è lasciare che l’energia vitale scorra senza argini troppo rigidi. Il flusso non è caos: è acqua viva che sa trovare la sua strada. Quando ci si blocca, si perde la forza trasformativa; quando si fluisce, anche le pietre vengono scolpite.',
+                            'en' => 'First letter — PRIMORDIAL FLOW: One\'s life is a flow that generates movement and transforms what it touches. One is called to let vital energy flow without overly rigid banks. Flow is not chaos: it is living water that knows how to find its way. When one blocks oneself, one loses transformative power; when one flows, even stones are sculpted.',
+                            'la' => 'Littera prima — FLUXUS PRIMORDIALIS: Vita propria est fluxus qui motum generat et transformat quod tangit. Vocatur quis ut permittat industriam vitalem fluere sine nimis rigidis ripis. Fluxus non est chaos: est aqua viva quae scit invenire viam suam. Cum se obstruit, amittit vim transformativam; cum fluit, etiam lapides sculpuntur.',
+                            'he' => 'אות ראשונה — זרימה ראשונית: חייו של אדם הם זרימה היוצרת תנועה ומשנה את מה שהיא נוגעת בו. נקרא האדם לתת לאנרגיה החיונית לזרום ללא גדות נוקשות מדי. זרימה אינה כאוס: היא מים חיים שיודעים למצוא את דרכם. כאשר חוסמים את עצמם, מאבדים את כוח השינוי; כאשר זורמים, אפילו אבנים מתפסלות.',
+                        ],
                     ],
                     [
                         'letter' => 'ב',
                         'name' => 'Bet',
                         'value' => 2,
                         'meaning' => [
-                            'it' => 'Struttura che accoglie, delimita e stabilisce ordine stabile.',
-                            'en' => 'Structure that receives, delimits and establishes stable order.',
-                            'la' => 'Structura quae recipit et ordinem stabilem statuit.',
-                            'he' => 'מבנה המקבל ומייסד סדר יציב'
-                        ]
+                            'it' => 'Seconda lettera — STRUTTURA: Dentro il flusso, la propria vita costruisce una struttura che accoglie, delimita e stabilisce ordine stabile. Ciò che si è chiamati a fare è dare forma senza irrigidire, creare confini senza imprigionare. La struttura non è nemica del flusso: è il letto del fiume che permette all’acqua di scorrere senza disperdersi. Senza forma, l’energia si perde; con la giusta struttura, diventa casa.',
+                            'en' => 'Second letter — STRUCTURE: Within the flow, one\'s life builds a structure that receives, delimits and establishes stable order. One is called to give form without hardening, to create boundaries without imprisoning. Structure is not the enemy of flow: it is the riverbed that allows water to flow without dispersing. Without form, energy is lost; with the right structure, it becomes a home.',
+                            'la' => 'Littera secunda — STRUCTURA: Intra fluxum, vita propria aedificat structuram quae recipit, determinat et ordinem stabilem statuit. Vocatur quis ut formet sine induratione, creet fines sine incarceratione. Structura non est inimica fluxus: est alveus qui permittit aquam fluere sine dispersione. Sine forma, energia perit; cum recta structura, fit domus.',
+                            'he' => 'אות שנייה — מבנה: בתוך הזרימה, חייו של אדם בונים מבנה המקבל, מגביל ומייסד סדר יציב. נקרא האדם לתת צורה מבלי להקשיח, ליצור גבולות מבלי לכלוא. המבנה אינו אויב הזרימה: הוא אפיק הנהר המאפשר למים לזרום מבלי להתפזר. ללא צורה, האנרגיה אובדת; עם המבנה הנכון, היא הופכת לבית.',
+                        ],
                     ],
                     [
                         'letter' => 'ה',
                         'name' => 'He',
                         'value' => 5,
                         'meaning' => [
-                            'it' => 'Rivelazione che rende visibile la verità e manifesta la giustizia.',
-                            'en' => 'Revelation making truth visible and manifesting justice.',
-                            'la' => 'Revelatio veritatem et iustitiam manifestans.',
-                            'he' => 'התגלות המגלה אמת ומביאה צדק'
-                        ]
+                            'it' => 'Terza lettera — RIVELAZIONE: Dopo il flusso e la struttura, la propria vita diventa rivelazione: rende visibile la verità e manifesta la giustizia. Ciò che si è chiamati a realizzare è che l’ordine non è fine a sé stesso: serve a far emergere ciò che è giusto e vero. La rivelazione è il momento in cui il contenuto diventa trasparente al contenitore. Non si tratta di parlare, ma di diventare testimoni silenziosi di ciò che è reale. La propria vita è una finestra, non un muro dipinto.',
+                            'en' => 'Third letter — REVELATION: After flow and structure, one\'s life becomes revelation: it makes truth visible and manifests justice. One is called to realize that order is not an end in itself: it serves to bring forth what is right and true. Revelation is the moment when content becomes transparent to the container. It is not about speaking, but about becoming a silent witness to what is real. One\'s life is a window, not a painted wall.',
+                            'la' => 'Littera tertia — REVELATIO: Post fluxum et structuram, vita propria fit revelatio: facit veritatem visibilem et manifestat iustitiam. Vocatur quis ut intellegat ordinem non esse finem in se: servit ad producendum quod iustum et verum est. Revelatio est momentum cum contentum fit transparens continenti. Non est de loqui, sed de fieri testem silentem eius quod reale est. Vita propria est fenestra, non paries pictus.',
+                            'he' => 'אות שלישית — התגלות: לאחר הזרימה והמבנה, חייו של אדם הופכים להתגלות: הם הופכים את האמת לגלויה ומביאים לידי ביטוי צדק. נקרא האדם להבין שהסדר אינו מטרה בפני עצמו: הוא משמש להוציא לאור את מה שנכון וצודק. ההתגלות היא הרגע שבו התוכן הופך לשקוף ביחס למכל. לא מדובר בדיבור, אלא בהפיכה לעד שקט של מה שאמיתי. חייו של אדם הם חלון, לא קיר מצויר.',
+                        ],
                     ],
                 ],
 
@@ -1579,33 +1579,33 @@ class AngelMeaningsSeeder extends Seeder
                         'name' => 'He',
                         'value' => 5,
                         'meaning' => [
-                            'it' => 'Rivelazione e apertura attraverso cui ciò che è nascosto diventa manifesto.',
-                            'en' => 'Revelation and opening through which what is hidden becomes manifest.',
-                            'la' => 'Revelatio et apertio per quam occultum manifestatur.',
-                            'he' => 'התגלות ופתיחה שדרכן הנסתר נעשה גלוי'
-                        ]
+                            'it' => 'Prima lettera — RIVELAZIONE: La propria vita inizia con un’apertura attraverso cui ciò che è nascosto diventa manifesto. Ciò che si è chiamati a fare è non temere la luce. La rivelazione non è violenza alla segretezza, ma parto naturale della verità che chiede di essere vista. Quando si nasconde troppo, si soffoca; quando si rivela al momento giusto, si libera.',
+                            'en' => 'First letter — REVELATION: One\'s life begins with an opening through which what is hidden becomes manifest. One is called not to fear the light. Revelation is not violence to secrecy, but the natural birth of truth that asks to be seen. When one hides too much, one suffocates; when one reveals at the right moment, one liberates.',
+                            'la' => 'Littera prima — REVELATIO: Vita propria incipit cum apertione per quam quod occultum est fit manifestum. Vocatur quis ut non timeat lucem. Revelatio non est violentia secreti, sed naturalis partus veritatis quae petit videri. Cum nimis celat, suffocat; cum tempore revelat, liberat.',
+                            'he' => 'אות ראשונה — התגלות: חייו של אדם מתחילים בפתיחה שדרכה הנסתר הופך לגלוי. נקרא האדם לא לפחד מהאור. התגלות אינה אלימות כלפי הסוד, אלא לידתו הטבעית של האמת המבקשת להיראות. כאשר מסתירים יותר מדי, חונקים; כאשר מגלים ברגע הנכון, משחררים.',
+                        ],
                     ],
                     [
                         'letter' => 'ר',
                         'name' => 'Resh',
                         'value' => 200,
                         'meaning' => [
-                            'it' => 'Principio mentale e capo, punto di riorientamento e nuovo inizio.',
-                            'en' => 'Mental principle and head, point of reorientation and new beginning.',
-                            'la' => 'Principium mentis et caput, initium novae directionis.',
-                            'he' => 'ראש ועיקרון מחשבתי, התחלה חדשה'
-                        ]
+                            'it' => 'Seconda lettera — PRINCIPIO MENTALE: Dopo la rivelazione, la propria vita trova un punto di riorientamento e nuovo inizio. Ciò che si è chiamati a fare è diventare il capo della propria esistenza, assumendo la guida mentale. Il principio mentale non è dominio sugli altri, ma sovranità sulla propria coscienza. Ogni nuovo inizio nasce da una testa che si volta e sceglie una direzione diversa.',
+                            'en' => 'Second letter — MENTAL PRINCIPLE: After revelation, one\'s life finds a point of reorientation and new beginning. One is called to become the head of one\'s own existence, assuming mental guidance. The mental principle is not dominion over others, but sovereignty over one\'s own consciousness. Every new beginning is born from a head that turns and chooses a different direction.',
+                            'la' => 'Littera secunda — PRINCIPIUM MENTALE: Post revelationem, vita propria invenit punctum reorientationis et novi initii. Vocatur quis ut fiat caput suae propriae existentiae, assumens mentale regimen. Principium mentale non est dominium super alios, sed potestas super suam conscientiam. Omne novum initium nascitur ex capite quod se vertit et aliam directionem eligit.',
+                            'he' => 'אות שנייה — עיקרון מחשבתי: לאחר ההתגלות, חייו של אדם מוצאים נקודת כיוון מחדש והתחלה חדשה. נקרא האדם להפוך לראש הקיום שלו, לקבל הדרכה מנטלית. העיקרון המחשבתי אינו שליטה על אחרים, אלא ריבונות על התודעה של עצמו. כל התחלה חדשה נולדת מראש שמסתובב ובוחר כיוון שונה.',
+                        ],
                     ],
                     [
                         'letter' => 'י',
                         'name' => 'Yod',
                         'value' => 10,
                         'meaning' => [
-                            'it' => 'Scintilla originaria dell’atto creativo, punto da cui nasce ogni forma.',
-                            'en' => 'Primordial spark of the creative act, point from which every form emerges.',
-                            'la' => 'Scintilla primordialis actus creativi.',
-                            'he' => 'ניצוץ ראשוני של מעשה הבריאה'
-                        ]
+                            'it' => 'Terza lettera — SCINTILLA CREATIVA: Dopo la rivelazione e il nuovo orientamento, nella propria vita si accende la scintilla originaria dell’atto creativo, il punto da cui nasce ogni forma. Ciò che si è chiamati a realizzare è che il pensiero non è abbastanza: occorre l’atto. La scintilla è il momento in cui l’intenzione diventa azione, l’idea diventa forma. Non basta sapere cosa si vuole: bisogna farlo nascere. La propria vita è creatrice quando smette di sognare e inizia a fare.',
+                            'en' => 'Third letter — CREATIVE SPARK: After revelation and new orientation, the primordial spark of the creative act ignites in one\'s life, the point from which every form emerges. One is called to realize that thought is not enough: action is needed. The spark is the moment when intention becomes action, idea becomes form. It is not enough to know what one wants: one must give birth to it. One\'s life is creative when it stops dreaming and starts doing.',
+                            'la' => 'Littera tertia — SCINTILLA CREATIVA: Post revelationem et novam orientationem, scintilla primordialis actus creativi in vita propria accenditur, punctum a quo omnis forma emergit. Vocatur quis ut intellegat cogitationem non sufficere: actu opus est. Scintilla est momentum cum intentio fit actio, idea fit forma. Non sufficit scire quid velit: oportet id parere. Vita propria est creativa quando desinit somniare et incipit facere.',
+                            'he' => 'אות שלישית — ניצוץ יצירתי: לאחר ההתגלות והכיוון החדש, בחייו של אדם נדלק הניצוץ הראשוני של המעשה היצירתי, הנקודה שממנה נובעת כל צורה. נקרא האדם להבין שחשיבה אינה מספיקה: יש צורך במעשה. הניצוץ הוא הרגע שבו הכוונה הופכת לפעולה, הרעיון הופך לצורה. לא מספיק לדעת מה רוצים: צריך להוליד את זה. חייו של אדם הם יצירתיים כאשר מפסיקים לחלום ומתחילים לעשות.',
+                        ],
                     ],
                 ],
 
@@ -8305,30 +8305,30 @@ class AngelMeaningsSeeder extends Seeder
                 'number' => 77,
                 'name' => 'Zadkael (Za-D-Ka-el)',
                 'kabal_name' => 'Zadkiel',
-            
+
                 // Zayin = liberazione / misericordia trasformatrice
                 // Dalet = struttura / porta del perdono
                 // Kaph = potenza / mano divina misericordiosa
                 'trigram' => "Zayin Dalet Kaph",
                 'trigram_significate' => "liberazione perdono potenza",
-            
+
                 'definition' => [
                     'it' => 'ZDK - Dio che libera con misericordia potente',
                     'en' => 'ZDK - God who frees with powerful mercy',
                     'la' => 'ZDK - Deus qui misericordia potenti liberat',
                     'he' => 'ZDK - האל המשחרר ברחמים עוצמתיים',
                 ],
-            
+
                 'new_definition' => [
                     'it' => 'Dio trasmuta il karma con misericordia divina',
                     'en' => 'God transmutes karma with divine mercy',
                     'la' => 'Deus karman misericordia divina transmutat',
                     'he' => 'האל מטמיע קארמה ברחמים אלוהיים',
                 ],
-            
+
                 'hebrew_letters' => 'זדק',
                 'hebrew_name' => 'צדקיאל',
-            
+
                 'letter_details' => [
                     [
                         'letter' => 'ז',
@@ -8364,24 +8364,24 @@ class AngelMeaningsSeeder extends Seeder
                         ]
                     ],
                 ],
-            
+
                 'choir' => 'dominions',
                 'archangel' => 'zadkiel',
                 'element' => 'ether',
-            
+
                 'zodiac_days' => [
                     ['day' => 20, 'month' => 3, 'sign' => 'pisces'],
                 ],
-            
+
                 'orientation' => 'EST',
-            
+
                 // Salmo misericordia infinita
                 'psalm' => 103,
                 'psalm_verse' => 8,
                 'vulgata' => 102,
                 'vulgata_verse' => 8,
                 'psalm_link' => '/salmi/103',
-            
+
                 'quality' => [
                     'it' => 'Trasmutazione misericordiosa e liberazione potente.',
                     'en' => 'Merciful transmutation and powerful liberation.',
