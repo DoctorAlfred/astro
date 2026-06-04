@@ -88,12 +88,6 @@ class LoginController extends Controller
             ]);
 
             if ($validator->fails()) {
-                /**
-                 * CHECK PASSWORD
-                 * "The password field must be at least 8 characters.",
-                 * "The password field must contain at least one symbol.",
-                 * "The password field must contain at least one number."
-                 */
                 Log::error(Message::LOGIN_KO, [__METHOD__, 'email' => $request->email, json_encode($validator->errors()->toArray())]);
                 return $this->sendError(Message::LOGIN_KO, $validator->errors()->toArray(), 400);
             }
@@ -105,7 +99,6 @@ class LoginController extends Controller
             if (!$user) {
                 return $this->sendError(Message::USER_NOT_FOUND, ['status' => false], 404);
             }
-            $customer = Customer::where('user_id', $user->id)->first();
 
             if (!Hash::check($request->password, $user->password)) {
                 return $this->sendError(Message::PASSWORD_KO, ['status' => false], 404);
@@ -114,7 +107,6 @@ class LoginController extends Controller
             /** Delete Personal Access Token */
             $user->tokens()->delete();
             // Store the token in your custom session storage
-            $role = $user->roles->first()->code;
             $permise = $user->roles->first()->code === 'adminx' || $user->roles->first()->code === 'admin' ? 'full' : 'onlyRead';
             $token = $user->createToken('api', ['api', $user->roles->first()->code, $permise, 'astro'])->plainTextToken;
 
@@ -123,23 +115,6 @@ class LoginController extends Controller
             Mail::mailer('smtp')->to($request->email)->send(new LoginMail($user, $data['email']));
             // Mail::mailer('smtp')->to($request->email)->bcc(config('app.admin_mail'))->send(new MailRegister($dataToSent));
             Log::info(Message::LOGIN, ['userId' => $user->id, 'email' => $request->email, 'accessDate' => now(), 'ip' => $ip, 'userAgent' => $userAgent, 'token' => $token]);
-
-
-            $subscription = Subscription::where('user_id', $user->id)
-                ->with(['plan' => function ($query) {
-                    $query->select(
-                        'id',
-                        'slug',
-                        'it',
-                        'en',
-                        'desc_it',
-                        'desc_en',
-                        'max_contacts',
-                        'can_write_diary'
-                    );
-                }])
-                ->latest()
-                ->first();
 
             return $this->sendResponse(
                 Message::AUTH_OK,

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Diary;
 
 use App\Http\Controllers\AuthController;
 use App\Lib\Message;
+use App\Mail\DreamsMail;
 use App\Models\Diaries\Diary;
 use App\Models\Shop\Subscription;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
 
@@ -191,8 +193,19 @@ class DiaryController extends AuthController
     public function storeDiary(Request $request): JsonResponse
     {
         try {
-
+            
             $user = $this->user;
+            $data = $request->all();
+
+            $validator = Validator::make($data, [
+                'title'       => 'required|string|max:150',
+                'description' => 'required|string|max:5000',
+            ]);
+            if ($validator->fails()) {
+                Log::error(Message::LOGIN_KO, [__METHOD__, 'email' => $request->email, json_encode($validator->errors()->toArray())]);
+                return $this->sendError(Message::LOGIN_KO, $validator->errors()->toArray(), 400);
+            }
+
             $subscription = Subscription::where('user_id', $user['id'])
                 ->leftJoin('plans', 'subscriptions.plan_id', '=', 'plans.id')
                 ->select(
@@ -213,14 +226,9 @@ class DiaryController extends AuthController
                 ], 404);
             }
 
-            $data = $request->validate([
-                'title'       => 'required|string|max:150',
-                'description' => 'required|string|max:5000',
-            ]);
-
             $existingEntry = Diary::where('user_id', $this->user['id'])
                 ->where('entry_date', today())
-                ->where('category', 'diary')
+                // ->where('category', 'diary')
                 ->first();
 
             if ($existingEntry) {
@@ -237,6 +245,13 @@ class DiaryController extends AuthController
                 'title' => $data['title'],
                 'description' => $data['description'],
             ]);
+
+            if ($entry && $data['category'] === 'dreams'){
+                Mail::mailer('smtp')
+                    ->to($request->email)
+                    ->cc(config('app.admin'))
+                    ->send(new DreamsMail($user, $data));
+            }
 
             return $this->sendResponse(Message::CREATE_OK, [
                 'status' => 'success',
