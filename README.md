@@ -23,3 +23,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>`
+
+
+
+# Installazione Libreria Swisseph
+
+- php artisan vendor:publish --provider="DivineaLabs\Swisseph\SwissephServiceProvider"

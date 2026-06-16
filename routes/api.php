@@ -92,6 +92,18 @@ Route::group([
         Route::get('/all', [\App\Http\Controllers\Herb\HerbController::class, 'getHerbs']);
     });
 
+    // ---------- ---------- ---------- MAPS ASTRO ---------- ---------- ---------- //
+
+    Route::group([
+        'prefix' => 'astrology',
+        'as' => 'astrology.',
+        'name' => 'astrology.',
+        'middleware' => ['auth:sanctum', 'authenticated']
+    ], function () {
+        Route::post('/calculate', [\App\Http\Controllers\Astro\SwissephController::class, 'calculate']);
+        Route::get('/debug', [\App\Http\Controllers\Astro\SwissephController::class, 'debug']);
+    });
+
     // ---------- ---------- ---------- NUMEROLOGY ---------- ---------- ---------- //
     Route::group([
         'prefix' => 'numerology',

@@ -8,6 +8,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Shop\Subscription;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -24,7 +25,7 @@ use Laravel\Sanctum\NewAccessToken;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasUuids, HasFactory, Notifiable, SoftDeletes;
     /** Disabilita incremento automatico */
     public $incrementing = false;
     /** Chiave primaria sarà stringa (UUID) */
@@ -145,12 +146,12 @@ class User extends Authenticatable
     public function subscription(): HasOne
     {
         return $this->hasOne(\App\Models\Shop\Subscription::class, 'user_id')
-        ->where('is_active', true)
-        ->where('expires_at', '>', now())
-        ->latest()
-        ->with(['plan' => function($query) {
-            $query->select('id', 'slug');
-        }]);
+            ->where('is_active', true)
+            ->where('expires_at', '>', now())
+            ->latest()
+            ->with(['plan' => function ($query) {
+                $query->select('id', 'slug');
+            }]);
     }
 
     /**
@@ -217,10 +218,10 @@ class User extends Authenticatable
         $hasAttached = !empty($change['attached']);
         $hasDetached = !empty($change['detached']);
         $isAlreadySynced = !$hasAttached && !$hasDetached;
-        
+
         if ($hasAttached || $isAlreadySynced) {
             $user->permissions()->syncWithoutDetaching($permission);
-            
+
             DB::table('permission_user')->where('user_id', $userId)
                 ->update([
                     'level' => 1,
@@ -229,10 +230,10 @@ class User extends Authenticatable
                     'first_in' => 0,
                     'first_login' => 0
                 ]);
-            
+
             return true;
         }
-        
+
         return false;
     }
 
