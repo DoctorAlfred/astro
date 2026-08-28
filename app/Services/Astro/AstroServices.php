@@ -210,6 +210,8 @@ class AstroServices
             $hour
         );
 
+        dd($julianDay);
+
         // Calcolo posizioni celesti
         $sunLong = $this->sunLongitude($julianDay);
         $moonLong = $this->moonLongitude($julianDay);

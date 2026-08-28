@@ -2,18 +2,66 @@
 
 namespace App\Services\Astro;
 
-use Illuminate\Support\Facades\Log;
+use App\Models\Astrology\PlanetMeaning;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class SwissephServices
 {
-    private string $swetestPath;
-    private string $ephePath;
+    // private string $swetestPath;
+    // private string $ephePath;
+
+    protected string $binPath;
+    protected string $ephePath;
 
     public function __construct()
     {
-        $this->swetestPath = base_path('swisseph/bin/swetest.exe');
+        // $this->swetestPath = base_path('swisseph/bin/swetest.exe');
+
+        $this->binPath = base_path('swisseph/bin/swetest.exe');
         $this->ephePath = base_path('swisseph/ephe');
     }
+
+    public function getPlanetPosition(string $date, int $planetId = 0): array
+    {
+        $arguments = [
+            $this->binPath,
+            "-b{$date}",
+            "-p{$planetId}",
+            "-edir" . $this->ephePath,
+            "-fPLN", // P = Nome, L = Longitudine, N = Latitudine (restituisce anche la distanza di default)
+            "-j",    // Sforza l'output in gradi decimali puri
+            "-head"  // Rimuove l'intestazione di testo iniziale
+        ];
+
+        $process = new Process($arguments);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $output = trim($process->getOutput());
+
+        if (empty($output)) {
+            throw new \Exception("Nessun dato ricevuto dall'eseguibile Swiss Ephemeris.");
+        }
+
+        // Divide la stringa usando gli spazi o le tabulazioni come separatore
+        $data = preg_split('/\s+/', $output);
+
+        if (count($data) < 4) {
+            throw new \Exception("Formato di output imprevisto: " . $output);
+        }
+
+        return [
+            'planet_name' => $data[0],          // Es: Sun
+            'longitude'   => (float)$data[1],   // Es: 152.7981756
+            'latitude'    => (float)$data[2],   // Es: 0.0000000
+            'distance'    => (float)$data[3],   // Es: 1.0110397 (in UA)
+        ];
+    }
+
 
     /**
      * Calcola il giorno giuliano
@@ -37,22 +85,41 @@ class SwissephServices
         return $jd;
     }
 
+
+
+
+
+
+
+
     /**
      * Lista dei pianeti
+     * 
+     * @param string $locale
      */
-    public function getPlanetsList(): array
+    public function getPlanetsList(int $planetId, string $locale = 'it'): array
     {
+        $planet = PlanetMeaning::findByPlanetId($planetId);
+        if (!$planet) {
+            return [];
+        }
+
         return [
-            0 => 'Sun',
-            1 => 'Moon',
-            2 => 'Mercury',
-            3 => 'Venus',
-            4 => 'Mars',
-            5 => 'Jupiter',
-            6 => 'Saturn',
-            7 => 'Uranus',
-            8 => 'Neptune',
-            9 => 'Pluto',
+            'id' => $planet->planet_id,
+            'name' => $planet->getName($locale),
+            'symbol' => $planet->symbol,
+            'description' => $planet->getDescription($locale),
+            'characteristics' => $planet->getCharacteristics(),
+            'keywords' => $planet->getKeywords($locale),
+            'colors' => $planet->getColors(),
+            'metals' => $planet->getMetals(),
+            'day' => $planet->getDay($locale),
+            'rulership' => $planet->getRulership($locale),
+            'positive_traits' => $planet->getPositiveTraits($locale),
+            'negative_traits' => $planet->getNegativeTraits($locale),
+            'gender' => $planet->gender,
+            'average_speed' => $planet->average_speed,
+            'orbital_period' => $planet->orbital_period,
         ];
     }
 
@@ -154,7 +221,7 @@ class SwissephServices
      */
     public function calculateAllPlanets(float $julianDay, AstroServices $astroServices, string $locale = 'it'): array
     {
-        $planetsList = $this->getPlanetsList();
+        $planetsList = $this->getPlanetsList(0);
         $planets = [];
 
         foreach ($planetsList as $id => $name) {
@@ -202,7 +269,7 @@ class SwissephServices
         foreach ($output as $line) {
             $line = trim($line);
             if (empty($line)) continue;
-            
+
             // Cerca la riga "house X"
             if (preg_match('/^house\s+(\d+)\s+([^\s]+)\s+([^\s]+)/i', $line, $matches)) {
                 $houseNum = (int) $matches[1];
@@ -271,6 +338,8 @@ class SwissephServices
 
         // Calcola giorno giuliano
         $julianDay = $this->calculateJulianDay($year, $month, $day, $hour);
+        // $test = $julianDay->format('d:m:Y');
+        dd('Swisseph Services 286 ', $julianDay);
 
         // Calcola pianeti
         $planets = $this->calculateAllPlanets($julianDay, $astroServices, $locale);

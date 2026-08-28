@@ -104,6 +104,7 @@ class DatabaseSeeder extends Seeder
             SalmMeaningSeeder::class,
             TantricMeaningSeeder::class,
             TantricYearlyCycleSeeder::class,
+            PlanetSeeder::class,
 
             // ChatGptSeeder::class,
             // ['userId' => $user->userId] 

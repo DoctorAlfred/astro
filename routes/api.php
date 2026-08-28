@@ -100,8 +100,9 @@ Route::group([
         'name' => 'astrology.',
         'middleware' => ['auth:sanctum', 'authenticated']
     ], function () {
-        Route::post('/calculate', [\App\Http\Controllers\Astro\SwissephController::class, 'calculate']);
+        Route::get('/planets/{name?}/{lang?}', [\App\Http\Controllers\Astro\PlanetController::class, 'planets']);
         Route::get('/debug', [\App\Http\Controllers\Astro\SwissephController::class, 'debug']);
+        Route::post('/calculate', [\App\Http\Controllers\Astro\SwissephController::class, 'calculatePlanets']);
     });
 
     // ---------- ---------- ---------- NUMEROLOGY ---------- ---------- ---------- //

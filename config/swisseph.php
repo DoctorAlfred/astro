@@ -43,13 +43,13 @@ return [
     */
     'eph_options' => array_values(array_filter([
         EphOptions::tryFrom(env('SWISSEPH_EPHEMERIS_TYPE', EphOptions::SWISS_TYPE->value))
-        ?? EphOptions::SWISS_TYPE,
+            ?? EphOptions::SWISS_TYPE,
 
         EphOptions::tryFrom(env('SWISSEPH_TRUE_POSITIONS', EphOptions::TRUE_POSITIONS->value))
-        ?? EphOptions::TRUE_POSITIONS,
+            ?? EphOptions::TRUE_POSITIONS,
 
         EphOptions::tryFrom(env('SWISSEPH_NO_NUTATION', EphOptions::NO_NUTATION->value))
-        ?? EphOptions::NO_NUTATION,
+            ?? EphOptions::NO_NUTATION,
     ])),
 
     /*

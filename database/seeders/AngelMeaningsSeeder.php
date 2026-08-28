@@ -7966,7 +7966,7 @@ class AngelMeaningsSeeder extends Seeder
                 'element' => 'ether',
 
                 'zodiac_days' => [
-                    ['day' => 16, 'month' => 3, 'sign' => 'pisci'],
+                    ['day' => 16, 'month' => 3, 'sign' => 'pisces'],
                 ],
 
                 'orientation' => 'EST',
